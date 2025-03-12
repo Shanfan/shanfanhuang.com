@@ -27,6 +27,10 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 
+## Deploying
+When you import a Git repository to Vercel, each commit or pull request (on supported Git providers) automatically triggers a new deployment. See: https://vercel.com/docs/deployments
+
+
 ## Speed Insights
 
 Check [Speed Insights](https://vercel.com/docs/concepts/speed-insights) by navigating to Vercel's dashboard, clicking on the 'Speed Insights' tab, and enabling the product.
