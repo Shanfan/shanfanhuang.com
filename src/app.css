@@ -1,13 +1,16 @@
 @import '@fontsource/fira-mono';
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline:opsz,wght@10..72,100..900&family=Borel&display=swap');
+
 
 :root {
-	--font-body: Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+	--font-body: Roboto, Oxygen, Ubuntu, -apple-system, BlinkMacSystemFont, 'Segoe UI',
 		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	--font-mono: 'Fira Mono', monospace;
+	--font-cursive: 'Borel', cursive;
 	--color-bg-0: rgb(202, 216, 228);
 	--color-bg-1: hsl(209, 36%, 86%);
 	--color-bg-2: hsl(224, 44%, 95%);
-	--color-theme-1: #ff3e00;
+	--color-theme-1: #dc7d50;
 	--color-theme-2: #4075a6;
 	--color-text: rgba(0, 0, 0, 0.7);
 	--column-width: 42rem;
@@ -20,37 +23,41 @@ body {
 	min-height: 100vh;
 	margin: 0;
 	background-attachment: fixed;
-	background-color: var(--color-bg-1);
 	background-size: 100vw 100vh;
 	background: #222;
 }
 
-h1,
-h2,
-p {
-	font-weight: 400;
+h1 {
+	font-family: "Big Shoulders Inline", 'Segoe UI', Roboto, Oxygen, Ubuntu,
+		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	font-optical-sizing: auto;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 5rem;
+	text-align: center;
+	margin: 0.25em 0;
+}
+
+h2 {
+	font-weight: 300;
+	font-style: normal;
+	font-size: 2rem;
+	text-align: center;
 }
 
 p {
+	font-weight: 200;
 	line-height: 1.5;
 }
 
 a {
+	font-family: var(--font-cursive);
 	color: var(--color-theme-1);
 	text-decoration: none;
 }
 
 a:hover {
 	text-decoration: underline;
-}
-
-h1 {
-	font-size: 2rem;
-	text-align: center;
-}
-
-h2 {
-	font-size: 1rem;
 }
 
 pre {
@@ -83,9 +90,13 @@ button:focus:not(:focus-visible) {
 	outline: none;
 }
 
-@media (min-width: 720px) {
+@media (max-width: 720px) {
 	h1 {
-		font-size: 2.4rem;
+		font-size: 3.5rem;
+	}
+
+	h2 {
+		font-size: 1.2rem;
 	}
 }
 
