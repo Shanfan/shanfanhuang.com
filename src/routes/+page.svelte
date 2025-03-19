@@ -1,6 +1,7 @@
 <script>
 	// @ts-nocheck
 	import profileImg from '$lib/images/shanfan_headshot_sq.jpg';
+	import { myLinks } from '$lib/components/MyLinks';
 </script>
 
 <svelte:head>
@@ -15,9 +16,45 @@
 		<h2 style="font-style: italic; font-weight: 100;">
 			Visual Storytelling, Information Design, UI/UX, Data Visualization, Front-end Development
 		</h2>
-		<p style="font-size: 1.5em">
-			Find my work at <a href="/pictxtnum">Picture, Text, and Numbers</a> and this place.
+		<p>
+			Shanfan Huang is a designer who sees design as a way of thinking—a lens for identifying
+			patterns, telling stories, and revealing new perspectives.
 		</p>
+		<p>
+			With a background in product UX design and agile software development, Shanfan has consulted
+			enterprise IT teams on user-centric design methodology and evidence-based product strategy.
+		</p>
+		<p>
+			Currently focusing on information design and visual storytelling, Shanfan’s work combines
+			graphics, user experience, and interaction design, blending analytical thinking with creative
+			expression to make complex information accessible and engaging.
+		</p>
+		<div class="link-container">
+			<div class="icon-links">
+				<p class="icon-header">creative</p>
+				<div class="icon-container">
+					{#each myLinks as link}
+						{#if link.type === 'creative'}
+							<a href={link.url} target="_blank">
+								<img src={link.src} alt={link.id} title={link.title} />
+							</a>
+						{/if}
+					{/each}
+				</div>
+			</div>
+			<div class="icon-links">
+				<p class="icon-header">social</p>
+				<div class="icon-container">
+					{#each myLinks as link}
+						{#if link.type === 'social'}
+							<a href={link.url} target="_blank">
+								<img src={link.src} alt={link.id} title={link.title} />
+							</a>
+						{/if}
+					{/each}
+				</div>
+			</div>
+		</div>
 	</div>
 </section>
 
@@ -45,6 +82,57 @@
 		background: rgba(0, 0, 0, 0.5);
 		backdrop-filter: blur(4px);
 		border-radius: 10px;
-		border: 1px solid #fff;
+		border: 1px solid #000;
+	}
+	.link-container {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.link-container img {
+		width: 40px;
+	}
+	.icon-links {
+		text-align: center;
+		width: 45%;
+	}
+
+	.icon-links a {
+		opacity: 0.5;
+	}
+
+	.icon-links a:hover {
+		opacity: 1;
+	}
+
+	.icon-header {
+		color: #222;
+		background-color: #ffffff;
+		font-size: 1em;
+		text-transform: uppercase;
+		letter-spacing: 0.5em;
+		font-weight: 400;
+		border-radius: 1em;
+		opacity: 0.5;
+	}
+	.icon-container {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		align-items: center;
+		justify-items: center;
+	}
+	@media (max-width: 500px) {
+		.link-container {
+			flex-direction: column;
+		}
+		.link-container > * {
+			width: 100%;
+		}
+
+		.icon-container img {
+			width: 48px;
+		}
 	}
 </style>
