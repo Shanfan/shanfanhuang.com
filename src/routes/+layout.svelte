@@ -1,4 +1,5 @@
-<script lang="ts">
+<script>
+	// @ts-nocheck
 	import '../app.css';
 
 	let { children } = $props();
@@ -10,7 +11,10 @@
 	</main>
 
 	<footer>
-		<p>All rights reserved.</p>
+		<p style="text-align: center;">
+			Built with SvelteKit on Vercel. 💖 D3.js, CSS, and Homebrewed Kombucha. <br />
+			All rights reserved.
+		</p>
 	</footer>
 </div>
 
