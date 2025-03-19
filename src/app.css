@@ -54,7 +54,7 @@ p {
 a {
 	font-family: var(--font-cursive);
 	color: var(--color-theme-1);
-	text-decoration: none;
+	text-decoration: underline;
 }
 
 a:hover {

@@ -16,9 +16,10 @@
 		<h2 style="font-style: italic; font-weight: 100;">
 			Visual Storytelling, Information Design, UI/UX, Data Visualization, Front-end Development
 		</h2>
+		<!-- <a href="/"><h2>Check out my work!</h2></a> -->
 		<p>
-			Shanfan Huang is a designer who sees design as a way of thinking—a lens for identifying
-			patterns, telling stories, and revealing new perspectives.
+			Shanfan is a designer who sees design as a way of thinking—a lens for identifying patterns,
+			telling stories, and revealing new perspectives.
 		</p>
 		<p>
 			With a background in product UX design and agile software development, Shanfan has consulted
@@ -29,6 +30,7 @@
 			graphics, user experience, and interaction design, blending analytical thinking with creative
 			expression to make complex information accessible and engaging.
 		</p>
+
 		<div class="link-container">
 			<div class="icon-links">
 				<p class="icon-header">creative</p>
