@@ -1,7 +1,9 @@
 <script>
 	// @ts-nocheck
 	let { data } = $props();
-	console.log(data);
+	let relationships = data.relationships;
+	let industries = data.industries;
+	let layoffs = data.layoffs;
 </script>
 
 <svelte:head>
