@@ -2,6 +2,7 @@
 	// @ts-nocheck
 	import profileImg from '$lib/images/shanfan_headshot_sq.jpg';
 	import { myLinks } from '$lib/components/MyLinks';
+	import VideoBg from '$lib/components/VideoBg.svelte';
 </script>
 
 <svelte:head>
@@ -13,6 +14,7 @@
 </svelte:head>
 
 <section>
+	<VideoBg />
 	<img class="profile" src={profileImg} alt="shanfan huang profile" />
 	<div class="card">
 		<h1>Shanfan Huang</h1>
