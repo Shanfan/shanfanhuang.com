@@ -28,7 +28,16 @@ You can preview the production build with `npm run preview`.
 
 
 ## Deploying
+
+```bash
+vercel
+
+vercel --prod
+```
+
 When you import a Git repository to Vercel, each commit or pull request (on supported Git providers) automatically triggers a new deployment. See: https://vercel.com/docs/deployments
+
+However, since my email address is masked by a "noreply" address, it doesn't match my account associated to Vercel, so GitHub will always fail to deploy to vercel. That's why we use Vercel CLI instead.
 
 
 ## Speed Insights

@@ -6,29 +6,33 @@
 
 <svelte:head>
 	<title>Home</title>
-	<meta name="description" content="Shanfan Huang personal site" />
+	<meta
+		name="description"
+		content="Shanfan Huang: Visual Storytelling, Information Design, UI/UX, Data Visualization, Front-end Development"
+	/>
 </svelte:head>
 
 <section>
 	<img class="profile" src={profileImg} alt="shanfan huang profile" />
 	<div class="card">
 		<h1>Shanfan Huang</h1>
-		<h2 style="font-style: italic; font-weight: 100;">
-			Visual Storytelling, Information Design, UI/UX, Data Visualization, Front-end Development
+		<h2 style="font-weight: 100;">
+			Design is a way of thinking, identifying patterns, telling stories, and revealing new
+			perspectives.
 		</h2>
-		<!-- <a href="/"><h2>Check out my work!</h2></a> -->
-		<p>
-			Shanfan is a designer who sees design as a way of thinking—a lens for identifying patterns,
-			telling stories, and revealing new perspectives.
-		</p>
+		<!-- <a href="/projects">
+			<h2 style="font-family: var(--font-cursive); letter-spacing: 0.1em">Come in!</h2>
+		</a> -->
 		<p>
 			With a background in product UX design and agile software development, Shanfan has consulted
-			enterprise IT teams on user-centric design methodology and evidence-based product strategy.
+			enterprise IT teams on user-centric design process and evidence-based product strategy.
 		</p>
 		<p>
-			Currently focusing on information design and visual storytelling, Shanfan’s work combines
-			graphics, user experience, and interaction design, blending analytical thinking with creative
-			expression to make complex information accessible and engaging.
+			Currently focusing on <span style="font-family: var(--font-cursive);">information design</span
+			>
+			and <span style="font-family: var(--font-cursive);">visual storytelling</span>, Shanfan’s work
+			combines graphics, illustrations, user experience, and interaction design to make complex
+			information accessible and engaging.
 		</p>
 
 		<div class="link-container">
@@ -116,7 +120,7 @@
 		text-transform: uppercase;
 		letter-spacing: 0.5em;
 		font-weight: 400;
-		border-radius: 1em;
+		border-radius: 4px;
 		opacity: 0.5;
 	}
 	.icon-container {
