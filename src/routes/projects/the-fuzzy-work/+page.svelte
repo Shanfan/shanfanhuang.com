@@ -1,11 +1,29 @@
 <script>
 	// @ts-nocheck
+	import IndustryFilter from './IndustryFilter.svelte';
+	import CompanySwarm from './CompanySwarm.svelte';
+
 	let { data } = $props();
 	let relationships = data.relationships;
 	let industries = data.industries;
-	let layoffs = data.layoffs;
+	let layoffs = data.layoffs.filter((d) => d.layoff > 1000);
 
-	import IndustryFilter from './IndustryFilter.svelte';
+	const stages = ['Public', 'Private', 'Early Stage', 'Mid Stage', 'Late Stage', 'Unknown'];
+
+	// Define graph dimensions
+	const dims = {
+		width: 800,
+		height: 1000,
+		marginTop: 50,
+		marginLeft: 100,
+		marginRight: 50,
+		marginBottom: 100
+	};
+
+	const bound = {
+		width: dims.width - dims.marginLeft - dims.marginRight,
+		height: dims.height - dims.marginTop - dims.marginBottom
+	};
 </script>
 
 <svelte:head>
@@ -15,7 +33,11 @@
 
 <div>
 	<IndustryFilter {relationships} {industries} />
-	<!-- Todo: Needs a "back" button to go back to home page -->
 	<h1 style="color: white">The Fuzzy Work</h1>
-	<!-- Todo: Listing all the projects-->
+	<div class="graph-containder">
+		<CompanySwarm {stages} {dims} {bound} {layoffs} />
+	</div>
 </div>
+
+<style>
+</style>

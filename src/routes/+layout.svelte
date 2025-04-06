@@ -12,7 +12,7 @@
 
 	<footer>
 		<p style="text-align: center;">
-			Built with SvelteKit on Vercel. 💖 D3.js, CSS, and Homebrewed Kombucha. <br />
+			Built with SvelteKit on Vercel. I 💖 D3.js, CSS, and homebrewed kombucha. <br />
 			All rights reserved.
 		</p>
 	</footer>

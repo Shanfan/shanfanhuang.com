@@ -1,12 +1,61 @@
 // @ts-nocheck
 
 import { fetchDataset } from "$lib/dataLoader";
-import { ascending, rollup } from 'd3';
+import { ascending, rollup, sum, max } from 'd3';
 
 export async function load({ fetch }) {
     const proj = "the-fuzzy-work/"
     const industryRelationships = await fetchDataset(proj + "IndustryRelationships.csv", fetch);
-    const layoffs = await fetchDataset(proj + 'TechLayoffs.csv', fetch);
+    const layoffEvents = await fetchDataset(proj + 'TechLayoffs.csv', fetch);
+
+    // Public: Post-IPO.
+    // Unknown: Companies labeled as “Unknown” or “null” in the original dataset.
+    // Private: Includes companies that are "Acquired", "Subsidiary", or "Private Equity".
+    // Early Stage: Companies in the Seed, Series A, or Series B funding rounds.
+    // Mid Stage: Companies in Series C or Series D funding rounds.
+    // Late Stage: Companies in Series E through Series J funding rounds.
+
+    const simplifyStage = (stage) => {
+        switch (stage) {
+            case "Post-IPO":
+                return "Public";
+            case "Acquired":
+            case "Subsidiary":
+            case "Private Equity":
+                return "Private"
+            case "Unknown":
+            case null:
+                return "Unknown";
+            case "Seed":
+            case "Series A":
+            case "Series B":
+                return "Early Stage";
+            case "Series C":
+            case "Series D":
+                return "Mid Stage";
+            default:
+                return "Late Stage";
+        }
+    }
+
+    const layoffs = Array.from(
+        rollup(
+            layoffEvents,
+            (v) => {
+                const totalLayoff = sum(v, d => d.layoff);
+                const maxPercent = max(v, d => parseFloat(d.percentage));
+                const { stage, industry } = v[0];
+                return {
+                    layoff: totalLayoff,
+                    percentage: maxPercent,
+                    stage: simplifyStage(v[0].stage),
+                    industry
+                };
+            },
+            (d) => d.company
+        ),
+        ([company, values]) => ({ company, ...values })
+    );
 
     const getAllIndustries = () => {
         const industryCounts = rollup(
@@ -24,7 +73,6 @@ export async function load({ fetch }) {
 
         return industryCountsArray;
     }
-
 
     return {
         layoffs: layoffs,

@@ -39,10 +39,27 @@
 	let nodes = $state([]),
 		links = $state([]);
 
-	simulation.on('tick', () => {
-		nodes = simulation.nodes();
-		links = linkData.map((d) => ({ ...d }));
-	});
+	// this drag function doesn't work yet.
+	const drag = (simulation) => {
+		function dragstarted(event, d) {
+			if (!event.active) simulation.alphaTarget(0.3).restart();
+			d.fx = d.x;
+			d.fy = d.y;
+			console.log('🚀 Drag started', e);
+		}
+		function dragged(event, d) {
+			d.fx = event.x;
+			d.fy = event.y;
+			console.log('✋ Dragging...', e);
+		}
+		function dragended(event, d) {
+			if (!event.active) simulation.alphaTarget(0);
+			d.fx = null;
+			d.fy = null;
+			console.log('🏁 Drag ended', e);
+		}
+		return d3.drag().on('start', dragstarted).on('drag', dragged).on('end', dragended);
+	};
 
 	$effect(() => {
 		simulation
@@ -57,6 +74,17 @@
 					.strength(1)
 					.iterations(3)
 			);
+
+		simulation.on('tick', () => {
+			nodes = simulation.nodes();
+			links = linkData.map((d) => ({ ...d }));
+		});
+
+		d3.selectAll('text').call(drag(simulation));
+
+		return () => {
+			simulation.stop();
+		};
 	});
 </script>
 
@@ -89,6 +117,7 @@
 					x={node.x}
 					y={node.y}
 					font-size={fontSizeScale(node.count)}
+					fill="#666"
 				>
 					{node.id}
 				</text>
