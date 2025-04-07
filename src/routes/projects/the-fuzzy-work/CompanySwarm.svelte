@@ -1,15 +1,15 @@
 <script>
 	// @ts-nocheck
 	import * as d3 from 'd3';
-	let { stages, slicedData } = $props();
+	let { stages, slicedData, colors, width, height } = $props();
 
 	// Define graph dimensions
 	const dims = {
-		width: 900,
-		height: 400,
-		marginTop: 20,
+		width: width,
+		height: height,
+		marginTop: 50,
 		marginLeft: 80,
-		marginBottom: 20
+		marginBottom: 50
 	};
 
 	const bound = {
@@ -23,12 +23,9 @@
 	const rAccessor = (d) => (d.percentage ? d.percentage : 20);
 
 	// Define scales: color -> stage, radius -> percentage, y -> layoff, x -> stages
-	const colorScale = d3
-		.scaleOrdinal()
-		.domain(stages)
-		.range(['#CC5456', '#88CC54', '#8CD5E1', '#549ECC', '#6E94FC', '#C7C7C7']);
+	const colorScale = d3.scaleOrdinal().domain(stages).range(colors);
 
-	const rScale = d3.scaleSqrt().domain([0, 100]).range([0, 14]);
+	const rScale = d3.scaleSqrt().domain([0, 100]).range([2, 12]);
 	const xScale = d3.scaleBand().domain(stages).range([0, bound.width]).paddingOuter(0.5);
 	const yScale = d3
 		.scaleLinear()
@@ -36,9 +33,7 @@
 		.range([bound.height, 0])
 		.nice();
 
-	const yTicks = yScale.ticks(3);
-
-	console.log(yScale.domain(), d3.extent(slicedData, yAccessor), yTicks);
+	const yTicks = d3.extent(slicedData, yAccessor);
 
 	const nodes = slicedData.map((n, i) => ({
 		...n,
@@ -62,7 +57,7 @@
 				d3
 					.forceX()
 					.x((d) => xScale(xAccessor(d)))
-					.strength(1)
+					.strength(0.5)
 			)
 			.force(
 				'y',
@@ -80,7 +75,7 @@
 	});
 </script>
 
-<svg width={dims.width} height={dims.height} viewBox="0, 0, {dims.width}, {dims.height}">
+<svg width="100%" height="100%" viewBox="0, 0, {dims.width}, {dims.height}">
 	<g class="axix" transform="translate(0, {dims.marginTop})">
 		{#each yTicks as tick}
 			<line
@@ -98,7 +93,7 @@
 				y={yScale(tick)}
 				fill="#999"
 			>
-				{tick}
+				{d3.format(',')(tick)}
 			</text>
 		{/each}
 	</g>
@@ -116,27 +111,11 @@
 			/>
 		{/each}
 	</g>
-
-	<!-- stage color coding labels 
-	 <g transform="translate({dims.marginLeft}, {dims.height - 16})">
-		{#each stages as stage}
-			<text
-				text-anchor="middle"
-				alignment-baseline="middle"
-				x={xScale(stage)}
-				y="0"
-				font-size="16"
-				fill={colorScale(stage)}
-			>
-				{stage}
-			</text>
-		{/each}
-	</g> -->
 </svg>
 
 <style>
 	svg {
 		background-color: #0f0f0f;
-		margin: 1em 0;
+		margin: 0.2em 0;
 	}
 </style>
