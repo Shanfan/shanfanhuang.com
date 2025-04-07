@@ -1,7 +1,21 @@
 <script>
 	// @ts-nocheck
 	import * as d3 from 'd3';
-	let { stages, dims, bound, layoffs } = $props();
+	let { stages, slicedData } = $props();
+
+	// Define graph dimensions
+	const dims = {
+		width: 900,
+		height: 400,
+		marginTop: 20,
+		marginLeft: 80,
+		marginBottom: 20
+	};
+
+	const bound = {
+		width: dims.width - dims.marginLeft,
+		height: dims.height - dims.marginTop - dims.marginBottom
+	};
 
 	// Define accessors
 	const xAccessor = (d) => d.stage; //shared with colorScale
@@ -16,9 +30,17 @@
 
 	const rScale = d3.scaleSqrt().domain([0, 100]).range([0, 14]);
 	const xScale = d3.scaleBand().domain(stages).range([0, bound.width]).paddingOuter(0.5);
-	const yScale = d3.scaleLinear().domain(d3.extent(layoffs, yAccessor)).range([bound.height, 0]);
+	const yScale = d3
+		.scaleLinear()
+		.domain(d3.extent(slicedData, yAccessor))
+		.range([bound.height, 0])
+		.nice();
 
-	const nodes = layoffs.map((n, i) => ({
+	const yTicks = yScale.ticks(3);
+
+	console.log(yScale.domain(), d3.extent(slicedData, yAccessor), yTicks);
+
+	const nodes = slicedData.map((n, i) => ({
 		...n,
 		index: i,
 		x: bound.width / 2 + dims.marginLeft,
@@ -59,7 +81,29 @@
 </script>
 
 <svg width={dims.width} height={dims.height} viewBox="0, 0, {dims.width}, {dims.height}">
-	<g transform="translate({dims.marginLeft}, {dims.marginTop})">
+	<g class="axix" transform="translate(0, {dims.marginTop})">
+		{#each yTicks as tick}
+			<line
+				x1={dims.marginLeft}
+				x2={bound.width + 5}
+				y1={yScale(tick)}
+				y2={yScale(tick)}
+				stroke="#999"
+				stroke-dasharray="3"
+			/>
+			<text
+				text-anchor="end"
+				alignment-baseline="middle"
+				x={dims.marginLeft - 5}
+				y={yScale(tick)}
+				fill="#999"
+			>
+				{tick}
+			</text>
+		{/each}
+	</g>
+
+	<g class="circles" transform="translate({dims.marginLeft}, {dims.marginTop})">
 		{#each nodeState as node}
 			<circle
 				cx={node.x}
@@ -68,11 +112,13 @@
 				fill={colorScale(xAccessor(node))}
 				stroke={node.percentage ? 'none' : '#fff'}
 				opacity={node.percentage ? 1 : 0.75}
-				title={node.layoff}
+				title={node.company}
 			/>
 		{/each}
 	</g>
-	<g transform="translate({dims.marginLeft}, {dims.height - 16})">
+
+	<!-- stage color coding labels 
+	 <g transform="translate({dims.marginLeft}, {dims.height - 16})">
 		{#each stages as stage}
 			<text
 				text-anchor="middle"
@@ -85,12 +131,12 @@
 				{stage}
 			</text>
 		{/each}
-	</g>
+	</g> -->
 </svg>
 
 <style>
 	svg {
-		border: 1px solid white;
-		/* background-color: #eee; */
+		background-color: #0f0f0f;
+		margin: 1em 0;
 	}
 </style>

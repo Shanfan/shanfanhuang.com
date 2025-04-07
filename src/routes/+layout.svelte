@@ -11,9 +11,9 @@
 	</main>
 
 	<footer>
-		<p style="text-align: center;">
-			Built with SvelteKit on Vercel. I 💖 D3.js, CSS, and homebrewed kombucha. <br />
-			All rights reserved.
+		<p style="font-size: 0.8em;">
+			I 💖 D3.js, CSS, and homebrewed kombucha. <br />
+			This site is built with SvelteKit on Vercel. All rights reserved.
 		</p>
 	</footer>
 </div>
@@ -42,7 +42,8 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		padding: 12px;
+		padding: 12px 0;
+		text-align: center;
 	}
 
 	@media (min-width: 480px) {
