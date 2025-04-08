@@ -1,7 +1,7 @@
 <script>
 	// @ts-nocheck
 	import * as d3 from 'd3';
-	let { stages, slicedData, colors, width, height, whichCompany } = $props();
+	let { stages, data, colors, width, height, whichCompany } = $props();
 
 	// Define graph dimensions
 	const dims = {
@@ -29,13 +29,13 @@
 	const xScale = d3.scaleBand().domain(stages).range([0, bound.width]).paddingOuter(0.5);
 	const yScale = d3
 		.scaleLinear()
-		.domain(d3.extent(slicedData, yAccessor))
+		.domain(d3.extent(data, yAccessor))
 		.range([bound.height, 0])
 		.nice();
 
-	const yTicks = d3.extent(slicedData, yAccessor);
+	const yTicks = d3.extent(data, yAccessor);
 
-	const nodes = slicedData.map((n, i) => ({
+	const nodes = data.map((n, i) => ({
 		...n,
 		index: i,
 		x: bound.width / 2 + dims.marginLeft,
@@ -137,6 +137,5 @@
 <style>
 	svg {
 		background-color: #0f0f0f;
-		margin: 0.2em 0;
 	}
 </style>
