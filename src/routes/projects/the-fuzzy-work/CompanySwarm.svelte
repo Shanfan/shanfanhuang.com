@@ -1,7 +1,7 @@
 <script>
 	// @ts-nocheck
 	import * as d3 from 'd3';
-	let { stages, slicedData, colors, width, height } = $props();
+	let { stages, slicedData, colors, width, height, whichCompany } = $props();
 
 	// Define graph dimensions
 	const dims = {
@@ -42,6 +42,23 @@
 		y: bound.height + dims.marginTop
 	}));
 	let nodeState = $state(nodes);
+
+	/**
+	 * Keydown handler for circle nodes. Ensures that using the Enter or Space
+	 * keys on a focused node triggers a click event. Required for keyboard
+	 * accessibility, see:
+	 * https://svelte.dev/docs/svelte/compiler-warnings#a11y_click_events_have_key_events
+	 * @param node
+	 * @param event
+	 */
+	function keyDownNode(node, event) {
+		if (event.key === ' ' || event.key === 'Enter') {
+			// Prevent the default action (for Space key, which scrolls the page)
+			event.preventDefault();
+			// Trigger the click event on the button
+			whichCompany(node);
+		}
+	}
 
 	$effect(() => {
 		// Define the simulation & run tick
@@ -107,7 +124,11 @@
 				fill={colorScale(xAccessor(node))}
 				stroke={node.percentage ? 'none' : '#fff'}
 				opacity={node.percentage ? 1 : 0.75}
-				title={node.company}
+				role="button"
+				aria-label={node.company}
+				tabindex="0"
+				onclick={() => whichCompany(node)}
+				onkeydown={(event) => keyDownNode(node, event)}
 			/>
 		{/each}
 	</g>

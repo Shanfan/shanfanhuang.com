@@ -38,7 +38,7 @@ export async function load({ fetch }) {
         }
     }
 
-    const layoffs = Array.from(
+    const layoffByCompany = Array.from(
         rollup(
             layoffEvents,
             (v) => {
@@ -49,7 +49,16 @@ export async function load({ fetch }) {
                     layoff: totalLayoff,
                     percentage: maxPercent,
                     stage: simplifyStage(v[0].stage),
-                    industry
+                    industry,
+                    events: v.map((d) => {
+                        return {
+                            date: d.date,
+                            layoff: d.layoff,
+                            percentage: d.percentage,
+                            location: d.location,
+                            country: d.country
+                        }
+                    })
                 };
             },
             (d) => d.company
@@ -59,7 +68,7 @@ export async function load({ fetch }) {
 
     const getAllIndustries = () => {
         const industryCounts = rollup(
-            layoffs,
+            layoffByCompany,
             (v) => v.length,
             (d) => d.industry
         );
@@ -75,7 +84,7 @@ export async function load({ fetch }) {
     }
 
     return {
-        layoffs: layoffs,
+        layoffByCompany: layoffByCompany,
         relationships: industryRelationships,
         industries: getAllIndustries(),
     }
