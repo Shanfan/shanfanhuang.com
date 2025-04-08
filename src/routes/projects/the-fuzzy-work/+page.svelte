@@ -14,6 +14,7 @@
 	const colors = ['#CC5456', '#88CC54', '#8CD5E1', '#549ECC', '#6E94FC', '#C7C7C7'];
 	const chartWidth = 960;
 	const chartHeight = 1200;
+	const dataExtent = d3.extent(layoffByCompany, (d) => d.layoff);
 
 	let selectedCompany = $state({ company: 'Company', industry: 'Industry' });
 
@@ -28,7 +29,6 @@
 	//   * consider what's the best way to show the industry filter
 
 	// * Filter UI:
-	// 	 ? Slicing filter (1~8),
 	// 	 * number of layoff filter,
 	//   * industry filter,
 	//   * maybe allow for search by company name?
@@ -60,6 +60,22 @@
 
 		return data;
 	});
+
+	function validateMin(v) {
+		if (v < layoffNumBound[1]) {
+			layoffNumBound[0] = v;
+		} else {
+			layoffNumBound[0] = layoffNumBound[1] - 100;
+		}
+	}
+
+	function validateMax(v) {
+		if (v > layoffNumBound[0]) {
+			layoffNumBound[1] = v;
+		} else {
+			layoffNumBound[1] = layoffNumBound[0] + 100;
+		}
+	}
 </script>
 
 <svelte:head>
@@ -71,12 +87,38 @@
 	<IndustryFilter {relationships} {industries} />
 	<div class="chart-wrapper">
 		<div class="filter-UI">
-			<h3>Number of people laid off</h3>
-			<label for="quantiles">Quantiles:</label>
-			<input id="quantiles" type="number" min="1" , max="10" step="1" bind:value={slices} />
-			{#if slices === 10}
-				<p>10 is the maximum slices allowed.</p>
-			{/if}
+			<div class="quantile-slicer">
+				<label for="quantiles">Quantiles:</label>
+				<input id="quantiles" type="number" min="1" max="10" bind:value={slices} />
+				{#if slices === 10}
+					<p>10 is the maximum slices allowed.</p>
+				{/if}
+			</div>
+			<div class="range-selector">
+				<lable for="min"
+					>Min:
+					<input
+						id="min"
+						type="number"
+						min={dataExtent[0]}
+						max={dataExtent[1]}
+						step="100"
+						bind:value={layoffNumBound[0]}
+					/>
+				</lable>
+				<br />
+				<lable for="max"
+					>Max:
+					<input
+						id="max"
+						type="number"
+						min={dataExtent[0]}
+						max={dataExtent[1]}
+						step="100"
+						bind:value={layoffNumBound[1]}
+					/>
+				</lable>
+			</div>
 		</div>
 		<div class="graph-container">
 			<div class="color-encoding">
