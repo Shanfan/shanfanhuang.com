@@ -26,12 +26,10 @@
 
 	// General user interactions:
 	//   * Add a collapse/expand button for the billboard
-	//   * consider what's the best way to show the industry filter
+	//   * consider what's the best way to show the industry filter; how to make it work on mobile
 
 	// * Filter UI:
-	// 	 * number of layoff filter,
 	//   * industry filter,
-	//   * maybe allow for search by company name?
 
 	let slices = $state(3);
 	let layoffNumBound = $state([500, 5000]);
@@ -84,7 +82,7 @@
 </svelte:head>
 
 <div>
-	<IndustryFilter {relationships} {industries} />
+	<IndustryFilter {relationships} {industries} {selectedIndustries} />
 	<div class="chart-wrapper">
 		<div class="filter-UI">
 			<div class="quantile-slicer">
