@@ -84,7 +84,7 @@
 </svelte:head>
 
 <div>
-	<IndustryFilter {relationships} {industries} />
+	<IndustryFilter {relationships} {industries} {selectedIndustries} />
 	<div class="chart-wrapper">
 		<div class="filter-UI">
 			<div class="quantile-slicer">
@@ -148,7 +148,7 @@
 			</div>
 		</div>
 	</div>
-	<Bulletin company={selectedCompany} />
+	<!-- <Bulletin company={selectedCompany} /> -->
 </div>
 
 <style>
