@@ -17,8 +17,8 @@
 	<VideoBg />
 	<img class="profile" src={profileImg} alt="shanfan huang profile" />
 	<div class="card">
-		<h1>Shanfan Huang</h1>
-		<h2 style="font-weight: 100;">
+		<h1 style="text-align: center">Shanfan Huang</h1>
+		<h2 style="font-weight: 100; text-align: center">
 			Design is a way of thinking, identifying patterns, telling stories, and revealing new
 			perspectives.
 		</h2>
@@ -30,11 +30,10 @@
 			enterprise IT teams on user-centric design process and evidence-based product strategy.
 		</p>
 		<p>
-			Currently focusing on <span style="font-family: var(--font-cursive);">information design</span
-			>
-			and <span style="font-family: var(--font-cursive);">visual storytelling</span>, Shanfan’s work
-			combines graphics, illustrations, user experience, and interaction design to make complex
-			information accessible and engaging.
+			Currently focusing on <span class="cursive">information design</span>
+			and <span class="cursive">visual storytelling</span>, Shanfan’s work combines graphics,
+			illustrations, user experience, and interaction design to make complex information accessible
+			and engaging.
 		</p>
 
 		<div class="link-container">
@@ -91,6 +90,9 @@
 		backdrop-filter: blur(4px);
 		border-radius: 10px;
 		border: 1px solid #000;
+	}
+	.card p {
+		font-size: 1.25rem;
 	}
 	.link-container {
 		display: flex;
