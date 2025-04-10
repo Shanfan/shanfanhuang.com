@@ -14,7 +14,7 @@ export async function fetchDataset(filePath, fetchFn = fetch) {
         if (!filePath) throw new Error('Missing file path');
 
         // Use event.fetch if available (for server-side requests)
-        const response = await fetchFn(`/data/${filePath}`);
+        const response = await fetchFn(`/${filePath}`);
         if (!response.ok) {
             throw new Error(`Failed to load file: ${filePath}`);
         }
