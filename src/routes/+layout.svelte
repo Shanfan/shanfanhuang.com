@@ -12,8 +12,9 @@
 
 	<footer>
 		<p style="font-size: 0.8em;">
-			I 💖 D3.js, CSS, and homebrewed kombucha. <br />
-			This site is built with SvelteKit on Vercel. All rights reserved.
+			Shanfan 💖 D3.js, CSS, and homebrewed kombucha. <br />
+			<a href="www.shanfanhuang.com">shanfanhuang.com</a> is built with SvelteKit on Vercel. All rights
+			reserved.
 		</p>
 	</footer>
 </div>
@@ -37,13 +38,16 @@
 	}
 
 	footer {
-		color: #eee;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		padding: 12px 0;
 		text-align: center;
+		background-image: url('$lib/images/footer_banner.svg');
+		background-position: top left;
+		background-repeat: no-repeat;
+		background-size: cover;
 	}
 
 	@media (min-width: 480px) {
