@@ -1,7 +1,7 @@
 <script>
 	// @ts-nocheck
 	import * as d3 from 'd3';
-	let { stages, data, colors, width, height, whichCompany } = $props();
+	let { stages, data, colorScale, width, height, whichCompany } = $props();
 
 	// Define graph dimensions
 	const dims = {
@@ -22,10 +22,7 @@
 	const yAccessor = (d) => d.layoff;
 	const rAccessor = (d) => (d.percentage ? d.percentage : 20);
 
-	// Define scales: color -> stage, radius -> percentage, y -> layoff, x -> stages
-	const colorScale = d3.scaleOrdinal().domain(stages).range(colors);
-
-	const rScale = d3.scaleSqrt().domain([0, 100]).range([2, 12]);
+	const rScale = d3.scaleSqrt().domain([0, 100]).range([2, 10]);
 	const xScale = d3.scaleBand().domain(stages).range([0, bound.width]).paddingOuter(0.5);
 	const yScale = d3
 		.scaleLinear()
@@ -109,6 +106,7 @@
 				x={dims.marginLeft - 5}
 				y={yScale(tick)}
 				fill="#999"
+				font-size="0.8em"
 			>
 				{d3.format(',')(tick)}
 			</text>
@@ -137,5 +135,9 @@
 <style>
 	svg {
 		background-color: #0f0f0f;
+	}
+
+	circle:hover {
+		cursor: pointer;
 	}
 </style>

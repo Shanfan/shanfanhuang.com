@@ -15,3 +15,14 @@
 	<h1 style="color: white">Under construction</h1>
 	<!-- Todo: Listing all the projects-->
 </div>
+
+<style>
+	.text-column {
+		display: flex;
+		max-width: 48rem;
+		flex: 0.6;
+		flex-direction: column;
+		justify-content: center;
+		margin: 0 auto;
+	}
+</style>

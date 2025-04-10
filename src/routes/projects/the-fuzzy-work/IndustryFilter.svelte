@@ -59,6 +59,13 @@
 		console.log(Object.keys(linkedIndustries));
 	}
 
+	function keyDownNode(e, n) {
+		if (e.key === ' ' || e.key === 'Enter') {
+			e.preventDefault();
+			findSelection(node);
+		}
+	}
+
 	let nodes = $state(nodeData),
 		links = $state(linkData);
 
@@ -72,17 +79,10 @@
 
 	$effect(() => {
 		simulation
-			.force('charge', d3.forceManyBody())
 			.force('center', d3.forceCenter(boundRect.width / 2, boundRect.height / 2))
 			.force('x', d3.forceX(boundRect.width / 2).strength(0.3))
 			.force('y', d3.forceY(boundRect.height / 2).strength(0.3))
-			.force(
-				'collide',
-				d3
-					.forceCollide((d) => fontSizeScale(d.count) * 0.9)
-					.strength(1)
-					.iterations(3)
-			);
+			.force('collide', d3.forceCollide((d) => fontSizeScale(d.count) * 0.9).strength(1));
 
 		simulation.on('tick', () => {
 			nodes = simulation.nodes();
@@ -95,51 +95,64 @@
 	});
 </script>
 
-<div>
-	<svg
-		width={dimensions.width}
-		height={dimensions.height}
-		viewBox="0, 0, {dimensions.width}, {dimensions.height}"
+<svg viewBox="0, 0, {dimensions.width}, {dimensions.height}">
+	<text
+		text-anchor="middle"
+		alignment-baseline="middle"
+		x={dimensions.width / 2}
+		y={dimensions.height / 2}
+		fill="#333"
+		font-size="160">TECH</text
 	>
-		<g class="links" transform="translate({dimensions.marginLeft}, {dimensions.marginTop})">
-			{#each links as link}
-				{#if link.value > 0}
-					<line
-						x1={link.source.x}
-						y1={link.source.y}
-						x2={link.target.x}
-						y2={link.target.y}
-						stroke-width="1"
-						stroke={link.isSelected ? '#ddd' : '#444'}
-						opacity={link.value === 2 ? 0.7 : 0.5}
-					/>
-				{/if}
-			{/each}
-		</g>
-		<g class="nodes" transform="translate({dimensions.marginLeft}, {dimensions.marginTop})">
-			{#each nodes as node}
-				<text
-					text-anchor="middle"
-					alignment-baseline="middle"
-					x={node.x}
-					y={node.y}
-					font-size={fontSizeScale(node.count)}
-					fill={node.isSelected ? '#eee' : '#555'}
-					role="button"
-					aria-label={'industry: ' + node.id}
-					tabindex="0"
-					onclick={() => findSelection(node)}
-				>
-					{node.id}
-				</text>
-			{/each}
-		</g>
-	</svg>
-</div>
+	<g class="links" transform="translate({dimensions.marginLeft}, {dimensions.marginTop})">
+		{#each links as link}
+			{#if link.value > 0}
+				<line
+					x1={link.source.x}
+					y1={link.source.y}
+					x2={link.target.x}
+					y2={link.target.y}
+					stroke-width="1"
+					stroke={link.isSelected ? '#ddd' : '#444'}
+					opacity={link.value === 2 ? 0.7 : 0.5}
+				/>
+			{/if}
+		{/each}
+	</g>
+	<g class="nodes" transform="translate({dimensions.marginLeft}, {dimensions.marginTop})">
+		{#each nodes as node}
+			<text
+				text-anchor="middle"
+				alignment-baseline="middle"
+				x={node.x}
+				y={node.y}
+				font-size={fontSizeScale(node.count)}
+				fill={node.isSelected ? '#eee' : '#888'}
+				role="button"
+				aria-label={'industry: ' + node.id}
+				tabindex="0"
+				onclick={() => findSelection(node)}
+				onkeydown={(event) => keyDownNode(node, event)}
+			>
+				{node.id}
+			</text>
+		{/each}
+	</g>
+</svg>
 
 <style>
 	svg {
 		background: #0f0f0f;
 		border-radius: 50%;
+	}
+
+	.nodes text:hover {
+		cursor: pointer;
+	}
+	.nodes text:focus {
+		outline: none;
+	}
+	.links {
+		mix-blend-mode: lighten;
 	}
 </style>
