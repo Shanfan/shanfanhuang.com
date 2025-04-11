@@ -4,7 +4,7 @@ import { fetchDataset } from "$lib/dataLoader";
 import { ascending, rollup, sum, max } from 'd3';
 
 export async function load({ fetch }) {
-    const proj = "the-fuzzy-work/"
+    const proj = "/the-fuzzy-work/"
     const industryRelationships = await fetchDataset(proj + "IndustryRelationships.csv", fetch);
     const layoffEvents = await fetchDataset(proj + 'TechLayoffs.csv', fetch);
 

@@ -214,9 +214,8 @@
 		<h2>About the dataset</h2>
 		<p>
 			In voluptate velit esse cillum dolore eu fugiat nulla pariatur. Anim id est laborum. For
-			details on what I transformed, read <a href="/projects/the-fuzzy-work/case-study"
-				>behind the scene</a
-			> case study of this project.
+			details on what I transformed, read <a href="case-study">behind the scene</a> case study of this
+			project.
 		</p>
 	</div>
 </div>
