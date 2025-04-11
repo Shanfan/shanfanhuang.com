@@ -1,19 +1,19 @@
 <script>
 	// @ts-nocheck
 	import * as d3 from 'd3';
-	let { stages, data, colorScale, width, height, whichCompany } = $props();
+	let { stages, data, colorScale, rScale, width, height, whichCompany } = $props();
 
 	// Define graph dimensions
 	const dims = {
 		width: width,
 		height: height,
-		marginTop: 50,
-		marginLeft: 80,
-		marginBottom: 50
+		marginSide: 80,
+		marginTop: height / 25 + 5,
+		marginBottom: height / 25 + 5
 	};
 
 	const bound = {
-		width: dims.width - dims.marginLeft,
+		width: dims.width - dims.marginSide,
 		height: dims.height - dims.marginTop - dims.marginBottom
 	};
 
@@ -22,7 +22,6 @@
 	const yAccessor = (d) => d.layoff;
 	const rAccessor = (d) => (d.percentage ? d.percentage : 20);
 
-	const rScale = d3.scaleSqrt().domain([0, 100]).range([2, 10]);
 	const xScale = d3.scaleBand().domain(stages).range([0, bound.width]).paddingOuter(0.5);
 	const yScale = d3
 		.scaleLinear()
@@ -35,7 +34,7 @@
 	const nodes = data.map((n, i) => ({
 		...n,
 		index: i,
-		x: bound.width / 2 + dims.marginLeft,
+		x: bound.width / 2 + dims.marginSide,
 		y: bound.height + dims.marginTop
 	}));
 	let nodeState = $state(nodes);
@@ -93,7 +92,7 @@
 	<g class="axix" transform="translate(0, {dims.marginTop})">
 		{#each yTicks as tick}
 			<line
-				x1={dims.marginLeft}
+				x1={dims.marginSide}
 				x2={bound.width + 5}
 				y1={yScale(tick)}
 				y2={yScale(tick)}
@@ -103,17 +102,27 @@
 			<text
 				text-anchor="end"
 				alignment-baseline="middle"
-				x={dims.marginLeft - 5}
+				x={dims.marginSide - 5}
 				y={yScale(tick)}
 				fill="#999"
 				font-size="0.8em"
 			>
 				{d3.format(',')(tick)}
 			</text>
+			<text
+				text-anchor="start"
+				alignment-baseline="middle"
+				x={dims.width - dims.marginSide + 15}
+				y={yScale(tick)}
+				fill="#999"
+				font-size="0.8em"
+			>
+				ppl
+			</text>
 		{/each}
 	</g>
 
-	<g class="circles" transform="translate({dims.marginLeft}, {dims.marginTop})">
+	<g class="circles" transform="translate({dims.marginSide}, {dims.marginTop})">
 		{#each nodeState as node}
 			<circle
 				cx={node.x}
@@ -135,6 +144,7 @@
 <style>
 	svg {
 		background-color: #0f0f0f;
+		margin: 0;
 	}
 
 	circle:hover {

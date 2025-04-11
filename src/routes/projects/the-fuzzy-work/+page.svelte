@@ -10,9 +10,10 @@
 	const industries = data.industries;
 	const layoffByCompany = data.layoffByCompany;
 
-	const stages = ['Public', 'Private', 'Early Stage', 'Mid Stage', 'Late Stage', 'Unknown'];
-	const colors = ['#CC5456', '#88CC54', '#8CD5E1', '#549ECC', '#6E94FC', '#e4d787'];
+	const stages = ['Public', 'Private', 'Unknown', 'Early Stage', 'Mid Stage', 'Late Stage'];
+	const colors = ['#CC5456', '#88CC54', '#e4d787', '#8CD5E1', '#549ECC', '#6E94FC'];
 	const colorScale = d3.scaleOrdinal().domain(stages).range(colors);
+	const rScale = d3.scaleSqrt().domain([0, 100]).range([2, 10]);
 	const chartWidth = 600;
 	const chartHeight = 1100;
 	const dataExtent = d3.extent(layoffByCompany, (d) => d.layoff);
@@ -20,13 +21,11 @@
 	let selectedCompany = $state({});
 
 	// TO-DOs:
-	// Ledgend:
-	//   * Show number of companies under each "stage" ledgend
-	//   * bubble size
-	//   * add a top boder color to the layoff details table
-
-	// * Filter UI:
-	//   * industry filter,
+	//   * Add "ppl/company" to the end of the axis lines
+	// 	 * How to get the data from the industry filter?
+	//   * How to bind validation function for min & max input?
+	//   * Responsiv CSS Grid
+	//   * write the copy text
 
 	let slices = $state(2);
 	let layoffNumBound = $state([500, 30000]);
@@ -55,6 +54,15 @@
 
 		return data;
 	});
+
+	function getCompanyCountbyStage(data, stage) {
+		let count = 0;
+		data.forEach((s) => {
+			count += s.filter((d) => d.stage === stage).length;
+		});
+
+		return count;
+	}
 
 	function validateMin(v) {
 		if (v < layoffNumBound[1]) {
@@ -91,8 +99,20 @@
 					class="color-encoding"
 					style="display: flex; width: 100%; justify-content: space-around; background: #0f0f0f"
 				>
+					<p
+						style="
+						text-transform: uppercase;
+						font-size: 0.75em;
+						line-height: 200%;
+						color: #999;"
+					>
+						Stage <br /> Count
+					</p>
 					{#each stages as stage}
-						<p style="color: {colorScale(stage)}">{stage}</p>
+						<p style="color: {colorScale(stage)}; text-align: center">
+							{stage}<br />
+							{getCompanyCountbyStage(slicedData, stage)}
+						</p>
 					{/each}
 				</div>
 
@@ -101,6 +121,7 @@
 						<CompanySwarm
 							{stages}
 							{colorScale}
+							{rScale}
 							data={slice}
 							height={chartHeight / slicedData.length}
 							width={chartWidth}
@@ -116,19 +137,41 @@
 			<h1>The Fuzzy Work</h1>
 			<p>
 				Technology is impacting many different industries. Between 2020 and 2025, tech companies
-				conducted many layoffs. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-				eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-				nostrud exercitation.
+				conducted many layoffs. The visualization lets you explore different aspects of the layoff
+				events over the past 5 years.
 			</p>
 			<h2><span class="cursive">Explore</span> the data</h2>
-			<p>Reading the beeswarm chart below. Ledgend: color encoding; bubble size.</p>
 			<h3>👈 Filter by industry</h3>
 			<p>
 				Ledge: font size ...; what the linked lines mean. Based on your choice in the industry
 				filter, the chart below shows...In voluptate velit esse cillum dolore eu fugiat nulla
 				pariatur.
 			</p>
-			<button>Reset Industry Filter</button>
+			<button>Reset Industries Filter</button>
+			<h3>👀 Read the beeswarm chart</h3>
+			<p><strong>The colors</strong> represents different funding stages a company is at:</p>
+			<ul style="grid-template-columns: 1fr 1fr 1fr;">
+				{#each stages as stage}
+					<li style="color: {colorScale(stage)}">{stage}</li>
+				{/each}
+			</ul>
+			<p>The stages are plotted across the <strong>X axis</strong>.</p>
+			<p>
+				Each circle represents a company. <strong>The size</strong> of the circle represent the percentage
+				of people laid off from a company:
+			</p>
+			<ul class="rLedgend" style="grid-template-columns: 1fr 1fr;">
+				<li>
+					<span style="opacity: 75%; width: {rScale(20) * 2}px; border: 1px solid white;"></span> unknown
+				</li>
+				<li><span style="width: {rScale(1) * 2}px"></span> 1%</li>
+				<li><span style="width: {rScale(50) * 2}px"></span> 50%</li>
+				<li><span style="width: {rScale(100) * 2}px"></span> 100%</li>
+			</ul>
+			<p>
+				The circles are plotted along the <strong>Y axis</strong>, the total number of people laid
+				off.
+			</p>
 			<h3>👇 Filter by layoff range</h3>
 			<p>In voluptate velit esse cillum dolore eu fugiat nulla pariatur. Anim id est laborum.</p>
 			<div class="range-selector" style="margin-top: 1em">
@@ -181,4 +224,25 @@
 </div>
 
 <style>
+	ul {
+		display: grid;
+		list-style: none;
+		padding: 0.25em;
+	}
+
+	li {
+		margin: 0.25em 0;
+	}
+	.rLedgend li {
+		display: flex;
+		align-items: center;
+	}
+	.rLedgend span {
+		display: block;
+		float: left;
+		aspect-ratio: 1;
+		margin-right: 1em;
+		border-radius: 50%;
+		background: #cc5456;
+	}
 </style>
