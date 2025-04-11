@@ -73,6 +73,7 @@
 		align-items: center;
 		flex: 0.6;
 		color: white;
+		padding: 0 1em;
 	}
 
 	.profile {
