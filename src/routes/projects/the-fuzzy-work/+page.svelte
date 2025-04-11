@@ -9,6 +9,7 @@
 	const relationships = data.relationships;
 	const industries = data.industries;
 	const layoffByCompany = data.layoffByCompany;
+	const allIndustrySelected = Array.from(industries.map((d) => d.industry));
 
 	const stages = ['Public', 'Private', 'Unknown', 'Early Stage', 'Mid Stage', 'Late Stage'];
 	const colors = ['#CC5456', '#88CC54', '#e4d787', '#8CD5E1', '#549ECC', '#6E94FC'];
@@ -26,8 +27,8 @@
 	//   * Write behind the scene
 
 	let slices = $state(2);
-	let layoffNumBound = $state([500, 30000]);
-	let selectedIndustries = $state(['Finance', 'Retail', 'Consumer', 'Data', 'Crypto', 'Sales']);
+	let layoffNumBound = $state([1000, 10000]);
+	let selectedIndustries = $state(allIndustrySelected);
 
 	let slicedData = $derived.by(() => {
 		const filteredData = layoffByCompany.filter(
@@ -107,7 +108,7 @@
 			Ledge: font size ...; what the linked lines mean. Based on your choice in the industry filter,
 			the chart below shows...In voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 		</p>
-		<button>Reset</button>
+		<button onclick={() => (selectedIndustries = allIndustrySelected)}>Reset</button>
 	</div>
 	<div id="content-2">
 		<h3 style="margin-top: 0">Ledgend</h3>
@@ -222,7 +223,9 @@
 		<h2>About the dataset</h2>
 		<p>
 			In voluptate velit esse cillum dolore eu fugiat nulla pariatur. Anim id est laborum. For
-			details on what I transformed, read <a href="">behind the scene</a> case study of this project.
+			details on what I transformed, read <a href="/projects/the-fuzzy-work/case-study"
+				>behind the scene</a
+			> case study of this project.
 		</p>
 	</div>
 </div>

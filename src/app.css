@@ -104,6 +104,7 @@ button {
 
 button:hover {
 	background: linear-gradient(to top, #222, #444);
+	cursor: pointer;
 }
 
 button:focus:not(:focus-visible) {
