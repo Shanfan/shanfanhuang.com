@@ -12,7 +12,7 @@
 	--color-bg-2: hsl(224, 44%, 95%);
 	--color-theme-1: #dcb150;
 	--color-theme-2: #35699a;
-	--color-text: rgba(255, 255, 255, 0.7);
+	--color-text: #ccc;
 	--column-width: 42rem;
 	--column-margin-top: 4rem;
 	font-family: var(--font-body);
@@ -113,13 +113,5 @@ button:focus:not(:focus-visible) {
 @media (max-width: 720px) {
 	h1 {
 		font-size: 3.5rem;
-	}
-
-	h2 {
-		font-size: 1.2rem;
-	}
-
-	p {
-		font-size: 1rem;
 	}
 }

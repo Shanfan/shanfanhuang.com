@@ -46,9 +46,9 @@
 			</tbody>
 		</table>
 	</div>
-	<p>👈 <span class="cursive">Click</span> another circle to view a different company.</p>
+	<p><span class="cursive">Click</span> another circle to view a different company.</p>
 {:else}
-	<p>👈 <span class="cursive">Click</span> a circle to view details.</p>
+	<p><span class="cursive">Click</span> a circle to view details.</p>
 {/if}
 
 <style>
