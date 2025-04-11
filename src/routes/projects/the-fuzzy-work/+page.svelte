@@ -62,22 +62,6 @@
 
 		return count;
 	}
-
-	function validateMin(v) {
-		if (v < layoffNumBound[1]) {
-			layoffNumBound[0] = v;
-		} else {
-			layoffNumBound[0] = layoffNumBound[1] - 100;
-		}
-	}
-
-	function validateMax(v) {
-		if (v > layoffNumBound[0]) {
-			layoffNumBound[1] = v;
-		} else {
-			layoffNumBound[1] = layoffNumBound[0] + 100;
-		}
-	}
 </script>
 
 <svelte:head>
@@ -98,7 +82,10 @@
 		<IndustryFilter
 			{relationships}
 			{industries}
-			onselected={(result) => (selectedIndustries = result)}
+			onselected={(result) => {
+				selectedIndustries = result;
+			}}
+			allIndustriesSelected={selectedIndustries.length === 30}
 		/>
 	</div>
 	<div id="content-1">
@@ -108,10 +95,14 @@
 			Ledge: font size ...; what the linked lines mean. Based on your choice in the industry filter,
 			the chart below shows...In voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 		</p>
-		<button onclick={() => (selectedIndustries = allIndustrySelected)}>Reset</button>
+		<button
+			onclick={() => {
+				selectedIndustries = allIndustrySelected;
+			}}>Reset</button
+		>
 	</div>
 	<div id="content-2">
-		<h3 style="margin-top: 0">Ledgend</h3>
+		<h3 style="margin-top: 0">Reading beeswarm chart</h3>
 		<p><strong>The colors</strong> represents different funding stages a company is at:</p>
 		<ul style="grid-template-columns: 1fr 1fr 1fr;">
 			{#each stages as stage}

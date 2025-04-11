@@ -1,18 +1,18 @@
 <script>
 	// @ts-nocheck
 	import * as d3 from 'd3';
-	let { relationships, industries, onselected } = $props();
+	let { relationships, industries, onselected, allIndustriesSelected } = $props();
 
 	let nodeData = industries.map((n, i) => ({
 		id: n.industry,
 		count: n.count,
-		isSelected: false
+		isSelected: true
 	}));
 	let linkData = relationships.map((l, i) => ({
 		source: l.Source,
 		target: l.Target,
 		value: l.Strength,
-		isSelected: false
+		isSelected: true
 	}));
 
 	let dimensions = {
@@ -113,7 +113,7 @@
 					x2={link.target.x}
 					y2={link.target.y}
 					stroke-width="1"
-					stroke={link.isSelected ? '#ddd' : '#444'}
+					stroke={link.isSelected && !allIndustriesSelected ? '#ddd' : '#444'}
 					opacity={link.value === 2 ? 0.7 : 0.5}
 				/>
 			{/if}
@@ -127,7 +127,7 @@
 				x={node.x}
 				y={node.y}
 				font-size={fontSizeScale(node.count)}
-				fill={node.isSelected ? '#eee' : '#888'}
+				fill={node.isSelected && !allIndustriesSelected ? '#eee' : '#888'}
 				role="button"
 				aria-label={'industry: ' + node.id}
 				tabindex="0"
