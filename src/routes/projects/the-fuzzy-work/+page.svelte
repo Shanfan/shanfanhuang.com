@@ -21,11 +21,9 @@
 	let selectedCompany = $state({});
 
 	// TO-DOs:
-	// 	 * How to get the data from the industry filter?
 	//   * How to bind validation function for min & max input?
-	//   * Responsiv CSS Grid
-	//   * consider whether we want to introduce icon package https://lucide.dev/icons/mouse-pointer-click
 	//   * write the copy text
+	//   * Write behind the scene
 
 	let slices = $state(2);
 	let layoffNumBound = $state([500, 30000]);
@@ -96,7 +94,11 @@
 		</p>
 	</div>
 	<div id="industry-filter">
-		<IndustryFilter {relationships} {industries} {selectedIndustries} />
+		<IndustryFilter
+			{relationships}
+			{industries}
+			onselected={(result) => (selectedIndustries = result)}
+		/>
 	</div>
 	<div id="content-1">
 		<h2><span class="cursive">Explore</span> the data</h2>
