@@ -13,8 +13,8 @@
 	<footer>
 		<p style="font-size: 0.8em;">
 			Shanfan 💖 D3.js, CSS, and homebrewed kombucha. <br />
-			<a href="www.shanfanhuang.com">shanfanhuang.com</a> is built with SvelteKit on Vercel. All rights
-			reserved.
+			<a href="https://www.shanfanhuang.com">shanfanhuang.com</a> is built with SvelteKit on Vercel.
+			All rights reserved.
 		</p>
 	</footer>
 </div>

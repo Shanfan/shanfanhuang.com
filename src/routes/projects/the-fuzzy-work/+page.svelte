@@ -22,7 +22,6 @@
 	let selectedCompany = $state({});
 
 	// TO-DOs:
-	//   * How to bind validation function for min & max input?
 	//   * write the copy text
 	//   * Write behind the scene
 
@@ -61,6 +60,13 @@
 		});
 
 		return count;
+	}
+	function validateMax(value) {
+		layoffNumBound[1] = value < layoffNumBound[0] ? layoffNumBound[0] + 1 : value;
+	}
+
+	function validateMin(value) {
+		layoffNumBound[0] = value > layoffNumBound[1] ? layoffNumBound[1] - 1 : value;
 	}
 </script>
 
@@ -137,7 +143,7 @@
 					min={dataExtent[0]}
 					max={dataExtent[1]}
 					step="100"
-					bind:value={layoffNumBound[0]}
+					bind:value={() => layoffNumBound[0], validateMin}
 				/>
 			</lable>
 
@@ -149,7 +155,7 @@
 					min={dataExtent[0]}
 					max={dataExtent[1]}
 					step="100"
-					bind:value={layoffNumBound[1]}
+					bind:value={() => layoffNumBound[1], validateMax}
 				/>
 			</lable>
 		</div>
@@ -214,8 +220,9 @@
 		<h2>About the dataset</h2>
 		<p>
 			In voluptate velit esse cillum dolore eu fugiat nulla pariatur. Anim id est laborum. For
-			details on what I transformed, read <a href="case-study">behind the scene</a> case study of this
-			project.
+			details on what I transformed, read <a href="/projects/the-fuzzy-work/case-study"
+				>behind the scene</a
+			> case study of this project.
 		</p>
 	</div>
 </div>
