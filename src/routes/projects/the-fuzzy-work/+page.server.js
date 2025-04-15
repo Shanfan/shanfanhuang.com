@@ -5,8 +5,13 @@ import { ascending, rollup, sum, max } from 'd3';
 
 export async function load({ fetch }) {
     const proj = "/the-fuzzy-work/"
-    const industryRelationships = await fetchDataset(proj + "IndustryRelationships.csv", fetch);
-    const layoffEvents = await fetchDataset(proj + 'TechLayoffs.csv', fetch);
+
+    // Promise.all allows both file reads to proceed simultaneously, rather than
+    // sequentially. A small performance optimization.
+    const [industryRelationships, layoffEvents] = await Promise.all([
+        fetchDataset(proj + 'IndustryRelationships.csv', fetch),
+        fetchDataset(proj + 'TechLayoffs.csv', fetch)
+    ]);
 
     // Public: Post-IPO.
     // Unknown: Companies labeled as “Unknown” or “null” in the original dataset.
