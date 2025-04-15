@@ -69,10 +69,10 @@
 	let nodes = $state(nodeData),
 		links = $state(linkData);
 
-	const simulation = d3.forceSimulation(nodeData).force(
+	const simulation = d3.forceSimulation(nodes).force(
 		'link',
 		d3
-			.forceLink(linkData)
+			.forceLink(links)
 			.id((d) => d.id)
 			.distance((d) => (d.value === 2 ? 200 : boundRect.height))
 	);
@@ -83,11 +83,6 @@
 			.force('x', d3.forceX(boundRect.width / 2).strength(0.3))
 			.force('y', d3.forceY(boundRect.height / 2).strength(0.3))
 			.force('collide', d3.forceCollide((d) => fontSizeScale(d.count) * 0.9).strength(1));
-
-		simulation.on('tick', () => {
-			nodes = simulation.nodes();
-			links = linkData.map((d) => ({ ...d }));
-		});
 
 		return () => {
 			simulation.stop();
