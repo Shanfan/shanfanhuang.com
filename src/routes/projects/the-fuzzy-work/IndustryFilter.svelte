@@ -36,7 +36,7 @@
 	let fontSizeScale = d3
 		.scaleLinear()
 		.domain([d3.min(nodeData, (d) => d.count), d3.max(nodeData, (d) => d.count)])
-		.range([12, 30]);
+		.range([14, 32]);
 
 	function findSelection(n) {
 		const linkedIndustries = {
@@ -61,7 +61,6 @@
 			}
 		});
 
-		// onselected?.(Object.keys(linkedIndustries));
 		selectedIndustries = Object.keys(linkedIndustries);
 	}
 
@@ -88,7 +87,7 @@
 			.force('center', d3.forceCenter(boundRect.width / 2, boundRect.height / 2))
 			.force('x', d3.forceX(boundRect.width / 2).strength(0.3))
 			.force('y', d3.forceY(boundRect.height / 2).strength(0.3))
-			.force('collide', d3.forceCollide((d) => fontSizeScale(d.count) * 0.9).strength(1));
+			.force('collide', d3.forceCollide((d) => fontSizeScale(d.count) * 0.9).strength(0.75));
 
 		return () => {
 			simulation.stop();
@@ -149,6 +148,7 @@
 
 	.nodes text:hover {
 		cursor: pointer;
+		fill: #eee;
 	}
 	.nodes text:focus {
 		outline: none;

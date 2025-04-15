@@ -8,8 +8,8 @@
 		width: width,
 		height: height,
 		marginSide: 80,
-		marginTop: height / 25 + 5,
-		marginBottom: height / 25 + 5
+		marginTop: height / 15 + 10,
+		marginBottom: height / 15 + 10
 	};
 
 	const bound = {
@@ -149,5 +149,8 @@
 
 	circle:hover {
 		cursor: pointer;
+		r: 10;
+		stroke-width: 2px;
+		stroke: aliceblue;
 	}
 </style>

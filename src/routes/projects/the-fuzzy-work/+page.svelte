@@ -15,18 +15,18 @@
 	const colors = ['#CC5456', '#88CC54', '#e4d787', '#8CD5E1', '#549ECC', '#6E94FC'];
 	const colorScale = d3.scaleOrdinal().domain(stages).range(colors);
 	const rScale = d3.scaleSqrt().domain([0, 100]).range([2, 10]);
-	const chartWidth = 600;
-	const chartHeight = 1100;
+	const chartWidth = 680;
+	const chartHeight = 1200;
 	const dataExtent = d3.extent(layoffByCompany, (d) => d.layoff);
 
 	// TO-DOs:
 	//   * write the copy text
 	//   * Write behind the scene
 
-	let slices = $state(6);
-	let layoffNumBound = $state([1, 30000]);
+	let slices = $state(1);
+	let layoffNumBound = $state([1500, 30000]);
 	let selectedCompany = $state({});
-	let selectedIndustries = $state(['Other']);
+	let selectedIndustries = $state(allIndustrySelected);
 
 	let slicedData = $derived.by(() => {
 		const filteredData = layoffByCompany.filter(
@@ -60,13 +60,6 @@
 
 		return count;
 	}
-	function validateMax(value) {
-		layoffNumBound[1] = value < layoffNumBound[0] ? layoffNumBound[0] + 1 : value;
-	}
-
-	function validateMin(value) {
-		layoffNumBound[0] = value > layoffNumBound[1] ? layoffNumBound[1] - 1 : value;
-	}
 </script>
 
 <svelte:head>
@@ -77,10 +70,15 @@
 <div class="grid-container">
 	<div id="title">
 		<h1>The Fuzzy Work</h1>
+		<h3>
+			Between March 2020 and January 2025, tech companies around the globe conducted series of
+			layoffs, impacting people working in many different industries. Interesting highlights I found
+			in this dataset includes:
+		</h3>
+		<p>...</p>
 		<p>
-			Between March 2020 and January 2025, tech tech companies conducted many layoffs, impacting
-			many different industries. You can explore different aspects of the layoff events over the
-			past 5 years with this interactive chart.
+			You can explore different aspects of the layoff events over the past 5 years with this
+			interactive chart.
 		</p>
 	</div>
 	<div id="industry-filter">
@@ -90,37 +88,76 @@
 			bind:selectedIndustries
 			allIndustriesSelected={selectedIndustries.length === industries.length}
 		/>
+		<div>
+			<button
+				onclick={() => {
+					selectedIndustries = allIndustrySelected;
+				}}>Reset Selection</button
+			>
+			<p>
+				Industries highlighted in this graph is used as a filter to show companies in the beeswarm
+				chart below.
+			</p>
+			{#if selectedIndustries.length === industries.length}
+				<p>
+					<span
+						style="
+							text-transform: uppercase;
+							font-size: 0.75em;
+							color: #999;"
+					>
+						Selected industries
+					</span>
+					All industries selected
+				</p>
+			{:else}
+				<p>
+					<span
+						style="
+							text-transform: uppercase;
+							font-size: 0.75em;
+							color: #999;"
+					>
+						Selected industry
+					</span>
+					{selectedIndustries[0]}
+				</p>
+				{#if selectedIndustries.length > 1 && selectedIndustries.length < industries.length}
+					<p>
+						<span
+							style="
+							text-transform: uppercase;
+							font-size: 0.75em;
+							color: #999;"
+						>
+							Related industries
+						</span>
+						{#each selectedIndustries as ind, i}
+							{#if i !== 0 && i !== selectedIndustries.length - 1}
+								{ind} -&nbsp;
+							{:else if i === selectedIndustries.length - 1}
+								{ind}
+							{/if}
+						{/each}
+					</p>
+				{/if}
+			{/if}
+		</div>
 	</div>
 	<div id="content-1">
-		<h2><span class="cursive">Explore</span> the data</h2>
-		<h3>Filter by industry</h3>
+		<h2>Layoff impact on industries</h2>
 		<p>
 			In the original dataset, companies are classified under 30 industries, visualized as a network
 			graph here. I denoted related industries with a link (See: <a href="/">Why I did this</a>).
 		</p>
-		<p>The font size correspond the number of companies in that industry.</p>
-		<p>
-			Selecting one industry from the graph will selete all its related industries, which filters
-			the dateset shown in the beeswarm chart.
-		</p>
-		<button
-			onclick={() => {
-				selectedIndustries = allIndustrySelected;
-			}}>Reset Filter</button
-		>
+		<p>The font size corresponds the number of companies in that industry.</p>
 	</div>
 	<div id="content-2">
-		<h3 style="margin-top: 0">Reading beeswarm chart</h3>
-		<p><strong>The colors</strong> represents different funding stages a company is at:</p>
-		<ul style="grid-template-columns: 1fr 1fr 1fr;">
-			{#each stages as stage}
-				<li style="color: {colorScale(stage)}">{stage}</li>
-			{/each}
-		</ul>
-		<p>The stages are plotted across the <strong>X axis</strong>.</p>
+		<h2 style="margin-top: 0">How to read the chart</h2>
+
+		<p>Each circle represents a company.</p>
 		<p>
-			Each circle represents a company. <strong>The size</strong> of the circle represent the percentage
-			of people laid off from a company:
+			<strong>The size</strong> of the circle represent the percentage of people laid off from a company:
 		</p>
 		<ul class="rLedgend" style="grid-template-columns: 1fr 1fr;">
 			<li>
@@ -130,14 +167,17 @@
 			<li><span style="width: {rScale(50) * 2}px"></span> 50%</li>
 			<li><span style="width: {rScale(100) * 2}px"></span> 100%</li>
 		</ul>
+		<p>The funding stage of a company is plotted across the <strong>X axis</strong>.</p>
+
 		<p>
-			The circles are plotted along the <strong>Y axis</strong>, the total number of people laid
-			off.
+			The <strong>Y axis</strong> marks the total number of people laid off from a company.
 		</p>
-		<h3 style="margin-top: 3em">Filter by range</h3>
+
+		<h2>Explore data range</h2>
 		<p>
-			The number of layoffs extends from 4 to 27840. Filter the dataset by change the range below:
+			The people laid off by a single company extends from {dataExtent[0]} to {dataExtent[1]}.
 		</p>
+		<p>Filter the dataset by change the range below:</p>
 		<div class="range-selector" style="margin-top: 1em">
 			<lable for="min"
 				>Min:
@@ -147,7 +187,7 @@
 					min={dataExtent[0]}
 					max={dataExtent[1]}
 					step="100"
-					bind:value={() => layoffNumBound[0], validateMin}
+					bind:value={layoffNumBound[0]}
 				/>
 			</lable>
 
@@ -159,15 +199,13 @@
 					min={dataExtent[0]}
 					max={dataExtent[1]}
 					step="100"
-					bind:value={() => layoffNumBound[1], validateMax}
+					bind:value={layoffNumBound[1]}
 				/>
 			</lable>
 		</div>
-		<h3 style="margin-top: 3em">Slice dataset</h3>
-		<p>In voluptate velit esse cillum dolore eu fugiat nulla pariatur. Anim id est laborum.</p>
+		<p>Dive into data distribution by slicing the dataset into:</p>
 		<div class="quantile-slicer">
-			<label for="quantiles"
-				>Slice into
+			<label for="quantiles">
 				<input id="quantiles" type="number" min="1" max="10" bind:value={slices} />
 				quantiles</label
 			>
@@ -215,7 +253,7 @@
 		{/each}
 	</div>
 	<div id="content-3">
-		<h2><span class="cursive">View</span> layoff events</h2>
+		<h2>View layoff events</h2>
 		<p>Companies conducted multiple layoff events between 2020 and 2025.</p>
 
 		<Bulletin company={selectedCompany} {colorScale} />
@@ -238,11 +276,11 @@
 		padding: 2em;
 		max-width: 64em;
 		display: grid;
-		gap: 2em 1em;
+		gap: 1em 2em;
 		grid-template-columns: 2fr 1fr;
 		grid-template-rows: auto;
 		grid-template-areas:
-			'industry-filter title' 'industry-filter content-1' 'beeswarm content-2'
+			'title title' 'industry-filter content-1' 'beeswarm content-2'
 			'beeswarm content-3' 'closing closing';
 	}
 
@@ -273,7 +311,6 @@
 	}
 	#closing {
 		grid-area: closing;
-		max-width: 64em;
 	}
 
 	ul {
