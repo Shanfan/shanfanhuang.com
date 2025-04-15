@@ -79,9 +79,9 @@
 	<div id="title">
 		<h1>The Fuzzy Work</h1>
 		<p>
-			Technology is impacting many different industries. Between 2020 and 2025, tech companies
-			conducted many layoffs. The visualization lets you explore different aspects of the layoff
-			events over the past 5 years.
+			Between March 2020 and January 2025, tech tech companies conducted many layoffs, impacting
+			many different industries. You can explore different aspects of the layoff events over the
+			past 5 years with this interactive chart.
 		</p>
 	</div>
 	<div id="industry-filter">
@@ -304,7 +304,7 @@
 			grid-template-rows: auto;
 			grid-template-areas:
 				'title' 'industry-filter' 'content-1' 'content-2'
-				'beeswarm' 'content-3';
+				'beeswarm' 'content-3' 'closing';
 		}
 
 		.color-encoding {
