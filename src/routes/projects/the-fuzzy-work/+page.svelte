@@ -19,14 +19,13 @@
 	const chartHeight = 1100;
 	const dataExtent = d3.extent(layoffByCompany, (d) => d.layoff);
 
-	let selectedCompany = $state({});
-
 	// TO-DOs:
 	//   * write the copy text
 	//   * Write behind the scene
 
 	let slices = $state(2);
 	let layoffNumBound = $state([1000, 10000]);
+	let selectedCompany = $state({});
 	let selectedIndustries = $state(allIndustrySelected);
 
 	let slicedData = $derived.by(() => {
@@ -88,10 +87,8 @@
 		<IndustryFilter
 			{relationships}
 			{industries}
-			onselected={(result) => {
-				selectedIndustries = result;
-			}}
-			allIndustriesSelected={selectedIndustries.length === 30}
+			bind:selectedIndustries
+			allIndustriesSelected={selectedIndustries.length === industries.length}
 		/>
 	</div>
 	<div id="content-1">

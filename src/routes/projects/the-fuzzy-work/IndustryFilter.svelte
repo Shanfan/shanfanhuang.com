@@ -1,7 +1,12 @@
 <script>
 	// @ts-nocheck
 	import * as d3 from 'd3';
-	let { relationships, industries, onselected, allIndustriesSelected } = $props();
+	let {
+		relationships,
+		industries,
+		selectedIndustries = $bindable(),
+		allIndustriesSelected
+	} = $props();
 
 	let nodeData = industries.map((n, i) => ({
 		id: n.industry,
@@ -56,7 +61,8 @@
 			}
 		});
 
-		onselected?.(Object.keys(linkedIndustries));
+		// onselected?.(Object.keys(linkedIndustries));
+		selectedIndustries = Object.keys(linkedIndustries);
 	}
 
 	function keyDownNode(e, n) {
