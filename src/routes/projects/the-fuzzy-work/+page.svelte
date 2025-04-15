@@ -23,10 +23,10 @@
 	//   * write the copy text
 	//   * Write behind the scene
 
-	let slices = $state(2);
-	let layoffNumBound = $state([1000, 10000]);
+	let slices = $state(6);
+	let layoffNumBound = $state([1, 30000]);
 	let selectedCompany = $state({});
-	let selectedIndustries = $state(allIndustrySelected);
+	let selectedIndustries = $state(['Other']);
 
 	let slicedData = $derived.by(() => {
 		const filteredData = layoffByCompany.filter(
@@ -95,13 +95,18 @@
 		<h2><span class="cursive">Explore</span> the data</h2>
 		<h3>Filter by industry</h3>
 		<p>
-			Ledge: font size ...; what the linked lines mean. Based on your choice in the industry filter,
-			the chart below shows...In voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+			In the original dataset, companies are classified under 30 industries, visualized as a network
+			graph here. I denoted related industries with a link (See: <a href="/">Why I did this</a>).
+		</p>
+		<p>The font size correspond the number of companies in that industry.</p>
+		<p>
+			Selecting one industry from the graph will selete all its related industries, which filters
+			the dateset shown in the beeswarm chart.
 		</p>
 		<button
 			onclick={() => {
 				selectedIndustries = allIndustrySelected;
-			}}>Reset</button
+			}}>Reset Filter</button
 		>
 	</div>
 	<div id="content-2">
@@ -130,7 +135,9 @@
 			off.
 		</p>
 		<h3 style="margin-top: 3em">Filter by range</h3>
-		<p>In voluptate velit esse cillum dolore eu fugiat nulla pariatur. Anim id est laborum.</p>
+		<p>
+			The number of layoffs extends from 4 to 27840. Filter the dataset by change the range below:
+		</p>
 		<div class="range-selector" style="margin-top: 1em">
 			<lable for="min"
 				>Min:
