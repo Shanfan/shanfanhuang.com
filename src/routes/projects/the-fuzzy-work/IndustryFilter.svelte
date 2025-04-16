@@ -8,9 +8,9 @@
 		allIndustriesSelected
 	} = $props();
 
-	let nodeData = industries.map((n, i) => ({
-		id: n.industry,
-		count: n.count,
+	let nodeData = industries.map(({ industry, ...rest }) => ({
+		id: industry,
+		...rest,
 		isSelected: true
 	}));
 	let linkData = relationships.map((l, i) => ({
@@ -20,7 +20,7 @@
 		isSelected: true
 	}));
 
-	let dimensions = {
+	const dimensions = {
 		width: 600,
 		height: 600,
 		marginTop: 50,
@@ -28,15 +28,17 @@
 		marginRight: 50,
 		marginBottom: 50
 	};
-	let boundRect = {
+	const boundRect = {
 		width: dimensions.width - dimensions.marginLeft - dimensions.marginRight,
 		height: dimensions.height - dimensions.marginTop - dimensions.marginBottom
 	};
 
+	const fontSizeAccessor = (d) => d.companies;
+
 	let fontSizeScale = d3
 		.scaleLinear()
-		.domain([d3.min(nodeData, (d) => d.count), d3.max(nodeData, (d) => d.count)])
-		.range([14, 32]);
+		.domain(d3.extent(nodeData, fontSizeAccessor))
+		.range([16, 42]);
 
 	function findSelection(n) {
 		const linkedIndustries = {
@@ -126,7 +128,7 @@
 				alignment-baseline="middle"
 				x={node.x}
 				y={node.y}
-				font-size={fontSizeScale(node.count)}
+				font-size={fontSizeScale(fontSizeAccessor(node))}
 				fill={node.isSelected && !allIndustriesSelected ? '#eee' : '#888'}
 				role="button"
 				aria-label={'industry: ' + node.id}

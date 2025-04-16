@@ -74,16 +74,24 @@ export async function load({ fetch }) {
     const getAllIndustries = () => {
         const industryCounts = rollup(
             layoffByCompany,
-            (v) => v.length,
+            (v) => {
+                return {
+                    companies: v.length,
+                    bankrupted: v.filter(d => d.percentage === 100).length,
+                    ppl_laidoff: sum(v, d => d.layoff)
+                }
+            },
             (d) => d.industry
         );
 
         const industryCountsArray = Array.from(
             industryCounts,
-            ([industry, count]) => ({ industry, count })
+            ([industry, counts]) => ({ industry, ...counts })
         );
 
-        industryCountsArray.sort((a, b) => ascending(a.industry, b.industry));
+        industryCountsArray.sort((a, b) => ascending(a.ppl_laidoff, b.ppl_laidoff));
+
+        console.log(industryCountsArray)
 
         return industryCountsArray;
     }

@@ -94,10 +94,7 @@
 					selectedIndustries = allIndustrySelected;
 				}}>Reset Selection</button
 			>
-			<p>
-				Industries highlighted in this graph is used as a filter to show companies in the beeswarm
-				chart below.
-			</p>
+
 			{#if selectedIndustries.length === industries.length}
 				<p>
 					<span
@@ -143,6 +140,10 @@
 				{/if}
 			{/if}
 		</div>
+		<p>
+			Industries highlighted in this graph is used as a filter to show companies in the beeswarm
+			chart below.
+		</p>
 	</div>
 	<div id="content-1">
 		<h2>Layoff impact on industries</h2>
