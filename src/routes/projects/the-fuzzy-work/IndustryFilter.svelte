@@ -1,6 +1,7 @@
 <script>
 	// @ts-nocheck
 	import * as d3 from 'd3';
+
 	let {
 		relationships,
 		industries,
@@ -33,12 +34,12 @@
 		height: dimensions.height - dimensions.marginTop - dimensions.marginBottom
 	};
 
-	const fontSizeAccessor = (d) => d.companies;
+	const fontSizeAccessor = (d) => d.ppl_laidoff;
 
 	let fontSizeScale = d3
 		.scaleLinear()
 		.domain(d3.extent(nodeData, fontSizeAccessor))
-		.range([16, 42]);
+		.range([16, 32]);
 
 	function findSelection(n) {
 		const linkedIndustries = {
@@ -81,15 +82,54 @@
 		d3
 			.forceLink(links)
 			.id((d) => d.id)
-			.distance((d) => (d.value === 2 ? 200 : boundRect.height))
+			.distance((d) => (d.value === 2 ? boundRect.height / 6 : boundRect.height))
 	);
+
+	/**
+	 * Action: make an element draggable inside a D3 force‑simulation.
+	 *
+	 * Usage:
+	 * <text use:handleDrag={{ datum: node }}>…</text>
+	 */
+	function handleDrag(el, datum) {
+		// Attach this node’s datum so D3 can read/write to it
+		d3.select(el).datum(datum);
+
+		$effect(() => {
+			// ─── Setup (runs on mount) ──────
+			const behavior = d3
+				.drag()
+				.on('start', (event) => {
+					if (!event.active) simulation.alphaTarget(0.3).restart();
+					datum.fx = datum.x;
+					datum.fy = datum.y;
+				})
+				.on('drag', (event) => {
+					datum.fx = event.x;
+					datum.fy = event.y;
+				})
+				.on('end', (event) => {
+					if (!event.active) simulation.alphaTarget(0);
+					datum.fx = datum.fy = null;
+				});
+
+			// Apply the drag behaviour
+			d3.select(el).call(behavior);
+
+			// ─── Teardown (runs on unmount) ──────
+			return () => {
+				// Remove every listener in the `.drag` namespace
+				d3.select(el).on('.drag', null);
+			};
+		});
+	}
 
 	$effect(() => {
 		simulation
 			.force('center', d3.forceCenter(boundRect.width / 2, boundRect.height / 2))
 			.force('x', d3.forceX(boundRect.width / 2).strength(0.3))
 			.force('y', d3.forceY(boundRect.height / 2).strength(0.3))
-			.force('collide', d3.forceCollide((d) => fontSizeScale(d.count) * 0.9).strength(0.75));
+			.force('collide', d3.forceCollide((d) => fontSizeScale(fontSizeAccessor(d))).strength(0.85));
 
 		return () => {
 			simulation.stop();
@@ -135,6 +175,7 @@
 				tabindex="0"
 				onclick={() => findSelection(node)}
 				onkeydown={(event) => keyDownNode(node, event)}
+				use:handleDrag={node}
 			>
 				{node.id}
 			</text>
@@ -146,6 +187,10 @@
 	svg {
 		background: #0f0f0f;
 		border-radius: 50%;
+	}
+
+	text {
+		user-select: none;
 	}
 
 	.nodes text:hover {
