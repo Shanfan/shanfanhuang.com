@@ -4,6 +4,7 @@
 	import IndustryFilter from './IndustryFilter.svelte';
 	import CompanySwarm from './CompanySwarm.svelte';
 	import Bulletin from './Bulletin.svelte';
+	import ComparisonBar from './ComparisonBar.svelte';
 
 	let { data } = $props();
 	const relationships = data.relationships;
@@ -18,10 +19,6 @@
 	const chartWidth = 680;
 	const chartHeight = 1200;
 	const dataExtent = d3.extent(layoffByCompany, (d) => d.layoff);
-
-	// TO-DOs:
-	//   * write the copy text
-	//   * Write behind the scene
 
 	let slices = $state(1);
 	let layoffNumBound = $state([1500, 30000]);
@@ -80,6 +77,7 @@
 			You can explore different aspects of the layoff events over the past 5 years with this
 			interactive chart.
 		</p>
+		<ComparisonBar {industries} />
 	</div>
 	<div id="industry-filter">
 		<IndustryFilter
@@ -151,7 +149,7 @@
 			In the original dataset, companies are classified under 30 industries, visualized as a network
 			graph here. I denoted related industries with a link (See: <a href="/">Why I did this</a>).
 		</p>
-		<p>The font size corresponds the number of companies in that industry.</p>
+		<p>The font size corresponds the number of positions eliminated in that industry.</p>
 	</div>
 	<div id="content-2">
 		<h2 style="margin-top: 0">How to read the chart</h2>
@@ -171,7 +169,7 @@
 		<p>The funding stage of a company is plotted across the <strong>X axis</strong>.</p>
 
 		<p>
-			The <strong>Y axis</strong> marks the total number of people laid off from a company.
+			The <strong>Y axis</strong> marks the total number of positions eliminated in a company.
 		</p>
 
 		<h2>Explore data range</h2>

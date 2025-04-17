@@ -186,7 +186,6 @@
 <style>
 	svg {
 		background: #0f0f0f;
-		border-radius: 50%;
 	}
 
 	text {

@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 import { fetchDataset } from "$lib/dataLoader";
-import { ascending, rollup, sum, max } from 'd3';
+import { ascending, rollup, sum, max, descending } from 'd3';
 
 export async function load({ fetch }) {
     const proj = "/the-fuzzy-work/"
@@ -89,7 +89,7 @@ export async function load({ fetch }) {
             ([industry, counts]) => ({ industry, ...counts })
         );
 
-        industryCountsArray.sort((a, b) => ascending(a.ppl_laidoff, b.ppl_laidoff));
+        industryCountsArray.sort((a, b) => descending(a.ppl_laidoff, b.ppl_laidoff));
 
         console.log(industryCountsArray)
 

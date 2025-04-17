@@ -89,7 +89,7 @@
 </script>
 
 <svg viewBox="0, 0, {dims.width}, {dims.height}">
-	<g class="axix" transform="translate(0, {dims.marginTop})">
+	<g class="axis" transform="translate(0, {dims.marginTop})">
 		{#each yTicks as tick}
 			<line
 				x1={dims.marginSide}
@@ -99,26 +99,10 @@
 				stroke="#999"
 				stroke-dasharray="3"
 			/>
-			<text
-				text-anchor="end"
-				alignment-baseline="middle"
-				x={dims.marginSide - 5}
-				y={yScale(tick)}
-				fill="#999"
-				font-size="0.8em"
-			>
+			<text x={dims.marginSide - 5} y={yScale(tick)}>
 				{d3.format(',')(tick)}
 			</text>
-			<text
-				text-anchor="start"
-				alignment-baseline="middle"
-				x={dims.width - dims.marginSide + 15}
-				y={yScale(tick)}
-				fill="#999"
-				font-size="0.8em"
-			>
-				ppl
-			</text>
+			<text x={dims.width - dims.marginSide + 15} y={yScale(tick)}> ppl </text>
 		{/each}
 	</g>
 
@@ -145,6 +129,13 @@
 	svg {
 		background-color: #0f0f0f;
 		margin: 0;
+	}
+
+	.axis text {
+		fill: #999;
+		font-size: 0.8em;
+		text-anchor: end;
+		alignment-baseline: middle;
 	}
 
 	circle:hover {
