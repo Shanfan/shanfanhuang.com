@@ -16,7 +16,7 @@
 
 <div class="header grid-container">
 	<p>
-		Comapnies announced layoff events <br /> Red <span class="bankrupted"> = bankrupted</span>
+		Comapnies <br /> Red <span class="bankrupted"> = bankrupted</span>
 	</p>
 	<p>Industry</p>
 	<p>Positions Eliminated</p>
@@ -81,12 +81,12 @@
 
 	.ppl.bar {
 		left: 0;
-		background: #999;
+		background: var(--color-text);
 	}
 
 	.company.bar {
 		right: 0;
-		background: #999;
+		background: var(--color-text);
 	}
 	.bankrupted.bar {
 		background: var(--bankrupted);

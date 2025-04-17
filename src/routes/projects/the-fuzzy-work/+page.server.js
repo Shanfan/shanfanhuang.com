@@ -91,8 +91,6 @@ export async function load({ fetch }) {
 
         industryCountsArray.sort((a, b) => descending(a.ppl_laidoff, b.ppl_laidoff));
 
-        console.log(industryCountsArray)
-
         return industryCountsArray;
     }
 

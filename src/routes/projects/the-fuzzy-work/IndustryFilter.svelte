@@ -169,7 +169,7 @@
 				x={node.x}
 				y={node.y}
 				font-size={fontSizeScale(fontSizeAccessor(node))}
-				fill={node.isSelected && !allIndustriesSelected ? '#eee' : '#888'}
+				fill={node.isSelected && !allIndustriesSelected ? '#fff' : 'var(--color-text)'}
 				role="button"
 				aria-label={'industry: ' + node.id}
 				tabindex="0"

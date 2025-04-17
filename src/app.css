@@ -41,12 +41,14 @@ h2 {
 	font-weight: 300;
 	font-style: normal;
 	font-size: 2rem;
+	margin-top: 0;
 }
 
 h3 {
 	font-weight: 300;
 	font-style: normal;
 	font-size: 1.2em;
+	margin-top: 0;
 }
 
 p,
@@ -114,5 +116,9 @@ button:focus:not(:focus-visible) {
 @media (max-width: 720px) {
 	h1 {
 		font-size: 3.5rem;
+	}
+
+	h2 {
+		font-size: 1.8rem;
 	}
 }

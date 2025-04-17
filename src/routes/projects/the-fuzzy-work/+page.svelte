@@ -65,8 +65,9 @@
 </svelte:head>
 
 <div class="grid-container">
-	<div id="title">
+	<div id="intro">
 		<h1>The Fuzzy Work</h1>
+		<h2>The nebulous shift of the tech industry in 3 charts</h2>
 		<h3>
 			Between March 2020 and January 2025, tech companies around the globe conducted series of
 			layoffs, impacting people working in many different industries. Interesting highlights I found
@@ -77,8 +78,12 @@
 			You can explore different aspects of the layoff events over the past 5 years with this
 			interactive chart.
 		</p>
+	</div>
+	<aside></aside>
+	<div id="industry-impact">
 		<ComparisonBar {industries} />
 	</div>
+	<aside><h2>Layoff impact on industries</h2></aside>
 	<div id="industry-filter">
 		<IndustryFilter
 			{relationships}
@@ -143,76 +148,15 @@
 			chart below.
 		</p>
 	</div>
-	<div id="content-1">
+	<aside>
 		<h2>Layoff impact on industries</h2>
 		<p>
 			In the original dataset, companies are classified under 30 industries, visualized as a network
 			graph here. I denoted related industries with a link (See: <a href="/">Why I did this</a>).
 		</p>
 		<p>The font size corresponds the number of positions eliminated in that industry.</p>
-	</div>
-	<div id="content-2">
-		<h2 style="margin-top: 0">How to read the chart</h2>
+	</aside>
 
-		<p>Each circle represents a company.</p>
-		<p>
-			<strong>The size</strong> of the circle represent the percentage of people laid off from a company:
-		</p>
-		<ul class="rLedgend" style="grid-template-columns: 1fr 1fr;">
-			<li>
-				<span style="opacity: 75%; width: {rScale(20) * 2}px; border: 1px solid white;"></span> unknown
-			</li>
-			<li><span style="width: {rScale(1) * 2}px"></span> 1%</li>
-			<li><span style="width: {rScale(50) * 2}px"></span> 50%</li>
-			<li><span style="width: {rScale(100) * 2}px"></span> 100%</li>
-		</ul>
-		<p>The funding stage of a company is plotted across the <strong>X axis</strong>.</p>
-
-		<p>
-			The <strong>Y axis</strong> marks the total number of positions eliminated in a company.
-		</p>
-
-		<h2>Explore data range</h2>
-		<p>
-			The people laid off by a single company extends from {dataExtent[0]} to {dataExtent[1]}.
-		</p>
-		<p>Filter the dataset by change the range below:</p>
-		<div class="range-selector" style="margin-top: 1em">
-			<lable for="min"
-				>Min:
-				<input
-					id="min"
-					type="number"
-					min={dataExtent[0]}
-					max={dataExtent[1]}
-					step="100"
-					bind:value={layoffNumBound[0]}
-				/>
-			</lable>
-
-			<lable for="max"
-				>Max:
-				<input
-					id="max"
-					type="number"
-					min={dataExtent[0]}
-					max={dataExtent[1]}
-					step="100"
-					bind:value={layoffNumBound[1]}
-				/>
-			</lable>
-		</div>
-		<p>Dive into data distribution by slicing the dataset into:</p>
-		<div class="quantile-slicer">
-			<label for="quantiles">
-				<input id="quantiles" type="number" min="1" max="10" bind:value={slices} />
-				quantiles</label
-			>
-			{#if slices === 10}
-				<p>10 is the maximum slices allowed.</p>
-			{/if}
-		</div>
-	</div>
 	<div id="beeswarm-graph">
 		<div
 			class="color-encoding"
@@ -250,13 +194,71 @@
 				/>
 			{/key}
 		{/each}
+		<p>
+			The people laid off by a single company extends from {dataExtent[0]} to {dataExtent[1]}.
+		</p>
+		<p>
+			Filter data by range:
+			<lable for="min"
+				>Min:
+				<input
+					id="min"
+					type="number"
+					min={dataExtent[0]}
+					max={dataExtent[1]}
+					step="100"
+					bind:value={layoffNumBound[0]}
+				/>
+			</lable>
+
+			<lable for="max"
+				>Max:
+				<input
+					id="max"
+					type="number"
+					min={dataExtent[0]}
+					max={dataExtent[1]}
+					step="100"
+					bind:value={layoffNumBound[1]}
+				/>
+			</lable>
+		</p>
+		<p>
+			Observe data distribution by slicing:
+			<label for="quantiles">
+				<input id="quantiles" type="number" min="1" max="10" bind:value={slices} />
+				quantiles</label
+			>
+		</p>
+		{#if slices === 10}
+			<p class="warning">10 is the maximum slices allowed.</p>
+		{/if}
 	</div>
-	<div id="content-3">
+	<aside id="layoff-details">
+		<h2>How to read the chart</h2>
+
+		<p>Each circle represents a company.</p>
+		<p>
+			<strong>The size</strong> of the circle represent the percentage of people laid off from a company:
+		</p>
+		<ul class="rLedgend" style="grid-template-columns: 1fr 1fr;">
+			<li>
+				<span style="opacity: 75%; width: {rScale(20) * 2}px; border: 1px solid white;"></span> unknown
+			</li>
+			<li><span style="width: {rScale(1) * 2}px"></span> 1%</li>
+			<li><span style="width: {rScale(50) * 2}px"></span> 50%</li>
+			<li><span style="width: {rScale(100) * 2}px"></span> 100%</li>
+		</ul>
+		<p>The funding stage of a company is plotted across the <strong>X axis</strong>.</p>
+
+		<p>
+			The <strong>Y axis</strong> marks the total number of positions eliminated in a company.
+		</p>
 		<h2>View layoff events</h2>
 		<p>Companies conducted multiple layoff events between 2020 and 2025.</p>
 
 		<Bulletin company={selectedCompany} {colorScale} />
-	</div>
+	</aside>
 	<div id="closing">
 		<h2>About the dataset</h2>
 		<p>
@@ -270,46 +272,16 @@
 
 <style>
 	.grid-container {
-		color: #aaa;
 		margin: 3em auto;
 		padding: 2em;
-		max-width: 64em;
+		max-width: 100em;
 		display: grid;
 		gap: 1em 2em;
 		grid-template-columns: 2fr 1fr;
-		grid-template-rows: auto;
-		grid-template-areas:
-			'title title' 'industry-filter content-1' 'beeswarm content-2'
-			'beeswarm content-3' 'closing closing';
 	}
 
-	h1,
-	h2,
-	h3 {
-		color: #eee;
-	}
-
-	#title {
-		grid-area: title;
-	}
-
-	#industry-filter {
-		grid-area: industry-filter;
-	}
-	#beeswarm-graph {
-		grid-area: beeswarm;
-	}
-	#content-1 {
-		grid-area: content-1;
-	}
-	#content-2 {
-		grid-area: content-2;
-	}
-	#content-3 {
-		grid-area: content-3;
-	}
-	#closing {
-		grid-area: closing;
+	h1 {
+		color: white;
 	}
 
 	ul {
@@ -334,27 +306,22 @@
 		background: #cc5456;
 	}
 
-	@media (max-width: 550px) {
+	.warning {
+		color: #cc5456;
+	}
+
+	@media (max-width: 720px) {
 		.grid-container {
 			margin: 2em auto;
-			padding: 1em;
+			padding: 1em 2em;
 			display: grid;
 			gap: 1em;
 			grid-template-columns: 1fr;
 			grid-template-rows: auto;
-			grid-template-areas:
-				'title' 'industry-filter' 'content-1' 'content-2'
-				'beeswarm' 'content-3' 'closing';
 		}
 
 		.color-encoding {
 			font-size: 0.75rem;
-		}
-
-		#content-1,
-		#content-2,
-		#content-3 {
-			max-width: 20em;
 		}
 	}
 </style>
