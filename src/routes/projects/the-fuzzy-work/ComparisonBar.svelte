@@ -12,12 +12,12 @@
 	const bankruptedScale = $derived(
 		d3.scaleLinear().rangeRound([0, rangeCom]).domain(companyExtent)
 	);
+
+	$inspect(industries.filter((d) => d.bankrupted > 0));
 </script>
 
 <div class="header grid-container">
-	<p>
-		Comapnies <br /> Red <span class="bankrupted"> = bankrupted</span>
-	</p>
+	<p>Comapnies</p>
 	<p>Industry</p>
 	<p>Positions Eliminated</p>
 </div>

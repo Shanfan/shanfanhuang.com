@@ -6,19 +6,12 @@ import { ascending, rollup, sum, max, descending } from 'd3';
 export async function load({ fetch }) {
     const proj = "/the-fuzzy-work/"
 
-    // Promise.all allows both file reads to proceed simultaneously, rather than
-    // sequentially. A small performance optimization.
     const [industryRelationships, layoffEvents] = await Promise.all([
         fetchDataset(proj + 'IndustryRelationships.csv', fetch),
         fetchDataset(proj + 'TechLayoffs.csv', fetch)
     ]);
 
-    // Public: Post-IPO.
-    // Unknown: Companies labeled as “Unknown” or “null” in the original dataset.
-    // Private: Includes companies that are "Acquired", "Subsidiary", or "Private Equity".
-    // Early Stage: Companies in the Seed, Series A, or Series B funding rounds.
-    // Mid Stage: Companies in Series C or Series D funding rounds.
-    // Late Stage: Companies in Series E through Series J funding rounds.
+    const filteredEvents = layoffEvents.filter(d => d.layoff != null)
 
     const simplifyStage = (stage) => {
         switch (stage) {
@@ -45,7 +38,7 @@ export async function load({ fetch }) {
 
     const layoffByCompany = Array.from(
         rollup(
-            layoffEvents,
+            filteredEvents,
             (v) => {
                 const totalLayoff = sum(v, d => d.layoff);
                 const maxPercent = max(v, d => parseFloat(d.percentage));

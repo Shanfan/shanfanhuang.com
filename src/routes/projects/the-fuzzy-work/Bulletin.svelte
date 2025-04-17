@@ -4,7 +4,7 @@
 	let { company, colorScale } = $props();
 
 	function formatDate(string) {
-		const [day, month, year] = string.split('/');
+		const [month, day, year] = string.split('/');
 		const dateObj = new Date(year, month - 1, day);
 		const options = { month: 'short', day: 'numeric', year: 'numeric' };
 		return dateObj.toLocaleDateString('en-US', options);

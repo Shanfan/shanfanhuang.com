@@ -67,9 +67,9 @@
 <div class="grid-container">
 	<div id="intro">
 		<h1>The Fuzzy Work</h1>
-		<h2>The nebulous shift of the tech industry in 3 charts</h2>
+		<h2>the nebulous shift of the tech industry in 3 charts</h2>
 		<h3>
-			Between March 2020 and January 2025, tech companies around the globe conducted series of
+			Between March 11, 2020 and April 16, 2025, tech companies around the globe conducted series of
 			layoffs, impacting people working in many different industries. Interesting highlights I found
 			in this dataset includes:
 		</h3>
@@ -83,7 +83,10 @@
 	<div id="industry-impact">
 		<ComparisonBar {industries} />
 	</div>
-	<aside><h2>Layoff impact on industries</h2></aside>
+	<aside>
+		<h3>Layoff impact on industries</h3>
+		<p>Click on an industry in the chart to see details.</p>
+	</aside>
 	<div id="industry-filter">
 		<IndustryFilter
 			{relationships}
@@ -151,7 +154,7 @@
 	<aside>
 		<h2>Layoff impact on industries</h2>
 		<p>
-			In the original dataset, companies are classified under 30 industries, visualized as a network
+			In the original dataset, companies are classified under industries, visualized as a network
 			graph here. I denoted related industries with a link (See: <a href="/">Why I did this</a>).
 		</p>
 		<p>The font size corresponds the number of positions eliminated in that industry.</p>
@@ -262,10 +265,10 @@
 	<div id="closing">
 		<h2>About the dataset</h2>
 		<p>
-			In voluptate velit esse cillum dolore eu fugiat nulla pariatur. Anim id est laborum. For
-			details on what I transformed, read <a href="/projects/the-fuzzy-work/case-study"
-				>behind the scene</a
-			> case study of this project.
+			Data sourced from <a href="https://layoffs.fyi/" target="_blank">Layoffs FYI</a>.In voluptate
+			velit esse cillum dolore eu fugiat nulla pariatur. Anim id est laborum. For details on what I
+			transformed, read <a href="/projects/the-fuzzy-work/case-study">behind the scene</a> case study
+			of this project.
 		</p>
 	</div>
 </div>
