@@ -46,35 +46,37 @@
 </svelte:head>
 
 <div class="grid-container">
-	<div id="intro">
+	<div class="main-content">
 		<h1>The Fuzzy Work</h1>
-		<h2>2020 ~ 2025: the nebulous shift of the tech industry</h2>
-		<h3>
-			Between March 11, 2020 and April 16, 2025, tech companies around the globe conducted series of
-			layoffs, impacting people working in many different industries. Interesting highlights I found
-			in this dataset includes:
-		</h3>
-		<p>...</p>
+		<h2 class="cursive">2020 ~ 2025: the nebulous shift of the tech industry</h2>
 		<p>
-			You can explore different aspects of the layoff events over the past 5 years with this
-			interactive chart.
+			Between March 11, 2020 and April 16, 2025, tech companies around the globe conducted series of
+			layoffs, impacting people working in many different industries. This essay explores data
+			shared on <a href="https://layoffs.fyi/" target="_blank">Layoffs FYI</a> using interactive charts.
+		</p>
+		<p>
+			To ensure clarity, I rolled up the original dataset, in which each row represents a layoff
+			announcement in the news, by company. I also simplified the classification of the funding
+			stage of a company. See <a href="the-fuzzy-work/behind-the-scene">Behind the Scene</a> for details.
 		</p>
 	</div>
-	<aside></aside>
-	<div id="industry-impact">
+	<div class="main-content">
+		<h2>Layoff impact on industries</h2>
+	</div>
+	<div class="main-content">
 		<ComparisonBar data={rollupByX('industry')} measure={'Industry'} />
 	</div>
 	<aside>
-		<h3>Layoff impact on industries</h3>
 		<p>Click on an industry in the chart to see details.</p>
 	</aside>
-
-	<div id="stage-impact">
+	<div class="main-content">
+		<h2>Layoff impact on companies at different funding stages</h2>
+	</div>
+	<div class="main-content">
 		<ComparisonBar data={rollupByX('stage')} measure={'Stage'} />
 	</div>
 	<aside>
-		<h3>Layoff impact on companies at different funding stage</h3>
-		<p>Click on an industry in the chart to see details.</p>
+		<p>Click on a stage in the chart to see details.</p>
 	</aside>
 
 	<div style="margin-top: 3em;">
@@ -82,8 +84,8 @@
 		<p>
 			Data sourced from <a href="https://layoffs.fyi/" target="_blank">Layoffs FYI</a>.In voluptate
 			velit esse cillum dolore eu fugiat nulla pariatur. Anim id est laborum. For details on what I
-			transformed, read <a href="/projects/the-fuzzy-work/case-study">behind the scene</a> case study
-			of this project.
+			transformed, read <a href="the-fuzzy-work/behind-the-scene">behind the scene</a>
+			this project.
 		</p>
 	</div>
 </div>
@@ -96,6 +98,13 @@
 		display: grid;
 		gap: 1em 2em;
 		grid-template-columns: 2fr 1fr;
+	}
+
+	.main-content {
+		grid-column: 1 / 1;
+	}
+	aside {
+		grid-column: 2 / 2;
 	}
 
 	h1 {

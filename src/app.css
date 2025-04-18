@@ -41,25 +41,23 @@ h2 {
 	font-weight: 300;
 	font-style: normal;
 	font-size: 2rem;
-	margin-top: 0;
 }
 
 h3 {
 	font-weight: 300;
 	font-style: normal;
 	font-size: 1.2em;
-	margin-top: 0;
 }
 
 p,
 li {
 	font-weight: 200;
-	line-height: 1.2;
+	line-height: 1.5;
 }
 
 .cursive {
 	font-family: var(--font-cursive);
-	line-height: 0.5;
+	line-height: 1.5;
 }
 
 a {

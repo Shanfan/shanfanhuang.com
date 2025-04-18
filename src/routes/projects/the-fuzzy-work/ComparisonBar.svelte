@@ -32,7 +32,7 @@
 <div class="footer grid-container">
 	<p>Max: {companyExtent[1]} --- Min: {companyExtent[0]}</p>
 	<p>Count: {data.length}</p>
-	<p>Max: {d3.format(',')(pplExtent[1])} --- Min: {pplExtent[0]}</p>
+	<p>Max: {d3.format(',')(pplExtent[1])} --- Min: {d3.format(',')(pplExtent[0])}</p>
 </div>
 
 <style>
