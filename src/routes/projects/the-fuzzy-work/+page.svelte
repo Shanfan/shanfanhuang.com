@@ -8,17 +8,35 @@
 
 	let { data } = $props();
 	const relationships = data.relationships;
-	const industries = data.industries;
 	const layoffByCompany = data.layoffByCompany;
 	const bankrupted = layoffByCompany.filter((d) => d.percentage === 100);
 
-	function getCompanyCountbyStage(data, stage) {
-		let count = 0;
-		data.forEach((s) => {
-			count += s.filter((d) => d.stage === stage).length;
-		});
+	const pivotMap = d3.rollups(
+		bankrupted,
+		(v) => v.length,
+		(d) => d.industry,
+		(d) => d.stage
+	);
 
-		return count;
+	// console.log(pivotMap);
+
+	function rollupByX(string) {
+		const counts = d3.rollups(
+			layoffByCompany,
+			(v) => {
+				return {
+					companies: v.length,
+					ppl_laidoff: d3.sum(v, (d) => d.layoff)
+				};
+			},
+			(d) => d[string]
+		);
+		const countsArray = Array.from(counts, ([name, counts]) => ({
+			key: name,
+			...counts
+		}));
+		countsArray.sort((a, b) => d3.descending(a.ppl_laidoff, b.ppl_laidoff));
+		return countsArray;
 	}
 </script>
 
@@ -44,10 +62,18 @@
 	</div>
 	<aside></aside>
 	<div id="industry-impact">
-		<ComparisonBar {industries} />
+		<ComparisonBar data={rollupByX('industry')} measure={'Industry'} />
 	</div>
 	<aside>
 		<h3>Layoff impact on industries</h3>
+		<p>Click on an industry in the chart to see details.</p>
+	</aside>
+
+	<div id="stage-impact">
+		<ComparisonBar data={rollupByX('stage')} measure={'Stage'} />
+	</div>
+	<aside>
+		<h3>Layoff impact on companies at different funding stage</h3>
 		<p>Click on an industry in the chart to see details.</p>
 	</aside>
 

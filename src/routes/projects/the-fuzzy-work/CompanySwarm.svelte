@@ -102,7 +102,7 @@
 			<text x={dims.marginSide - 5} y={yScale(tick)}>
 				{d3.format(',')(tick)}
 			</text>
-			<text x={dims.width - dims.marginSide + 15} y={yScale(tick)}> ppl </text>
+			<text x={dims.width - dims.marginSide + 40} y={yScale(tick)}> jobs </text>
 		{/each}
 	</g>
 

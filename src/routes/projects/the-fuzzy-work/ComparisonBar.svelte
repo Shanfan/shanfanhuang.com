@@ -1,41 +1,37 @@
 <script>
 	// @ts-nocheck
 	import * as d3 from 'd3';
-	let { industries } = $props();
+	let { data, measure } = $props();
 	let rangeCom = $state();
 	let rangePpl = $state();
 
-	const companyExtent = d3.extent(industries, (d) => d.companies);
-	const pplExtent = d3.extent(industries, (d) => d.ppl_laidoff);
-	const comScale = $derived(d3.scaleLinear().rangeRound([0, rangeCom]).domain(companyExtent));
-	const pplScale = $derived(d3.scaleLinear().rangeRound([0, rangePpl]).domain(pplExtent));
-	const bankruptedScale = $derived(
-		d3.scaleLinear().rangeRound([0, rangeCom]).domain(companyExtent)
+	const companyExtent = d3.extent(data, (d) => d.companies);
+	const pplExtent = d3.extent(data, (d) => d.ppl_laidoff);
+	const comScale = $derived(
+		d3.scaleLinear().rangeRound([0, rangeCom]).domain([0, companyExtent[1]])
 	);
-
-	$inspect(industries.filter((d) => d.bankrupted > 0));
+	const pplScale = $derived(d3.scaleLinear().rangeRound([0, rangePpl]).domain([0, pplExtent[1]]));
 </script>
 
 <div class="header grid-container">
 	<p>Comapnies</p>
-	<p>Industry</p>
-	<p>Positions Eliminated</p>
+	<p>{measure}</p>
+	<p>Jobs Eliminated</p>
 </div>
 <div class="grid-container" style="padding: 0.5em 2em">
-	{#each industries as ind, i}
+	{#each data as d}
 		<div class="bar-container" bind:clientWidth={rangeCom}>
-			<div class="company bar" style="width: {comScale(ind.companies)}px"></div>
-			<div class="bankrupted bar" style="width: {bankruptedScale(ind.bankrupted)}px"></div>
+			<div class="company bar" style="width: {comScale(d.companies)}px"></div>
 		</div>
-		<p class="ind-name">{ind.industry}</p>
+		<p class="name">{d.key}</p>
 		<div class="bar-container" bind:clientWidth={rangePpl}>
-			<div class="ppl bar" style="width: {pplScale(ind.ppl_laidoff)}px"></div>
+			<div class="ppl bar" style="width: {pplScale(d.ppl_laidoff)}px"></div>
 		</div>
 	{/each}
 </div>
 <div class="footer grid-container">
 	<p>Max: {companyExtent[1]} --- Min: {companyExtent[0]}</p>
-	<p>Industries: {industries.length}</p>
+	<p>Count: {data.length}</p>
 	<p>Max: {d3.format(',')(pplExtent[1])} --- Min: {pplExtent[0]}</p>
 </div>
 
@@ -64,7 +60,7 @@
 		border-top: #555 solid 1px;
 	}
 
-	.ind-name {
+	.name {
 		text-align: center;
 		line-height: 1;
 		margin: 0.25em;
@@ -87,13 +83,5 @@
 	.company.bar {
 		right: 0;
 		background: var(--color-text);
-	}
-	.bankrupted.bar {
-		background: var(--bankrupted);
-		right: 0;
-	}
-	.header .bankrupted {
-		border-left: 5px solid var(--bankrupted);
-		padding: 0 3px;
 	}
 </style>
