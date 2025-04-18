@@ -64,32 +64,8 @@ export async function load({ fetch }) {
         ([company, values]) => ({ company, ...values })
     );
 
-    const getAllIndustries = () => {
-        const industryCounts = rollup(
-            layoffByCompany,
-            (v) => {
-                return {
-                    companies: v.length,
-                    bankrupted: v.filter(d => d.percentage === 100).length,
-                    ppl_laidoff: sum(v, d => d.layoff)
-                }
-            },
-            (d) => d.industry
-        );
-
-        const industryCountsArray = Array.from(
-            industryCounts,
-            ([industry, counts]) => ({ industry, ...counts })
-        );
-
-        industryCountsArray.sort((a, b) => descending(a.ppl_laidoff, b.ppl_laidoff));
-
-        return industryCountsArray;
-    }
-
     return {
         layoffByCompany: layoffByCompany,
-        relationships: industryRelationships,
-        industries: getAllIndustries(),
+        relationships: industryRelationships
     }
 }
