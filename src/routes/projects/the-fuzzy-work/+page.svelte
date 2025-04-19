@@ -27,6 +27,7 @@
 			(v) => {
 				return {
 					companies: v.length,
+					bankrupted: v.filter((d) => d.layoff === 100).length,
 					ppl_laidoff: d3.sum(v, (d) => d.layoff)
 				};
 			},

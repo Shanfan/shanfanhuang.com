@@ -12,6 +12,9 @@
 		d3.scaleLinear().rangeRound([0, rangeCom]).domain([0, companyExtent[1]])
 	);
 	const pplScale = $derived(d3.scaleLinear().rangeRound([0, rangePpl]).domain([0, pplExtent[1]]));
+	function handleBlur() {
+		selectedKey(null);
+	}
 </script>
 
 <div class="header container">
@@ -30,6 +33,7 @@
 			onclick={() => {
 				selectedKey(d);
 			}}
+			onblur={handleBlur}
 		>
 			{d.key}
 		</button>
