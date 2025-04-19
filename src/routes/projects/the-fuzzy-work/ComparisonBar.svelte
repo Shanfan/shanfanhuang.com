@@ -1,7 +1,7 @@
 <script>
 	// @ts-nocheck
 	import * as d3 from 'd3';
-	let { measure, data } = $props();
+	let { measure, data, selectedKey } = $props();
 
 	let rangeCom = $state();
 	let rangePpl = $state();
@@ -25,7 +25,12 @@
 		<div class="bar-container" bind:clientWidth={rangeCom}>
 			<div class="company bar" style="width: {comScale(d.companies)}px"></div>
 		</div>
-		<button class="key">
+		<button
+			class="key"
+			onclick={() => {
+				selectedKey(d);
+			}}
+		>
 			{d.key}
 		</button>
 		<div class="bar-container" bind:clientWidth={rangePpl}>
