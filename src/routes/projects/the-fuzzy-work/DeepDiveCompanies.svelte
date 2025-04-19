@@ -1,17 +1,12 @@
 <script>
 	// @ts-nocheck
 	import * as d3 from 'd3';
-	import IndustryFilter from './IndustryFilter.svelte';
+	// import IndustryFilter from './IndustryFilter.svelte';
 	import CompanySwarm from './CompanySwarm.svelte';
 	import Bulletin from './Bulletin.svelte';
-	import ComparisonBar from './ComparisonBar.svelte';
 
-	let { data } = $props();
-	const relationships = data.relationships;
-	const industries = data.industries;
-	const layoffByCompany = data.layoffByCompany;
-	const bankrupted = layoffByCompany.filter((d) => d.percentage === 100);
-	const allIndustrySelected = Array.from(industries.map((d) => d.industry));
+	let { relationships, layoffByCompany, industries } = $props();
+	const allIndustrySelected = Array.from(industries.map((d) => d.key));
 
 	const stages = ['Public', 'Private', 'Unknown', 'Early Stage', 'Mid Stage', 'Late Stage'];
 	const colors = ['#CC5456', '#88CC54', '#e4d787', '#8CD5E1', '#549ECC', '#6E94FC'];
@@ -58,31 +53,32 @@
 
 		return count;
 	}
+
+	const top20 = d3.sum(layoffByCompany.slice(0, 379), (d) => d.layoff);
+	const total = d3.sum(layoffByCompany, (d) => d.layoff);
+
+	$inspect(top20, total);
 </script>
 
 <div>
-	<h2>The beeswarm chart</h2>
-
-	<h3>Legend</h3>
+	<h2>Dive into the dataset</h2>
+	<p>
+		The layoff pattern follows the 80-20 rule: The top 20% companies are responsible for 80% job
+		elimination.
+	</p>
+	<p>
+		That is, of {layoffByCompany.length} companies in the dataset, the top {Math.round(
+			layoffByCompany.length / 5
+		)} companies eliminated {d3.format(',')(top20)} jobs, out of the total {d3.format(',')(total)} job
+		loss.
+	</p>
 
 	<p>
-		Each circle represents a company.
-		<strong>The size</strong> of the circle represent the percentage of people laid off from a company:
+		The job elimination per company ranges from {dataExtent[0]}
+		to {d3.format(',')(dataExtent[1])}.
 	</p>
-	<ul class="rLedgend" style="grid-template-columns: 1fr 1fr 1fr 1fr;">
-		<li>
-			<span style="opacity: 75%; width: {rScale(20) * 2}px; border: 1px solid white;"></span> unknown
-		</li>
-		<li><span style="width: {rScale(1) * 2}px"></span> 1%</li>
-		<li><span style="width: {rScale(50) * 2}px"></span> 50%</li>
-		<li><span style="width: {rScale(100) * 2}px"></span> 100%</li>
-	</ul>
+	<h3 style="margin: 2em 0 0">Filter the data to see more patterns:</h3>
 
-	<p>
-		The <strong>Y axis</strong> marks the number of jobs eliminated in a company, which ranges from {dataExtent[0]}
-		to {dataExtent[1]} in entire dataset.
-	</p>
-	<h3>Filters</h3>
 	<div
 		style="
 			display: grid;
@@ -129,12 +125,7 @@
 		</div>
 	</div>
 </div>
-<aside>
-	<p class="insight">
-		Of {layoffByCompany.length} companies announced layoffs, {bankrupted.length} presumably went bankrupted(100%
-		layoff).
-	</p>
-</aside>
+<aside></aside>
 
 <div id="beeswarm-graph">
 	<div
@@ -175,18 +166,21 @@
 	{/each}
 </div>
 <aside id="layoff-details">
-	<h3>Layoff details</h3>
+	<p>
+		Each circle represents a company. The circle size corresponds to the percentage of people laid
+		off from a company:
+	</p>
+	<ul class="rLedgend" style="grid-template-columns: repeat(auto-fill);">
+		<li>
+			<span style="opacity: 75%; width: {rScale(20) * 2}px; border: 1px solid white;"></span> unknown
+		</li>
+		<li><span style="width: {rScale(1) * 2}px"></span> 1%</li>
+		<li><span style="width: {rScale(50) * 2}px"></span> 50%</li>
+		<li><span style="width: {rScale(100) * 2}px"></span> 100%</li>
+	</ul>
+
 	<Bulletin company={selectedCompany} {colorScale} />
 </aside>
-<div style="margin-top: 3em;">
-	<h2>About the dataset</h2>
-	<p>
-		Data sourced from <a href="https://layoffs.fyi/" target="_blank">Layoffs FYI</a>.In voluptate
-		velit esse cillum dolore eu fugiat nulla pariatur. Anim id est laborum. For details on what I
-		transformed, read <a href="/projects/the-fuzzy-work/case-study">behind the scene</a> case study of
-		this project.
-	</p>
-</div>
 
 <style>
 	ul {

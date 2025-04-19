@@ -5,6 +5,7 @@
 	import CompanySwarm from './CompanySwarm.svelte';
 	import Bulletin from './Bulletin.svelte';
 	import ComparisonBar from './ComparisonBar.svelte';
+	import DeepDiveCompanies from './DeepDiveCompanies.svelte';
 
 	let { data } = $props();
 	const relationships = data.relationships;
@@ -20,9 +21,9 @@
 
 	// console.log(pivotMap);
 
-	function rollupByX(string) {
+	function rollupByX(string, data = layoffByCompany) {
 		const counts = d3.rollups(
-			layoffByCompany,
+			data,
 			(v) => {
 				return {
 					companies: v.length,
@@ -48,7 +49,7 @@
 <div class="grid-container">
 	<div class="main-content">
 		<h1>The Fuzzy Work</h1>
-		<h2 class="cursive">2020 ~ 2025: the nebulous shift of the tech industry</h2>
+		<h2>2020 ~ 2025: the nebulous shift of the tech industry</h2>
 		<p>
 			Between March 11, 2020 and April 16, 2025, tech companies around the globe conducted series of
 			layoffs, impacting people working in many different industries. This essay explores data
@@ -103,22 +104,23 @@
 			different funding stages.
 		</p>
 		<p>
-			Publically traded companies are often the large employers, and they could also eliminate the
+			Publically traded companies are often large employers, and they could also eliminate the
 			largest number of jobs in times of uncertainty.
 		</p>
 		<p>
-			In the past 5 years, {layoffByCompany[0].company} eliminated {layoffByCompany[0].layoff} jobs in
-			total, making it to the top for job loss, followed by {layoffByCompany[1].company},
-			eliminating {layoffByCompany[1].layoff} jobs, and {layoffByCompany[2].company}, {layoffByCompany[2]
-				.layoff}.
+			In the past 5 years, {layoffByCompany[0].company} eliminated {d3.format(',')(
+				layoffByCompany[0].layoff
+			)} jobs in total, making it the top for job loss, followed by {layoffByCompany[1].company},
+			eliminating {d3.format(',')(layoffByCompany[1].layoff)} jobs, and {layoffByCompany[2]
+				.company}, {d3.format(',')(layoffByCompany[2].layoff)}.
 		</p>
 		<p>
-			Early-stage companies are more susceptible to economic shifts at large, hence more likely to
+			Early-stage companies are more susceptible to social-economical shift, hence more likely to
 			announce layoffs or even go bankrupted, but they tend to have much less impact on the job
 			loss.
 		</p>
 		<p>
-			Of {bankrupted.length} companies announced 100% layoffs, assuming bankrupcy, {bankrupted.filter(
+			Of {bankrupted.length} companies announced 100% layoffs, presumably bankrupcy, {bankrupted.filter(
 				(d) => d.stage === 'Early Stage'
 			).length} are at an early funding stage. That is, 1 in 3 companies announced 100%-layoff is at
 			early funding stage.
@@ -147,8 +149,10 @@
 		<p>Click on a stage in the chart to see details.</p>
 	</aside>
 
+	<DeepDiveCompanies {relationships} {layoffByCompany} industries={rollupByX('industry')} />
+
 	<div style="margin-top: 3em;">
-		<h2>About the dataset</h2>
+		<h2>Closing thoughts</h2>
 		<p>
 			Data sourced from <a href="https://layoffs.fyi/" target="_blank">Layoffs FYI</a>.In voluptate
 			velit esse cillum dolore eu fugiat nulla pariatur. Anim id est laborum. For details on what I
@@ -236,6 +240,10 @@
 
 		.color-encoding {
 			font-size: 0.75rem;
+		}
+
+		aside {
+			grid-column: 1/1;
 		}
 	}
 </style>
