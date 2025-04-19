@@ -10,9 +10,7 @@
 
 	const industries = getContext('industryData');
 
-	const allIndustrySelected = Array.from(industries.map((d) => d.key));
-
-	$inspect('SwarmChartComponent, industries: ', industries);
+	const allIndustries = Array.from(industries.map((d) => d.key));
 
 	const stages = ['Public', 'Private', 'Unknown', 'Early Stage', 'Mid Stage', 'Late Stage'];
 	const colors = ['#CC5456', '#88CC54', '#e4d787', '#8CD5E1', '#549ECC', '#6E94FC'];
@@ -25,7 +23,7 @@
 	let slices = $state(1);
 	let layoffNumBound = $state([1500, 30000]);
 	let selectedCompany = $state({});
-	let selectedIndustries = $state(allIndustrySelected);
+	let selectedIndustries = $state(allIndustries);
 
 	let slicedData = $derived.by(() => {
 		const filteredData = layoffByCompany.filter(
@@ -81,67 +79,74 @@
 		The job elimination per company ranges from {dataExtent[0]}
 		to {d3.format(',')(dataExtent[1])}.
 	</p>
-	<h3 style="margin: 2em 0 1em 0">Filter the data to see more patterns</h3>
-	<form>
-		<div
-			style="
+	<p>You can use the filters below to play with the data and see more patterns.</p>
+</div>
+<form class="main-content">
+	<fieldset>
+		<legend>Filter selected industries:</legend>
+		<div style="display: grid;  grid-template-columns: repeat(auto-fill, minmax(10em, 1fr));">
+			{#each allIndustries as ind}
+				<label class="select-industries">
+					<input type="checkbox" name="industries" value={ind} bind:group={selectedIndustries} />
+					{ind}
+				</label>
+			{/each}
+		</div>
+		<div style="text-align: right; margin-top: 0.5em;">
+			<button
+				type="button"
+				onclick={() => {
+					selectedIndustries = allIndustries;
+				}}>Select All</button
+			>
+			<button
+				type="button"
+				onclick={() => {
+					selectedIndustries = [];
+				}}>Unselect All</button
+			>
+		</div>
+	</fieldset>
+	<div
+		style="
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: 1em;
 	"
-		>
-			<fieldset>
-				<legend>Filter data range:</legend>
-				<lable for="min"
-					>Min:
-					<input
-						id="min"
-						type="number"
-						min={dataExtent[0]}
-						max={dataExtent[1]}
-						step="100"
-						bind:value={layoffNumBound[0]}
-					/>
-				</lable>
-
-				<lable for="max">
-					Max:
-					<input
-						id="max"
-						type="number"
-						min={dataExtent[0]}
-						max={dataExtent[1]}
-						step="100"
-						bind:value={layoffNumBound[1]}
-					/>
-				</lable>
-			</fieldset>
-			<fieldset>
-				<legend>Observe data distribution:</legend>
-				<label for="quantiles">
-					Slice into <input id="quantiles" type="number" min="1" max="10" bind:value={slices} />
-					quantiles</label
-				>
-
-				{#if slices === 10}
-					<p class="warning">10 is the maximum slices allowed.</p>
-				{/if}
-			</fieldset>
-		</div>
-
+	>
 		<fieldset>
-			<legend>Filter selected industries:</legend>
-			<div style="display: grid;  grid-template-columns: repeat(auto-fill, minmax(10em, 1fr));">
-				{#each allIndustrySelected as ind}
-					<label class="select-industries">
-						<input type="checkbox" name="industries" value={ind.toLowerCase()} />
-						{ind}
-					</label>
-				{/each}
-			</div>
+			<legend>Filter data range:</legend>
+			<label class="pair" for="min"
+				>Min:
+				<input id="min" type="number" min="1" max="30000" bind:value={layoffNumBound[0]} />
+			</label>
+
+			<label class="pair" for="max">
+				Max:
+				<input id="max" type="number" min="1" max="30000" bind:value={layoffNumBound[1]} />
+			</label>
 		</fieldset>
-	</form>
-</div>
+		<fieldset>
+			<legend>Observe data distribution:</legend>
+			<label for="quantiles">
+				Slice into <input id="quantiles" type="number" min="1" max="10" bind:value={slices} />
+				quantiles</label
+			>
+
+			{#if slices === 10}
+				<p class="warning">10 is the maximum slices allowed.</p>
+			{/if}
+		</fieldset>
+	</div>
+</form>
+<aside>
+	<p class="insight">
+		When you select one industry, related industries will be selected by default. I <a
+			href="the-fuzzy-work/behind-the-scene">mannually assigned relationships</a
+		> among industries to assist quick group selection. You can make adjustment to the selection as you
+		see fit.
+	</p>
+</aside>
 
 <div class="main-content">
 	<div
@@ -186,13 +191,25 @@
 		Each circle represents a company. The circle size corresponds to the percentage of people laid
 		off from a company:
 	</p>
-	<ul class="rLedgend" style="grid-template-columns: repeat(auto-fill);">
+	<ul class="rLedgend" style="grid-template-columns: repeat(auto-fill, minmax(6em, 1fr));">
 		<li>
-			<span style="opacity: 75%; width: {rScale(20) * 2}px; border: 1px solid white;"></span> unknown
+			<span style="width: {rScale(1) * 2}px; background:{colorScale(selectedCompany.stage)}"></span>
+			1%
 		</li>
-		<li><span style="width: {rScale(1) * 2}px"></span> 1%</li>
-		<li><span style="width: {rScale(50) * 2}px"></span> 50%</li>
-		<li><span style="width: {rScale(100) * 2}px"></span> 100%</li>
+		<li>
+			<span style="width: {rScale(50) * 2}px; background:{colorScale(selectedCompany.stage)}"
+			></span> 50%
+		</li>
+		<li>
+			<span style="width: {rScale(100) * 2}px; background:{colorScale(selectedCompany.stage)}"
+			></span> 100%
+		</li>
+		<li>
+			<span
+				style="opacity: 75%; width: {rScale(20) *
+					2}px; border: 1px solid white; background:{colorScale(selectedCompany.stage)}"
+			></span> unknown
+		</li>
 	</ul>
 
 	<Bulletin company={selectedCompany} {colorScale} />
@@ -230,5 +247,15 @@
 		color: #999;
 		font-weight: 200;
 		font-size: 0.85em;
+	}
+	.select-industries {
+		user-select: none;
+	}
+
+	label {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5em;
+		margin: 0.35em 0.5em;
 	}
 </style>
