@@ -55,8 +55,6 @@
 
 	const top20 = d3.sum(layoffByCompany.slice(0, 379), (d) => d.layoff);
 	const total = d3.sum(layoffByCompany, (d) => d.layoff);
-
-	$inspect(chartWidth, chartHeight);
 </script>
 
 <div>

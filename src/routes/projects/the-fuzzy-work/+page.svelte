@@ -1,10 +1,11 @@
 <script>
 	// @ts-nocheck
+	import './style.css';
 	import * as d3 from 'd3';
-	import CompanySwarm from './SwarmChart.svelte';
-	import Bulletin from './SwarmChartBulletin.svelte';
+	import { setContext } from 'svelte';
 	import ComparisonBar from './ComparisonBar.svelte';
 	import DeepDiveCompanies from './SwarmChartComponent.svelte';
+	import ComparisonBarIndustry from './ComparisonBarIndustry.svelte';
 
 	let { data } = $props();
 	const relationships = data.relationships;
@@ -38,6 +39,8 @@
 		countsArray.sort((a, b) => d3.descending(a.ppl_laidoff, b.ppl_laidoff));
 		return countsArray;
 	}
+
+	setContext('industryData', rollupByX('industry'));
 </script>
 
 <svelte:head>
@@ -67,7 +70,11 @@
 			jobs eliminated in each industry.
 		</p>
 	</div>
-	<div class="main-content">
+
+	<ComparisonBarIndustry />
+
+	<!-- Rewrite this part into a parent component that shares context with its children -->
+	<!-- <div class="main-content">
 		<ComparisonBar data={rollupByX('industry')} measure={'Industry'} />
 		<p>Note that the definition of an industry can be ambiguous.</p>
 		<p class="footnote">
@@ -93,7 +100,8 @@
 			in past five years.
 		</p>
 		<p>Click on an industry in the chart to see details.</p>
-	</aside>
+	</aside> -->
+	<!-- Rewrite this part into a parent component that shares context with its children -->
 
 	<div class="main-content">
 		<h2>Layoff impact on companies at different funding stages</h2>
@@ -161,89 +169,3 @@
 		</p>
 	</div>
 </div>
-
-<style>
-	.grid-container {
-		margin: 3em auto;
-		padding: 2em;
-		max-width: 85em;
-		display: grid;
-		gap: 1em 2em;
-		grid-template-columns: 2fr 1fr;
-	}
-
-	.main-content {
-		grid-column: 1 / 1;
-	}
-	aside {
-		grid-column: 2 / 2;
-	}
-
-	h1 {
-		color: white;
-	}
-
-	ul {
-		display: grid;
-		list-style: none;
-		padding: 0.25em;
-	}
-
-	li {
-		margin: 0.25em 0;
-	}
-	.rLedgend li {
-		display: flex;
-		align-items: center;
-	}
-	.rLedgend span {
-		display: block;
-		float: left;
-		aspect-ratio: 1;
-		margin-right: 1em;
-		border-radius: 50%;
-		background: #cc5456;
-	}
-
-	.warning {
-		color: #cc5456;
-	}
-
-	.footnote {
-		font-style: italic;
-	}
-
-	.insight::before {
-		content: '💡 ';
-		font-size: 1.5em;
-	}
-
-	.insight {
-		opacity: 60%;
-	}
-
-	.insight:hover,
-	.insight:focus {
-		opacity: 100%;
-		cursor: pointer;
-	}
-
-	@media (max-width: 720px) {
-		.grid-container {
-			margin: 2em auto;
-			padding: 1em 2em;
-			display: grid;
-			gap: 1em;
-			grid-template-columns: 1fr;
-			grid-template-rows: auto;
-		}
-
-		.color-encoding {
-			font-size: 0.75rem;
-		}
-
-		aside {
-			grid-column: 1/1;
-		}
-	}
-</style>

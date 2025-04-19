@@ -1,7 +1,8 @@
 <script>
 	// @ts-nocheck
 	import * as d3 from 'd3';
-	let { data, measure } = $props();
+	let { measure, data } = $props();
+
 	let rangeCom = $state();
 	let rangePpl = $state();
 
@@ -13,17 +14,18 @@
 	const pplScale = $derived(d3.scaleLinear().rangeRound([0, rangePpl]).domain([0, pplExtent[1]]));
 </script>
 
-<div class="header grid-container">
+<div class="header container">
 	<p>Comapnies</p>
 	<p>{measure}</p>
 	<p>Jobs Eliminated</p>
 </div>
-<div class="grid-container" style="padding: 0.5em 2em">
+
+<div class="container" style="padding: 0.5em 2em">
 	{#each data as d}
 		<div class="bar-container" bind:clientWidth={rangeCom}>
 			<div class="company bar" style="width: {comScale(d.companies)}px"></div>
 		</div>
-		<button class="key" tabindex="0" onclick={() => handleClick(d)}>
+		<button class="key">
 			{d.key}
 		</button>
 		<div class="bar-container" bind:clientWidth={rangePpl}>
@@ -31,14 +33,14 @@
 		</div>
 	{/each}
 </div>
-<div class="footer grid-container">
+<div class="footer container">
 	<p>Max: {companyExtent[1]} --- Min: {companyExtent[0]}</p>
 	<p>Count: {data.length}</p>
 	<p>Max: {d3.format(',')(pplExtent[1])} --- Min: {d3.format(',')(pplExtent[0])}</p>
 </div>
 
 <style>
-	.grid-container {
+	.container {
 		--bankrupted: #b3191b;
 		background: #0f0f0f;
 		display: grid;
