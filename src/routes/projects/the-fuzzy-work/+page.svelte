@@ -1,11 +1,10 @@
 <script>
 	// @ts-nocheck
 	import * as d3 from 'd3';
-	import IndustryFilter from './IndustryFilter.svelte';
-	import CompanySwarm from './CompanySwarm.svelte';
-	import Bulletin from './Bulletin.svelte';
+	import CompanySwarm from './SwarmChart.svelte';
+	import Bulletin from './SwarmChartBulletin.svelte';
 	import ComparisonBar from './ComparisonBar.svelte';
-	import DeepDiveCompanies from './DeepDiveCompanies.svelte';
+	import DeepDiveCompanies from './SwarmChartComponent.svelte';
 
 	let { data } = $props();
 	const relationships = data.relationships;
@@ -95,6 +94,7 @@
 		</p>
 		<p>Click on an industry in the chart to see details.</p>
 	</aside>
+
 	<div class="main-content">
 		<h2>Layoff impact on companies at different funding stages</h2>
 	</div>

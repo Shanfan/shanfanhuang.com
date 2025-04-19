@@ -23,7 +23,9 @@
 		<div class="bar-container" bind:clientWidth={rangeCom}>
 			<div class="company bar" style="width: {comScale(d.companies)}px"></div>
 		</div>
-		<p class="name">{d.key}</p>
+		<button class="key" tabindex="0" onclick={() => handleClick(d)}>
+			{d.key}
+		</button>
 		<div class="bar-container" bind:clientWidth={rangePpl}>
 			<div class="ppl bar" style="width: {pplScale(d.ppl_laidoff)}px"></div>
 		</div>
@@ -60,10 +62,15 @@
 		border-top: #555 solid 1px;
 	}
 
-	.name {
-		text-align: center;
-		line-height: 1;
-		margin: 0.25em;
+	.key {
+		background: none;
+		border: none;
+		padding: 0.1em 0;
+	}
+
+	.key:hover,
+	.key:focus {
+		color: var(--bankrupted);
 	}
 
 	.bar-container {

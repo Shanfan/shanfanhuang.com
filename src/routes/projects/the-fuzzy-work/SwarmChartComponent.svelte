@@ -1,9 +1,8 @@
 <script>
 	// @ts-nocheck
 	import * as d3 from 'd3';
-	// import IndustryFilter from './IndustryFilter.svelte';
-	import CompanySwarm from './CompanySwarm.svelte';
-	import Bulletin from './Bulletin.svelte';
+	import SwarmChart from './SwarmChart.svelte';
+	import Bulletin from './SwarmChartBulletin.svelte';
 
 	let { relationships, layoffByCompany, industries } = $props();
 	const allIndustrySelected = Array.from(industries.map((d) => d.key));
@@ -12,8 +11,8 @@
 	const colors = ['#CC5456', '#88CC54', '#e4d787', '#8CD5E1', '#549ECC', '#6E94FC'];
 	const colorScale = d3.scaleOrdinal().domain(stages).range(colors);
 	const rScale = d3.scaleSqrt().domain([0, 100]).range([2, 10]);
-	const chartWidth = 680;
-	const chartHeight = 1200;
+	let chartWidth = 625;
+	let chartHeight = chartWidth * 1.5;
 	const dataExtent = d3.extent(layoffByCompany, (d) => d.layoff);
 
 	let slices = $state(1);
@@ -57,7 +56,7 @@
 	const top20 = d3.sum(layoffByCompany.slice(0, 379), (d) => d.layoff);
 	const total = d3.sum(layoffByCompany, (d) => d.layoff);
 
-	$inspect(top20, total);
+	$inspect(chartWidth, chartHeight);
 </script>
 
 <div>
@@ -142,7 +141,7 @@
 			Stage <br /> Count
 		</p>
 		{#each stages as stage}
-			<p style="color: {colorScale(stage)}; text-align: center;">
+			<p style="color: {colorScale(stage)}; text-align: center; font-size: 0.9em;">
 				{stage}<br />
 				{getCompanyCountbyStage(slicedData, stage)}
 			</p>
@@ -151,7 +150,7 @@
 
 	{#each slicedData as slice}
 		{#key slice}
-			<CompanySwarm
+			<SwarmChart
 				{stages}
 				{colorScale}
 				{rScale}
@@ -207,19 +206,5 @@
 
 	.warning {
 		color: #cc5456;
-	}
-
-	.insight::before {
-		content: '💡 ';
-		font-size: 1.5em;
-	}
-
-	.insight {
-		color: #666;
-	}
-
-	.insight:hover,
-	.insight:focus {
-		color: var(--color-text);
 	}
 </style>
