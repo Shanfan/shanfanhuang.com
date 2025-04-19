@@ -6,6 +6,7 @@
 	import ComparisonBar from './ComparisonBar.svelte';
 	import DeepDiveCompanies from './SwarmChartComponent.svelte';
 	import ComparisonBarIndustry from './ComparisonBarIndustry.svelte';
+	import ComparisonBarStage from './ComparisonBarStage.svelte';
 
 	let { data } = $props();
 	const relationships = data.relationships;
@@ -27,7 +28,7 @@
 			(v) => {
 				return {
 					companies: v.length,
-					bankrupted: v.filter((d) => d.layoff === 100).length,
+					bankrupted: v.filter((d) => d.percentage === 100).length,
 					ppl_laidoff: d3.sum(v, (d) => d.layoff)
 				};
 			},
@@ -42,6 +43,7 @@
 	}
 
 	setContext('industryData', rollupByX('industry'));
+	setContext('stageData', rollupByX('stage'));
 </script>
 
 <svelte:head>
@@ -74,36 +76,6 @@
 
 	<ComparisonBarIndustry />
 
-	<!-- Rewrite this part into a parent component that shares context with its children -->
-	<!-- <div class="main-content">
-		<ComparisonBar data={rollupByX('industry')} measure={'Industry'} />
-		<p>Note that the definition of an industry can be ambiguous.</p>
-		<p class="footnote">
-			&ldquo;Other&rdquo; included companies such as Microsoft, Miro, Oracle, and Asana.
-		</p>
-		<p class="footnote">
-			&ldquo;Infrastructure&rdquo; refers to information networking companies such as Cisco, VMware,
-			New Relic, Docker, and BitTorrent.
-		</p>
-		<p class="footnote">
-			Google and Meta are classified under &ldquo;Consumer&rdquo;, whereas Apple is in
-			&ldquo;Hardware&rdquo; and Amazon &ldquo;Retail&rdquo;, although they all have businesses in
-			different industries.
-		</p>
-	</div>
-	<aside>
-		<p class="insight">
-			Relatively few hardware companies made layoff announcements, yet the jobs eliminated in this
-			field is quite high.
-		</p>
-		<p class="insight">
-			Consumer, Retail, Transportation, and Finance are among the top industries that slashed jobs
-			in past five years.
-		</p>
-		<p>Click on an industry in the chart to see details.</p>
-	</aside> -->
-	<!-- Rewrite this part into a parent component that shares context with its children -->
-
 	<div class="main-content">
 		<h2>Layoff impact on companies at different funding stages</h2>
 	</div>
@@ -129,7 +101,7 @@
 			loss.
 		</p>
 		<p>
-			Of {bankrupted.length} companies announced 100% layoffs, presumably bankrupcy, {bankrupted.filter(
+			Of {bankrupted.length} companies announced 100% layoffs, presumably bankrupted, {bankrupted.filter(
 				(d) => d.stage === 'Early Stage'
 			).length} are at an early funding stage. That is, 1 in 3 companies announced 100%-layoff is at
 			early funding stage.
@@ -148,15 +120,8 @@
 			</a> Apple's employee count had grown slightly dispite the layoffs.
 		</p>
 	</aside>
-	<div class="main-content">
-		<ComparisonBar data={rollupByX('stage')} measure={'Stage'} />
-		<p class="footnote">
-			"Unknown" stage companies included Everlane, SoundCloud, ByteDance, and Huawei.
-		</p>
-	</div>
-	<aside>
-		<p>Click on a stage in the chart to see details.</p>
-	</aside>
+
+	<ComparisonBarStage />
 
 	<DeepDiveCompanies {relationships} {layoffByCompany} industries={rollupByX('industry')} />
 
