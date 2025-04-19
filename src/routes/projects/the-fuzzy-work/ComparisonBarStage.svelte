@@ -7,7 +7,6 @@
 	const data = getContext('stageData');
 	const measure = 'stage';
 	let selected = $state();
-	$inspect(selected);
 </script>
 
 <div class="main-content">

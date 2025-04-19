@@ -1,11 +1,18 @@
 <script>
 	// @ts-nocheck
 	import * as d3 from 'd3';
+	import './style.css';
 	import SwarmChart from './SwarmChart.svelte';
 	import Bulletin from './SwarmChartBulletin.svelte';
+	import { getContext } from 'svelte';
 
-	let { relationships, layoffByCompany, industries } = $props();
+	let { relationships, layoffByCompany } = $props();
+
+	const industries = getContext('industryData');
+
 	const allIndustrySelected = Array.from(industries.map((d) => d.key));
+
+	$inspect('SwarmChartComponent, industries: ', industries);
 
 	const stages = ['Public', 'Private', 'Unknown', 'Early Stage', 'Mid Stage', 'Late Stage'];
 	const colors = ['#CC5456', '#88CC54', '#e4d787', '#8CD5E1', '#549ECC', '#6E94FC'];
@@ -57,7 +64,7 @@
 	const total = d3.sum(layoffByCompany, (d) => d.layoff);
 </script>
 
-<div>
+<div class="main-content">
 	<h2>Dive into the dataset</h2>
 	<p>
 		The layoff pattern follows the 80-20 rule: The top 20% companies are responsible for 80% job
@@ -74,57 +81,69 @@
 		The job elimination per company ranges from {dataExtent[0]}
 		to {d3.format(',')(dataExtent[1])}.
 	</p>
-	<h3 style="margin: 2em 0 0">Filter the data to see more patterns:</h3>
+	<h3 style="margin: 2em 0 1em 0">Filter the data to see more patterns</h3>
+	<form>
+		<div
+			style="
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1em;
+	"
+		>
+			<fieldset>
+				<legend>Filter data range:</legend>
+				<lable for="min"
+					>Min:
+					<input
+						id="min"
+						type="number"
+						min={dataExtent[0]}
+						max={dataExtent[1]}
+						step="100"
+						bind:value={layoffNumBound[0]}
+					/>
+				</lable>
 
-	<div
-		style="
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			margin-bottom: 2em;
-		"
-	>
-		<div>
-			<p>Filter data range:</p>
-			<lable for="min"
-				>Min:
-				<input
-					id="min"
-					type="number"
-					min={dataExtent[0]}
-					max={dataExtent[1]}
-					step="100"
-					bind:value={layoffNumBound[0]}
-				/>
-			</lable>
+				<lable for="max">
+					Max:
+					<input
+						id="max"
+						type="number"
+						min={dataExtent[0]}
+						max={dataExtent[1]}
+						step="100"
+						bind:value={layoffNumBound[1]}
+					/>
+				</lable>
+			</fieldset>
+			<fieldset>
+				<legend>Observe data distribution:</legend>
+				<label for="quantiles">
+					Slice into <input id="quantiles" type="number" min="1" max="10" bind:value={slices} />
+					quantiles</label
+				>
 
-			<lable for="max">
-				Max:
-				<input
-					id="max"
-					type="number"
-					min={dataExtent[0]}
-					max={dataExtent[1]}
-					step="100"
-					bind:value={layoffNumBound[1]}
-				/>
-			</lable>
+				{#if slices === 10}
+					<p class="warning">10 is the maximum slices allowed.</p>
+				{/if}
+			</fieldset>
 		</div>
-		<div>
-			<p>Observe data distribution:</p>
-			<label for="quantiles">
-				Slice into <input id="quantiles" type="number" min="1" max="10" bind:value={slices} />
-				quantiles</label
-			>
 
-			{#if slices === 10}
-				<p class="warning">10 is the maximum slices allowed.</p>
-			{/if}
-		</div>
-	</div>
+		<fieldset>
+			<legend>Filter selected industries:</legend>
+			<div style="display: grid;  grid-template-columns: repeat(auto-fill, minmax(10em, 1fr));">
+				{#each allIndustrySelected as ind}
+					<label class="select-industries">
+						<input type="checkbox" name="industries" value={ind.toLowerCase()} />
+						{ind}
+					</label>
+				{/each}
+			</div>
+		</fieldset>
+	</form>
 </div>
-<aside></aside>
 
-<div id="beeswarm-graph">
+<div class="main-content">
 	<div
 		class="color-encoding"
 		style="display: flex; width: 100%; justify-content: space-around; background: #0f0f0f"
@@ -162,7 +181,7 @@
 		{/key}
 	{/each}
 </div>
-<aside id="layoff-details">
+<aside>
 	<p>
 		Each circle represents a company. The circle size corresponds to the percentage of people laid
 		off from a company:
@@ -202,7 +221,14 @@
 		background: #cc5456;
 	}
 
-	.warning {
-		color: #cc5456;
+	fieldset {
+		margin: 0.5em 0;
+		border-color: #666;
+	}
+	legend {
+		text-transform: uppercase;
+		color: #999;
+		font-weight: 200;
+		font-size: 0.85em;
 	}
 </style>

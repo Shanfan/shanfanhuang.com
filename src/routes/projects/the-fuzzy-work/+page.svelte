@@ -97,8 +97,8 @@
 		</p>
 		<p>
 			Early-stage companies are more susceptible to social-economical shift, hence more likely to
-			announce layoffs or even go bankrupted, but they tend to have much less impact on the job
-			loss.
+			announce layoffs or even go bankrupted, but they tend to have much less impact on the total
+			job loss.
 		</p>
 		<p>
 			Of {bankrupted.length} companies announced 100% layoffs, presumably bankrupted, {bankrupted.filter(
@@ -123,7 +123,7 @@
 
 	<ComparisonBarStage />
 
-	<DeepDiveCompanies {relationships} {layoffByCompany} industries={rollupByX('industry')} />
+	<DeepDiveCompanies {relationships} {layoffByCompany} />
 
 	<div style="margin-top: 3em;">
 		<h2>Closing thoughts</h2>

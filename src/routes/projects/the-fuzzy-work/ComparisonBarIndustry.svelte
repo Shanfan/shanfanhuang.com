@@ -7,7 +7,6 @@
 	const data = getContext('industryData');
 	const measure = 'industry';
 	let selected = $state();
-	$inspect(selected);
 </script>
 
 <div class="main-content">
