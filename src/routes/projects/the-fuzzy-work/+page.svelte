@@ -61,9 +61,11 @@
 			shared on <a href="https://layoffs.fyi/" target="_blank">Layoffs FYI</a> using interactive charts.
 		</p>
 		<p>
-			To ensure clarity, I rolled up the original dataset, in which each row represents a layoff
-			announcement in the news, by company. I also simplified the classification of the funding
-			stage of a company. See <a href="the-fuzzy-work/behind-the-scene">Behind the Scene</a> for details.
+			In the original dataset, each row represents a layoff announcement in the news. For the
+			purpose of this analysis, I rolled up the announcement data by company. I also simplified the
+			classification of the funding stage of a company. See <a
+				href="the-fuzzy-work/behind-the-scene">Behind the Scene</a
+			> for details.
 		</p>
 	</div>
 	<div class="main-content">
@@ -128,9 +130,25 @@
 	<div style="margin-top: 3em;">
 		<h2>Closing thoughts</h2>
 		<p>
-			Data sourced from <a href="https://layoffs.fyi/" target="_blank">Layoffs FYI</a>.In voluptate
-			velit esse cillum dolore eu fugiat nulla pariatur. Anim id est laborum. For details on what I
-			transformed, read <a href="the-fuzzy-work/behind-the-scene">behind the scene</a>
+			The layoffs happenend between 2020 and 2025 in the tech industry were not necessarily a signal
+			that the companies weren't doing well. They are part of broader trends reshaping the society,
+			driven by the bursting of the tech bubble, which was exacerbated by the COVID stimulus, as
+			well as the impact of AI.
+		</p>
+		<p>
+			Joining a tech startup used to be glamourous: WeWork-style offices, getting a "director" title
+			before hitting 30, stock options, potential IPO...
+		</p>
+		<p>
+			Being hired by one of the Big Tech used to be reassuring: High compensation, stock equity,
+			generous health insurance and 401(k) match, flexible vacation time...
+		</p>
+		<p>The changes in the past five years, however, remind us of something else:</p>
+		<p>Innovation disrupts everything, including innovation itself. ... WIP</p>
+		<p>
+			For details on how this project came into being, read <a
+				href="the-fuzzy-work/behind-the-scene">behind the scene</a
+			>
 			this project.
 		</p>
 	</div>
