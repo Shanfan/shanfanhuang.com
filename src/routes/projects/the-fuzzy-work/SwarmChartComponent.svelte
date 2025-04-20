@@ -9,15 +9,14 @@
 	let { relationships, layoffByCompany } = $props();
 
 	const industries = getContext('industryData');
+	const colorScale = getContext('stageColor');
+	const stages = colorScale.domain();
 
 	const allIndustries = Array.from(industries.map((d) => d.key));
 	const top20 = d3.sum(layoffByCompany.slice(0, 379), (d) => d.layoff);
 	const total = d3.sum(layoffByCompany, (d) => d.layoff);
 	const dataExtent = d3.extent(layoffByCompany, (d) => d.layoff);
 
-	const stages = ['Public', 'Private', 'Unknown', 'Early Stage', 'Mid Stage', 'Late Stage'];
-	const colors = ['#CC5456', '#88CC54', '#e4d787', '#8CD5E1', '#549ECC', '#6E94FC'];
-	const colorScale = d3.scaleOrdinal().domain(stages).range(colors);
 	const rScale = d3.scaleSqrt().domain([0, 100]).range([2, 10]);
 
 	let chartWidth = 625;
@@ -269,26 +268,5 @@
 		margin-right: 1em;
 		border-radius: 50%;
 		background: #cc5456;
-	}
-
-	fieldset {
-		margin: 0.5em 0;
-		border-color: #666;
-	}
-	legend {
-		text-transform: uppercase;
-		color: #999;
-		font-weight: 200;
-		font-size: 0.85em;
-	}
-	.select-industries {
-		user-select: none;
-	}
-
-	label {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.5em;
-		margin: 0.35em 0.5em;
 	}
 </style>

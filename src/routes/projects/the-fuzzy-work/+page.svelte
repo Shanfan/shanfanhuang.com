@@ -7,21 +7,17 @@
 	import DeepDiveCompanies from './SwarmChartComponent.svelte';
 	import ComparisonBarIndustry from './ComparisonBarIndustry.svelte';
 	import ComparisonBarStage from './ComparisonBarStage.svelte';
+	import HeatMapChart from './HeatMapChart.svelte';
 
 	let { data } = $props();
 	const relationships = data.relationships;
 	const layoffByCompany = data.layoffByCompany.sort((a, b) => d3.descending(a.layoff, b.layoff));
 	const bankrupted = layoffByCompany.filter((d) => d.percentage === 100);
 
-	const pivotMap = d3.rollups(
-		bankrupted,
-		(v) => v.length,
-		(d) => d.industry,
-		(d) => d.stage
-	);
-
-	// console.log(pivotMap);
-
+	const colorScale = d3
+		.scaleOrdinal()
+		.domain(['Public', 'Private', 'Unknown', 'Early Stage', 'Mid Stage', 'Late Stage'])
+		.range(['#CC5456', '#88CC54', '#e4d787', '#8CD5E1', '#549ECC', '#6E94FC']);
 	function rollupByX(string, data = layoffByCompany) {
 		const counts = d3.rollups(
 			data,
@@ -44,6 +40,7 @@
 
 	setContext('industryData', rollupByX('industry'));
 	setContext('stageData', rollupByX('stage'));
+	setContext('stageColor', colorScale);
 </script>
 
 <svelte:head>
@@ -124,7 +121,10 @@
 	</aside>
 
 	<ComparisonBarStage />
-
+	<div class="main-content">
+		<h2>How industries and funding stages cross-compare</h2>
+	</div>
+	<HeatMapChart data={layoffByCompany} />
 	<DeepDiveCompanies {relationships} {layoffByCompany} />
 
 	<div style="margin-top: 3em;">
