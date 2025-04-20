@@ -11,19 +11,22 @@
 	const industries = getContext('industryData');
 
 	const allIndustries = Array.from(industries.map((d) => d.key));
+	const top20 = d3.sum(layoffByCompany.slice(0, 379), (d) => d.layoff);
+	const total = d3.sum(layoffByCompany, (d) => d.layoff);
+	const dataExtent = d3.extent(layoffByCompany, (d) => d.layoff);
 
 	const stages = ['Public', 'Private', 'Unknown', 'Early Stage', 'Mid Stage', 'Late Stage'];
 	const colors = ['#CC5456', '#88CC54', '#e4d787', '#8CD5E1', '#549ECC', '#6E94FC'];
 	const colorScale = d3.scaleOrdinal().domain(stages).range(colors);
 	const rScale = d3.scaleSqrt().domain([0, 100]).range([2, 10]);
+
 	let chartWidth = 625;
 	let chartHeight = chartWidth * 1.5;
-	const dataExtent = d3.extent(layoffByCompany, (d) => d.layoff);
 
 	let slices = $state(1);
-	let layoffNumBound = $state([1500, 30000]);
+	let layoffNumBound = $state([200, 30000]);
 	let selectedCompany = $state({});
-	let selectedIndustries = $state(allIndustries);
+	let selectedIndustries = $state(['Other']);
 
 	let slicedData = $derived.by(() => {
 		const filteredData = layoffByCompany.filter(
@@ -58,8 +61,33 @@
 		return count;
 	}
 
-	const top20 = d3.sum(layoffByCompany.slice(0, 379), (d) => d.layoff);
-	const total = d3.sum(layoffByCompany, (d) => d.layoff);
+	function findRelatedInd(ind) {
+		const relatedIndustries = {
+			[ind]: true
+		};
+
+		relationships.forEach((rel) => {
+			if (rel.Strength === 2 && (rel.Source === ind || rel.Target === ind)) {
+				relatedIndustries[rel.Target] = true;
+				relatedIndustries[rel.Source] = true;
+			}
+		});
+
+		selectedIndustries = Object.keys(relatedIndustries);
+	}
+
+	function handleSelection(e) {
+		const isChecked = e.currentTarget.checked;
+		const currentInd = e.currentTarget.value;
+		const i = selectedIndustries.indexOf(currentInd);
+		console.log(i, $state.snapshot(selectedIndustries));
+
+		if (i !== -1) {
+			selectedIndustries.splice(i, 1);
+		} else {
+			findRelatedInd(currentInd);
+		}
+	}
 </script>
 
 <div class="main-content">
@@ -87,7 +115,12 @@
 		<div style="display: grid;  grid-template-columns: repeat(auto-fill, minmax(10em, 1fr));">
 			{#each allIndustries as ind}
 				<label class="select-industries">
-					<input type="checkbox" name="industries" value={ind} bind:group={selectedIndustries} />
+					<input
+						type="checkbox"
+						value={ind}
+						bind:group={selectedIndustries}
+						onclick={handleSelection}
+					/>
 					{ind}
 				</label>
 			{/each}
@@ -142,9 +175,9 @@
 <aside>
 	<p class="insight">
 		When you select one industry, related industries will be selected by default. I <a
-			href="the-fuzzy-work/behind-the-scene">mannually assigned relationships</a
-		> among industries to assist quick group selection. You can make adjustment to the selection as you
-		see fit.
+			href="the-fuzzy-work/behind-the-scene">grouped industries</a
+		> I deem related to one another, so that one click selects a few related ones. You can adjust the
+		selection as you see fit.
 	</p>
 </aside>
 

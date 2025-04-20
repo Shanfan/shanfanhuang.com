@@ -34,7 +34,7 @@
 							{formatDate(e.date)}
 						</td>
 						<td>
-							{e.location} <br />
+							{e.location.split(',')[0]} <br />
 							{e.country}
 						</td>
 						<td>
