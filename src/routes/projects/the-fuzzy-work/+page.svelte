@@ -106,7 +106,7 @@
 			Of {bankrupted.length} companies announced 100% layoffs, presumably bankrupted, {bankrupted.filter(
 				(d) => d.stage === 'Early Stage'
 			).length} are at an early funding stage. That is, 1 in 3 companies announced 100%-layoff is at
-			early funding stage.
+			an early funding stage.
 		</p>
 	</div>
 	<aside>
@@ -126,8 +126,33 @@
 	<ComparisonBarStage />
 	<div class="main-content">
 		<h2>How industries and funding stages cross-compare</h2>
+		<p>
+			If we assume "100% layoff" as bankrupcy, the number of bankrupted companies took up about 4%
+			of the enrire set. While 4% is negligible in the bar charts above, bankrupcy in itself is
+			still a significant measure to understand the industry shift.
+		</p>
+		<p>
+			The chart below provides options to observe the layoff impact based on companies, jobs, or
+			bankrupcy.
+		</p>
 	</div>
+
 	<HeatMapChart data={layoffByCompany} />
+	<aside>
+		<p class="insight">
+			A large number of companies in "Early Stage" and "Food" industry announced 100%-layoff.
+			Further research shows these companies are startups innovating on supplychain and food
+			delivery services, most of them non-US companies.
+		</p>
+		<p class="insight">
+			The "Finance" industry across funding stages has the most companies announced layoffs, many
+			are Fintech startups.
+		</p>
+		<p class="insight">
+			The the publically traded companies in "Retail", "Consumer", "Hardware", "Other", and
+			"Transportation" eliminated most jobs.
+		</p>
+	</aside>
 	<DeepDiveCompanies {relationships} {layoffByCompany} />
 
 	<div style="margin-top: 3em;">
