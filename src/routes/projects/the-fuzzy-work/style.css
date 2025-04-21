@@ -24,7 +24,8 @@ fieldset {
     border-color: #666;
 }
 
-legend {
+legend,
+.label-text {
     text-transform: uppercase;
     color: #999;
     font-weight: 200;
