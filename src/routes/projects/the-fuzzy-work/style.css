@@ -19,6 +19,25 @@ h1 {
     color: white;
 }
 
+fieldset {
+    margin: 0.5em 0;
+    border-color: #666;
+}
+
+legend {
+    text-transform: uppercase;
+    color: #999;
+    font-weight: 200;
+    font-size: 0.85em;
+}
+
+label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    margin: 0.35em 0.5em;
+}
+
 .warning {
     color: #cc5456;
 }

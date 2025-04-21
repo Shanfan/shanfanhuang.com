@@ -18,6 +18,7 @@
 		.scaleOrdinal()
 		.domain(['Public', 'Private', 'Unknown', 'Early Stage', 'Mid Stage', 'Late Stage'])
 		.range(['#CC5456', '#88CC54', '#e4d787', '#8CD5E1', '#549ECC', '#6E94FC']);
+
 	function rollupByX(string, data = layoffByCompany) {
 		const counts = d3.rollups(
 			data,
