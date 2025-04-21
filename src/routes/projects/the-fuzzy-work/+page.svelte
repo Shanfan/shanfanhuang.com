@@ -13,10 +13,11 @@
 	const relationships = data.relationships;
 	const layoffByCompany = data.layoffByCompany.sort((a, b) => d3.descending(a.layoff, b.layoff));
 	const bankrupted = layoffByCompany.filter((d) => d.percentage === 100);
+	const stages = ['Public', 'Private', 'Unknown', 'Early Stage', 'Mid Stage', 'Late Stage'];
 
 	const colorScale = d3
 		.scaleOrdinal()
-		.domain(['Public', 'Private', 'Unknown', 'Early Stage', 'Mid Stage', 'Late Stage'])
+		.domain(stages)
 		.range(['#CC5456', '#88CC54', '#e4d787', '#8CD5E1', '#549ECC', '#6E94FC']);
 
 	function rollupByX(string, data = layoffByCompany) {
@@ -42,6 +43,7 @@
 	setContext('industryData', rollupByX('industry'));
 	setContext('stageData', rollupByX('stage'));
 	setContext('stageColor', colorScale);
+	setContext('stages', stages);
 </script>
 
 <svelte:head>
