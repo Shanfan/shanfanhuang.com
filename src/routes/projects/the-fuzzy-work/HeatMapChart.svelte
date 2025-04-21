@@ -27,7 +27,7 @@
 	const industries = [...pivotMap.keys()];
 </script>
 
-<div style="grid-column: 1 / -1;">
+<div class="main-content">
 	<fieldset>
 		<legend>Choose which measure to visualize</legend>
 		<div>
@@ -45,29 +45,37 @@
 	<div id="heatmap-chart">
 		<!-- First row - table header -->
 		<p class="header"></p>
-		{#each stages as stage}
-			<p class="center-align header" style="color: {colorScale(stage)}">{stage}</p>
-		{/each}
-		<p class="right-align header">Total</p>
+		<div class="stage-grid">
+			{#each stages as stage}
+				<p class="vertical-txt header" style="color: {colorScale(stage)}">{stage}</p>
+			{/each}
+		</div>
+		<p class="vertical-txt header">Total</p>
 		<!--Body of data -->
 		{#each industries as ind}
 			<p class="right-align">{ind}</p>
-			{#each stages as stage, i}
-				<p style="color: {colorScale(stage)}" class="center-align">
-					{pivotMap.get(ind)?.get(stage)?.[measure] ?? ''}
-				</p>
-			{/each}
+			<!-- {#each stages as stage, i}
+					<p style="color: {colorScale(stage)}" class="center-align">
+						{pivotMap.get(ind)?.get(stage)?.[measure] ?? ''}
+					</p>
+				{/each} -->
 			<p class="right-align">
 				{d3.format(',')(totalByIndustry.find((d) => d.key === ind)[measure])}
 			</p>
 		{/each}
+		<div id="svg"></div>
 		<!-- table footer: summary -->
 		<p class="right-align footer">Total</p>
-		{#each stages as stage}
-			<p class="center-align footer">
-				{d3.format(',')(totalByStage.find((d) => d.key === stage)[measure])}
-			</p>
-		{/each}
+		<div class="stage-grid">
+			{#each stages as stage}
+				<p class="center-align footer">
+					{d3.format(',')(totalByStage.find((d) => d.key === stage)[measure])}
+				</p>
+			{/each}
+		</div>
+		<div style="justify-self:center; align-self:center;">
+			{d3.format(',')(d3.sum(totalByStage, (d) => d[measure]))}
+		</div>
 	</div>
 </div>
 
@@ -79,11 +87,23 @@
 	}
 	#heatmap-chart {
 		display: grid;
-		grid-template-columns: 8em repeat(6, 1fr) 5em;
+		grid-template-columns: 8em 1fr 5em;
 		background: #0f0f0f;
 	}
 	#heatmap-chart p {
 		margin: 0.2em 0.75em;
+	}
+
+	#svg {
+		background-color: #666;
+		grid-column: 2;
+		grid-row: 2 / span 30;
+	}
+
+	.stage-grid {
+		display: grid;
+		grid-template-columns: repeat(6, 1fr);
+		align-items: end;
 	}
 	.right-align {
 		text-align: right;
@@ -91,21 +111,13 @@
 	.center-align {
 		text-align: center;
 	}
+	.vertical-txt {
+		writing-mode: vertical-lr;
+		text-orientation: sideways;
+		transform: rotate(180deg);
+	}
 	.header,
 	.footer {
 		padding: 0.5em 0;
-	}
-	.bar-container {
-		position: relative;
-	}
-	.bar-hor {
-		position: absolute;
-		transform: translate(0, -50%);
-		height: 0.65em;
-	}
-	.bar-ver {
-		position: absolute;
-		transform: translate(50%, 0);
-		width: 0.65em;
 	}
 </style>
