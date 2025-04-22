@@ -90,13 +90,13 @@
 </script>
 
 <div class="main-content">
-	<h2>Dive into the dataset</h2>
+	<h2>80% of job loss came from 20% of companies</h2>
 	<p>
-		The layoff pattern follows the 80-20 rule: The top 20% companies are responsible for 80% job
-		elimination.
+		The layoff pattern follows the 80-20 rule: The top 20% of companies are responsible for 80% of
+		job elimination.
 	</p>
 	<p>
-		That is, of {layoffByCompany.length} companies in the dataset, the top {Math.round(
+		Specifically, of {layoffByCompany.length} companies in the dataset, the top {Math.round(
 			layoffByCompany.length / 5
 		)} companies eliminated {d3.format(',')(top20)} jobs, out of the total {d3.format(',')(total)} job
 		loss.
@@ -173,9 +173,7 @@
 </form>
 <aside>
 	<p class="insight">
-		When you select one industry, related industries will be selected by default. I <a
-			href="the-fuzzy-work/behind-the-scene">grouped industries</a
-		> I deem related to one another, so that one click selects a few related ones. You can adjust the
+		When you select one industry, related industries will be selected by default. You can adjust the
 		selection as you see fit.
 	</p>
 </aside>

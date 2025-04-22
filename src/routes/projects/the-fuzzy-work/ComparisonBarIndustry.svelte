@@ -19,26 +19,26 @@
 	/>
 	<p>Note that the definition of an industry can be ambiguous.</p>
 	<p class="footnote">
-		&ldquo;Other&rdquo; included companies such as Microsoft, Miro, Oracle, and Asana.
+		&ldquo;Other&rdquo; included companies like Microsoft, Miro, Oracle, and Asana.
 	</p>
 	<p class="footnote">
-		&ldquo;Infrastructure&rdquo; refers to information networking companies such as Cisco, VMware,
-		New Relic, Docker, and BitTorrent.
+		&ldquo;Infrastructure&rdquo; refers to information networking companies like Cisco, VMware, New
+		Relic, Docker, and BitTorrent.
 	</p>
 	<p class="footnote">
-		Google and Meta are classified under &ldquo;Consumer&rdquo;, whereas Apple is in
-		&ldquo;Hardware&rdquo; and Amazon &ldquo;Retail&rdquo;, although they all have businesses in
-		different industries.
+		Google and Meta are classified as &ldquo;Consumer&rdquo;, whereas Apple is in
+		&ldquo;Hardware&rdquo;, and Amazon is in &ldquo;Retail&rdquo;, although they all have businesses
+		in different industries.
 	</p>
 </div>
 <aside>
 	<p class="insight">
-		Relatively few hardware companies made layoff announcements, yet the jobs eliminated in this
-		field is quite high.
+		Only a few hardware companies made layoff announcements, yet the number of jobs eliminated in
+		this field is quite high.
 	</p>
 	<p class="insight">
-		Consumer, Retail, Transportation, and Finance are among the top industries that slashed jobs in
-		past five years.
+		Consumer, Retail, Transportation, and Finance are among the top industries that have slashed
+		jobs in the past five years.
 	</p>
 	<ComparisonBarBulletin {measure} {selected} />
 </aside>

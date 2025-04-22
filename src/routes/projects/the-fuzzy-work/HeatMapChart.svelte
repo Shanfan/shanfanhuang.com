@@ -49,7 +49,7 @@
 	let xScale = $derived(d3.scaleBand().range([0, dims.w]).domain(stages));
 	let rScale = $derived(d3.scaleSqrt().range([0, marginTop]).domain([0, measureMax[measure]]));
 
-	$inspect(measureMax);
+	$inspect(pivotMap);
 </script>
 
 <div class="main-content">
@@ -79,11 +79,6 @@
 		<!--Body of data -->
 		{#each industries as ind}
 			<p class="right-align">{ind}</p>
-			<!-- {#each stages as stage, i}
-					<p style="color: {colorScale(stage)}" class="center-align">
-						{pivotMap.get(ind)?.get(stage)?.[measure] ?? ''}
-					</p>
-				{/each} -->
 			<p class="right-align">
 				{d3.format(',')(totalByIndustry.find((d) => d.key === ind)[measure])}
 			</p>
