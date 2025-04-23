@@ -1,20 +1,14 @@
 @import '@fontsource/fira-mono';
-@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline:opsz,wght@10..72,100..900&family=Borel&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline:opsz,wght@10..72,100..900&family=Playwrite+AU+SA:wght@100..400&display=swap');
 
 /*TODO: define a dark theme and a light theme; let the theme respond to client system color theme*/
 :root {
 	--font-body: Roboto, Oxygen, Ubuntu, -apple-system, BlinkMacSystemFont, 'Segoe UI',
 		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	--font-mono: 'Fira Mono', monospace;
-	--font-cursive: 'Borel', cursive;
-	--color-bg-0: rgb(202, 216, 228);
-	--color-bg-1: hsl(209, 36%, 86%);
-	--color-bg-2: hsl(224, 44%, 95%);
 	--color-theme-1: #dcb150;
 	--color-theme-2: #35699a;
 	--color-text: #ccc;
-	--column-width: 42rem;
-	--column-margin-top: 4rem;
 	font-family: var(--font-body);
 	color: var(--color-text);
 }
@@ -22,9 +16,6 @@
 body {
 	min-height: 100vh;
 	margin: 0;
-	background-attachment: fixed;
-	background-size: 100vw 100vh;
-	background: #222;
 }
 
 h1 {
@@ -52,11 +43,6 @@ h3 {
 p,
 li {
 	font-weight: 200;
-	line-height: 1.5;
-}
-
-.cursive {
-	font-family: var(--font-cursive);
 	line-height: 1.5;
 }
 
@@ -109,6 +95,17 @@ button:hover {
 
 button:focus:not(:focus-visible) {
 	outline: none;
+}
+
+/* Helper classes */
+
+
+.cursive {
+	font-family: "Playwrite AU SA", cursive;
+	line-height: 1.5;
+	font-optical-sizing: auto;
+	font-weight: 200;
+	font-style: normal;
 }
 
 @media (max-width: 720px) {

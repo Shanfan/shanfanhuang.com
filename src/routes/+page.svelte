@@ -1,5 +1,6 @@
 <script>
 	// @ts-nocheck
+	import '../app.css';
 	import profileImg from '$lib/images/shanfan_headshot_sq.jpg';
 	import { myLinks } from '$lib/components/MyLinks';
 	import VideoBg from '$lib/components/VideoBg.svelte';
@@ -13,59 +14,69 @@
 	/>
 </svelte:head>
 
-<section>
-	<VideoBg />
-	<img class="profile" src={profileImg} alt="shanfan huang profile" />
-	<div class="card">
-		<h1 style="text-align: center">Shanfan Huang</h1>
-		<h2 style="font-weight: 100; text-align: center">
-			Design is a way of thinking, identifying patterns, telling stories, and revealing new
-			perspectives.
-		</h2>
-		<!-- <a href="/projects">
-			<h2 style="font-family: var(--font-cursive); letter-spacing: 0.1em">Come in!</h2>
-		</a> -->
-		<p>
-			With a background in product UX design and agile software development, Shanfan has consulted
-			enterprise IT teams on user-centric design process and evidence-based product strategy.
-		</p>
-		<p>
-			Currently focusing on <span class="cursive">information design</span>
-			and <span class="cursive">visual storytelling</span>, Shanfan’s work combines graphics,
-			illustrations, user experience, and interaction design to make complex information accessible
-			and engaging.
-		</p>
+<div class="app">
+	<section>
+		<VideoBg />
+		<img class="profile" src={profileImg} alt="shanfan huang profile" />
+		<div class="card">
+			<h1 style="text-align: center">Shanfan Huang</h1>
+			<h2 style="font-weight: 100; text-align: center">
+				Design is a way of thinking, identifying patterns, telling stories, and revealing new
+				perspectives.
+			</h2>
+			<a href="/projects">
+				<h2 class="cursive" style="text-align: center">Come in!</h2>
+			</a>
+			<p>
+				With a background in product UX design and agile software development, Shanfan has consulted
+				enterprise IT teams on user-centric design process and evidence-based product strategy.
+			</p>
+			<p>
+				Currently focusing on <span class="cursive">information design</span>
+				and <span class="cursive">visual storytelling</span>, Shanfan’s work combines graphics,
+				illustrations, user experience, and interaction design to make complex information
+				accessible and engaging.
+			</p>
 
-		<div class="link-container">
-			<div class="icon-links">
-				<p class="icon-header">creative</p>
-				<div class="icon-container">
-					{#each myLinks as link}
-						{#if link.type === 'creative'}
-							<a href={link.url} target="_blank">
-								<img src={link.src} alt={link.id} title={link.title} />
-							</a>
-						{/if}
-					{/each}
+			<div class="link-container">
+				<div class="icon-links">
+					<p class="icon-header">creative</p>
+					<div class="icon-container">
+						{#each myLinks as link}
+							{#if link.type === 'creative'}
+								<a href={link.url} target="_blank">
+									<img src={link.src} alt={link.id} title={link.title} />
+								</a>
+							{/if}
+						{/each}
+					</div>
 				</div>
-			</div>
-			<div class="icon-links">
-				<p class="icon-header">social</p>
-				<div class="icon-container">
-					{#each myLinks as link}
-						{#if link.type === 'social'}
-							<a href={link.url} target="_blank">
-								<img src={link.src} alt={link.id} title={link.title} />
-							</a>
-						{/if}
-					{/each}
+				<div class="icon-links">
+					<p class="icon-header">social</p>
+					<div class="icon-container">
+						{#each myLinks as link}
+							{#if link.type === 'social'}
+								<a href={link.url} target="_blank">
+									<img src={link.src} alt={link.id} title={link.title} />
+								</a>
+							{/if}
+						{/each}
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
+</div>
 
 <style>
+	.app {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+		box-sizing: border-box;
+		width: 100%;
+	}
+
 	section {
 		display: flex;
 		flex-direction: column;

@@ -1,17 +1,22 @@
 <script>
 	// @ts-nocheck
-	import '../app.css';
+	import '../../app.css';
 
 	let { children } = $props();
 </script>
 
 <div class="app">
+	<header>
+		<a href="/projects">Projects</a>
+		<a href="/">About</a>
+		<a href="/">Design Notes</a>
+	</header>
 	<main>
 		{@render children()}
 	</main>
 
 	<footer>
-		<p style="font-size: 0.8em;">
+		<p>
 			Shanfan 💖 D3.js, CSS, and homebrewed kombucha. <br />
 			<a href="https://www.shanfanhuang.com">shanfanhuang.com</a> is built with SvelteKit on Vercel.
 			All rights reserved.
@@ -46,6 +51,7 @@
 		background-position: top left;
 		background-repeat: no-repeat;
 		background-size: cover;
+		font-size: 0.8em;
 	}
 
 	@media (min-width: 480px) {
