@@ -3,6 +3,7 @@
 	import '../../app.css';
 
 	let { children } = $props();
+	// $inspect('my page data is: ', page.data);
 </script>
 
 <div class="app">
@@ -29,6 +30,7 @@
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
+		background: #222; /* change this to be a variable */
 	}
 
 	main {
@@ -45,18 +47,21 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		padding: 12px 0;
+		padding: 1em 0;
 		text-align: center;
-		background-image: url('$lib/images/footer_banner.svg');
 		background-position: top left;
 		background-repeat: no-repeat;
 		background-size: cover;
 		font-size: 0.8em;
+		/* bg image should be edited to be more subtle */
+		background-image: url('$lib/images/footer_banner.svg');
+		/* color should change based on .app bg color */
+		color: #eee;
 	}
 
-	@media (min-width: 480px) {
+	@media (max-width: 480px) {
 		footer {
-			padding: 12px 0;
+			padding: 0.5em 0.25em;
 		}
 	}
 </style>

@@ -3,6 +3,7 @@
 import { fetchDataset } from "$lib/dataLoader";
 import { ascending, rollup, sum, max, descending } from 'd3';
 
+export const prerender = true;
 export async function load({ fetch }) {
     const proj = "/the-fuzzy-work/"
 
@@ -66,6 +67,8 @@ export async function load({ fetch }) {
 
     return {
         layoffByCompany: layoffByCompany,
-        relationships: industryRelationships
+        relationships: industryRelationships,
+        pageBg: "#222",
+        theme: "dark"
     }
 }
