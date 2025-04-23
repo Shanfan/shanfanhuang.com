@@ -5,10 +5,10 @@
 
 	let { children } = $props();
 
-	let theme = $page.data.theme;
-	let bgColor = $page.data.pageBg;
+	let theme = $derived($page.data.theme);
+	let bgColor = $derived($page.data.pageBg);
 
-	$inspect(bgColor);
+	$inspect(bgColor, theme);
 </script>
 
 <div class="app" style="background: {bgColor}">
@@ -16,6 +16,7 @@
 		<a href="/projects">Projects</a>
 		<a href="/">About</a>
 		<a href="/">Design Notes</a>
+		<p>{bgColor}</p>
 	</header>
 	<main>
 		{@render children()}
