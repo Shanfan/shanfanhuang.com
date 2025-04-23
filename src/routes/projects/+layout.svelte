@@ -11,12 +11,11 @@
 	$inspect(bgColor, theme);
 </script>
 
-<div class="app" style="background: {bgColor}">
+<div class="app {theme}" style="background: {bgColor}">
 	<header>
 		<a href="/projects">Projects</a>
 		<a href="/">About</a>
 		<a href="/">Design Notes</a>
-		<p>{bgColor}</p>
 	</header>
 	<main>
 		{@render children()}
@@ -62,11 +61,11 @@
 		background-image: url('$lib/images/footer_banner.svg');
 	}
 
-	footer.dark {
+	.dark {
 		color: #ccc;
 	}
 
-	footer.light {
+	.light {
 		color: #666;
 	}
 

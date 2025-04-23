@@ -1,11 +1,14 @@
 .grid-container {
-    --color-text: #ccc;
     margin: 3em auto;
     padding: 2em;
     max-width: 65em;
     display: grid;
     gap: 1em 2em;
     grid-template-columns: 2fr 1fr;
+}
+
+.dark-bg {
+    --color-text: #ccc;
     color: var(--color-text);
 }
 
@@ -17,9 +20,9 @@ aside {
     grid-column: 2 / 2;
 }
 
-.grid-container h1,
-.grid-container h2,
-.grid-container h3 {
+.dark-bg h1,
+.dark-bg h2,
+.dark-bg h3 {
     color: white;
 }
 

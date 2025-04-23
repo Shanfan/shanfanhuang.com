@@ -11,6 +11,7 @@
 
 <div class="grid-container">
 	<h1>behind the scens of the fuzzy work</h1>
+	<p>placeholder text</p>
 </div>
 
 <style>

@@ -55,7 +55,7 @@
 	/>
 </svelte:head>
 
-<div class="grid-container">
+<div class="grid-container dark-bg">
 	<div class="main-content">
 		<h1>The Fuzzy Work</h1>
 		<h2>2020 ~ 2025: the nebulous shift of the tech industry</h2>
