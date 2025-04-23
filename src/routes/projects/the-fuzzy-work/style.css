@@ -1,11 +1,12 @@
 .grid-container {
+    --color-text: #ccc;
     margin: 3em auto;
     padding: 2em;
     max-width: 65em;
     display: grid;
     gap: 1em 2em;
     grid-template-columns: 2fr 1fr;
-    color: #aaa;
+    color: var(--color-text);
 }
 
 .main-content {

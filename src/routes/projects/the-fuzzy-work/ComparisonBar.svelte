@@ -91,15 +91,14 @@
 		position: absolute;
 		transform: translate(0, -50%);
 		height: 0.65em;
+		background: var(--color-text);
 	}
 
 	.ppl.bar {
 		left: 0;
-		background: var(--color-text);
 	}
 
 	.company.bar {
 		right: 0;
-		background: var(--color-text);
 	}
 </style>

@@ -1,12 +1,17 @@
 <script>
 	// @ts-nocheck
 	import '../../app.css';
+	import { page } from '$app/stores';
 
 	let { children } = $props();
-	// $inspect('my page data is: ', page.data);
+
+	let theme = $page.data.theme;
+	let bgColor = $page.data.pageBg;
+
+	$inspect(bgColor);
 </script>
 
-<div class="app">
+<div class="app" style="background: {bgColor}">
 	<header>
 		<a href="/projects">Projects</a>
 		<a href="/">About</a>
@@ -16,7 +21,7 @@
 		{@render children()}
 	</main>
 
-	<footer>
+	<footer class={theme}>
 		<p>
 			Shanfan 💖 D3.js, CSS, and homebrewed kombucha. <br />
 			<a href="https://www.shanfanhuang.com">shanfanhuang.com</a> is built with SvelteKit on Vercel.
@@ -30,7 +35,6 @@
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
-		background: #222; /* change this to be a variable */
 	}
 
 	main {
@@ -55,8 +59,14 @@
 		font-size: 0.8em;
 		/* bg image should be edited to be more subtle */
 		background-image: url('$lib/images/footer_banner.svg');
-		/* color should change based on .app bg color */
-		color: #eee;
+	}
+
+	footer.dark {
+		color: #ccc;
+	}
+
+	footer.light {
+		color: #666;
 	}
 
 	@media (max-width: 480px) {

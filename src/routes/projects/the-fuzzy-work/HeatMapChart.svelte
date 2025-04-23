@@ -48,8 +48,6 @@
 	let yScale = $derived(d3.scaleBand().range([0, dims.h]).domain(industries));
 	let xScale = $derived(d3.scaleBand().range([0, dims.w]).domain(stages));
 	let rScale = $derived(d3.scaleSqrt().range([0, marginTop]).domain([0, measureMax[measure]]));
-
-	$inspect(pivotMap);
 </script>
 
 <div class="main-content">
