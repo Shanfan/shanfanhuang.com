@@ -5,8 +5,8 @@
 
 	let { children } = $props();
 
-	let theme = $derived($page.data.theme);
-	let bgColor = $derived($page.data.pageBg);
+	let theme = $derived($page.data?.theme ?? 'light');
+	let bgColor = $derived($page.data?.pageBg ?? '#eee');
 
 	$inspect(bgColor, theme);
 </script>
