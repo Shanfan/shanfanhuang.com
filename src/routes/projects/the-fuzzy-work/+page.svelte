@@ -3,6 +3,7 @@
 	import './style.css';
 	import * as d3 from 'd3';
 	import { setContext } from 'svelte';
+	import DraggableWordCloud from './DraggableWordCloud.svelte';
 	import ComparisonBar from './ComparisonBar.svelte';
 	import DeepDiveCompanies from './SwarmChartComponent.svelte';
 	import ComparisonBarIndustry from './ComparisonBarIndustry.svelte';
@@ -44,6 +45,7 @@
 	setContext('stageData', rollupByX('stage'));
 	setContext('stageColor', colorScale);
 	setContext('stages', stages);
+	setContext('relationships', relationships);
 </script>
 
 <svelte:head>
@@ -55,10 +57,15 @@
 	/>
 </svelte:head>
 
-<div class="grid-container dark-bg">
+<div class="full-width">
+	<DraggableWordCloud />
+</div>
+<div class="grid-container dark-bg" style="transform: translate(0, -5em)">
 	<div class="main-content">
 		<h1>The Fuzzy Work</h1>
 		<h2>2020 ~ 2025: the nebulous shift of the tech industry</h2>
+	</div>
+	<div class="main-content">
 		<p>
 			Between March 11, 2020, and April 16, 2025, tech companies around the globe conducted a series
 			of layoffs, impacting people working in many different industries. However, job cuts don’t

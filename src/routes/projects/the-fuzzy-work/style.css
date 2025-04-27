@@ -1,3 +1,7 @@
+.full-width {
+    width: 100%;
+}
+
 .grid-container {
     margin: 3em auto;
     padding: 2em;
