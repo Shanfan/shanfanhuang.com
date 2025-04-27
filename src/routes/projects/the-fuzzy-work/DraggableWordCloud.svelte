@@ -21,7 +21,7 @@
 
 	const dimensions = {
 		width: 900,
-		height: 400,
+		height: 450,
 		marginTop: 30,
 		marginLeft: 0,
 		marginRight: 60,
@@ -45,7 +45,7 @@
 		};
 
 		links.forEach((link) => {
-			if (link.value !== 0 && (link.source.id === n.id || link.target.id === n.id)) {
+			if (link.value == 2 && (link.source.id === n.id || link.target.id === n.id)) {
 				link.isSelected = true;
 				linkedIndustries[link.target.id] = true;
 				linkedIndustries[link.source.id] = true;
@@ -124,7 +124,7 @@
 
 	$effect(() => {
 		simulation
-			.force('center', d3.forceCenter((boundRect.width / 3) * 2, boundRect.height / 2))
+			.force('center', d3.forceCenter(boundRect.width * 0.6, boundRect.height / 2))
 			.force('y', d3.forceY(boundRect.height / 2).strength(0.2))
 			.force('collide', d3.forceCollide((d) => fontSizeScale(fontSizeAccessor(d))).strength(0.9));
 
@@ -186,7 +186,7 @@
 		--lightest-red: #ede3e3;
 		--lighter-red: #e78a8d;
 		--light-red: #b14447;
-		background: #7d080a;
+		background: linear-gradient(to bottom, #7d080a 75%, #222);
 	}
 
 	text {
