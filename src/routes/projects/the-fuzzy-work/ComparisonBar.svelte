@@ -18,7 +18,7 @@
 </script>
 
 <div class="header container">
-	<p>Comapnies</p>
+	<p>Companies</p>
 	<p>{measure}</p>
 	<p>Jobs Eliminated</p>
 </div>
