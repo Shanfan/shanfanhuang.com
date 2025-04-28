@@ -5,17 +5,26 @@
 
 	let { children } = $props();
 
+	const navigation = [
+		{ name: 'projects', route: '/projects' },
+		{ name: 'about', route: '/' },
+		{ name: 'design notes', route: '/notes' }
+	];
+
 	let theme = $derived($page.data?.theme ?? 'light');
 	let bgColor = $derived($page.data?.pageBg ?? '#eee');
+	let currentRoute = $derived($page.route.id);
 
-	$inspect(bgColor, theme);
+	$inspect(bgColor, theme, currentRoute);
 </script>
 
 <div class="app {theme}" style="background: {bgColor}">
 	<header>
-		<a href="/projects">Projects</a>
-		<a href="/">About</a>
-		<a href="/">Design Notes</a>
+		<nav>
+			<a href="/projects">Projects</a>
+			<a href="/notes">Design Notes</a>
+			<a href="/">About</a>
+		</nav>
 	</header>
 	<main>
 		{@render children()}
@@ -47,6 +56,36 @@
 		box-sizing: border-box;
 	}
 
+	header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 100;
+		width: 100vw;
+	}
+
+	nav {
+		display: flex;
+		padding: 0.5em;
+	}
+
+	nav a {
+		display: inline-block;
+		text-decoration: none;
+		padding: 0.5em 1em;
+		text-transform: uppercase;
+	}
+
+	nav a:hover,
+	nav a:focus {
+		color: #fff;
+		background: var(--color-link);
+	}
+
+	nav a:last-child {
+		margin-left: auto;
+	}
+
 	footer {
 		display: flex;
 		flex-direction: column;
@@ -58,7 +97,6 @@
 		background-repeat: no-repeat;
 		background-size: cover;
 		font-size: 0.8em;
-		/* bg image should be edited to be more subtle */
 		background-image: url('$lib/images/footer_banner.svg');
 	}
 
