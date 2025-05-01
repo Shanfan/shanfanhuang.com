@@ -182,11 +182,11 @@
 
 <style>
 	svg {
-		--dark-red: #65080a;
-		--lightest-red: #ede3e3;
-		--lighter-red: #e78a8d;
-		--light-red: #b14447;
-		background: linear-gradient(to bottom, #7d080a 75%, #222);
+		--dark-red: #03091c;
+		--lightest-red: #e3e7ed;
+		--lighter-red: #8aafe7;
+		--light-red: #4465b1;
+		background: linear-gradient(to bottom, #0e243e 75%, #222);
 	}
 
 	text {
