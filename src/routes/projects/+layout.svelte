@@ -22,7 +22,7 @@
 	<header>
 		<nav>
 			<a href="/projects">Projects</a>
-			<a href="/notes">Design Notes</a>
+			<!-- <a href="/notes">Design Notes</a> -->
 			<a href="/">About</a>
 		</nav>
 	</header>
