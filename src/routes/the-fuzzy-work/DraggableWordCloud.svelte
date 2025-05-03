@@ -140,7 +140,7 @@
 		alignment-baseline="central"
 		x={dimensions.width / 2}
 		y={dimensions.height / 2}
-		fill="var(--dark-red)"
+		fill="var(--dark)"
 		font-size={dimensions.height * 0.85}>TECH</text
 	>
 	<g class="links" transform="translate({dimensions.marginLeft}, {dimensions.marginTop})">
@@ -152,7 +152,7 @@
 					x2={link.target.x}
 					y2={link.target.y}
 					stroke-width="1"
-					stroke={link.isSelected ? 'var(--lighter-red)' : 'var(--light-red)'}
+					stroke={link.isSelected ? 'var(--lighter)' : 'var(--light)'}
 					opacity={link.value === 2 ? 1 : 0.75}
 				/>
 			{/if}
@@ -166,7 +166,7 @@
 				x={node.x}
 				y={node.y}
 				font-size={fontSizeScale(fontSizeAccessor(node))}
-				fill={node.isSelected ? 'var(--lightest-red)' : 'var(--lighter-red)'}
+				fill={node.isSelected ? 'var(--lightest)' : 'var(--lighter)'}
 				role="button"
 				aria-label={'industry: ' + node.id}
 				tabindex="0"
@@ -182,11 +182,11 @@
 
 <style>
 	svg {
-		--dark-red: #03091c;
-		--lightest-red: #e3e7ed;
-		--lighter-red: #8aafe7;
-		--light-red: #4465b1;
-		background: linear-gradient(to bottom, #0e243e 75%, #222);
+		--dark: #222;
+		--lightest: var(--color-lightest-blue);
+		--lighter: var(--color-lighter-blue);
+		--light: var(--color-light-blue);
+		background: linear-gradient(to bottom, #222 0%, var(--color-dark-bg) 35%, #222 100%);
 	}
 
 	text {
@@ -201,7 +201,7 @@
 
 	.nodes text:hover {
 		cursor: pointer;
-		fill: var(--lightest-red);
+		fill: var(--lightest);
 	}
 	.nodes text:focus {
 		outline: none;

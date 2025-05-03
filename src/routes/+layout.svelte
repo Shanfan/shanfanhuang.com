@@ -1,15 +1,10 @@
 <script>
 	// @ts-nocheck
-	import '../../app.css';
+	import '../app.css';
+	import logo from '$lib/images/logo.png';
 	import { page } from '$app/stores';
 
 	let { children } = $props();
-
-	const navigation = [
-		{ name: 'projects', route: '/projects' },
-		{ name: 'about', route: '/' },
-		{ name: 'design notes', route: '/notes' }
-	];
 
 	let theme = $derived($page.data?.theme ?? 'light');
 	let bgColor = $derived($page.data?.pageBg ?? 'var(--color-light-bg)');
@@ -19,17 +14,27 @@
 </script>
 
 <div class="app {theme}" style="background: {bgColor}">
+	<header>
+		<nav>
+			{#if currentRoute != '/about'}
+				<a href="/">
+					<img
+						src={logo}
+						alt="logo"
+						width="64"
+						height="auto"
+						title="Shanfan Huang's Personal Website"
+					/>
+				</a>
+				<a href="/about">About </a>
+			{/if}
+		</nav>
+	</header>
 	<main>
 		{@render children()}
 	</main>
 
 	<footer class={theme}>
-		<h1>Shanfan Huang's Personal Website</h1>
-		<nav>
-			<a href="/projects">Projects</a>
-			<a href="/notes">Design Notes</a>
-			<a href="/">About</a>
-		</nav>
 		<p>
 			Shanfan 💖 D3.js, CSS, and homebrewed kombucha. <br />
 			This site is built with SvelteKit on Vercel. All rights reserved.
@@ -54,27 +59,17 @@
 		box-sizing: border-box;
 	}
 
-	footer h1 {
-		font-size: 2rem;
-	}
-
 	nav {
 		display: flex;
 		padding: 0.5em;
+		align-items: center;
 	}
 
 	nav a {
-		font-size: 1.2rem;
 		display: inline-block;
 		text-decoration: none;
 		padding: 0.5em 1em;
 		text-transform: uppercase;
-	}
-
-	nav a:hover,
-	nav a:focus {
-		color: var(--color-dark-bg);
-		background: var(--color-accent-on-dark);
 	}
 
 	footer {
@@ -84,7 +79,7 @@
 		align-items: center;
 		padding: 1em 0;
 		text-align: center;
-		background-position: bottom center;
+		background-position: top center;
 		background-repeat: no-repeat;
 		background-size: cover;
 		font-size: 0.8em;

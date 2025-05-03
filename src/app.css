@@ -113,8 +113,19 @@ button:focus:not(:focus-visible) {
 	color: var(--color-accent-on-dark);
 }
 
+.dark a:hover,
+.dark a:focus {
+	color: var(--color-accent-on-light);
+}
+
+
 .light a {
 	color: var(--color-accent-on-light);
+}
+
+.light a:hover,
+.light a:focus {
+	color: var(--color-accent-on-dark);
 }
 
 /* Helper classes */
