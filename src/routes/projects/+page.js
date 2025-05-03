@@ -9,8 +9,4 @@ export const csr = dev;
 export const prerender = true;
 
 export function load() {
-    return {
-        pageBg: "#eee",
-        theme: "light"
-    }
 }

@@ -12,29 +12,27 @@
 	];
 
 	let theme = $derived($page.data?.theme ?? 'light');
-	let bgColor = $derived($page.data?.pageBg ?? '#eee');
+	let bgColor = $derived($page.data?.pageBg ?? 'var(--color-light-bg)');
 	let currentRoute = $derived($page.route.id);
 
 	$inspect(bgColor, theme, currentRoute);
 </script>
 
 <div class="app {theme}" style="background: {bgColor}">
-	<header>
-		<nav>
-			<a href="/projects">Projects</a>
-			<!-- <a href="/notes">Design Notes</a> -->
-			<a href="/">About</a>
-		</nav>
-	</header>
 	<main>
 		{@render children()}
 	</main>
 
 	<footer class={theme}>
+		<h1>Shanfan Huang's Personal Website</h1>
+		<nav>
+			<a href="/projects">Projects</a>
+			<a href="/notes">Design Notes</a>
+			<a href="/">About</a>
+		</nav>
 		<p>
 			Shanfan 💖 D3.js, CSS, and homebrewed kombucha. <br />
-			<a href="https://www.shanfanhuang.com">shanfanhuang.com</a> is built with SvelteKit on Vercel.
-			All rights reserved.
+			This site is built with SvelteKit on Vercel. All rights reserved.
 		</p>
 	</footer>
 </div>
@@ -56,12 +54,8 @@
 		box-sizing: border-box;
 	}
 
-	header {
-		position: fixed;
-		top: 0;
-		left: 0;
-		z-index: 100;
-		width: 100vw;
+	footer h1 {
+		font-size: 2rem;
 	}
 
 	nav {
@@ -70,6 +64,7 @@
 	}
 
 	nav a {
+		font-size: 1.2rem;
 		display: inline-block;
 		text-decoration: none;
 		padding: 0.5em 1em;
@@ -78,12 +73,8 @@
 
 	nav a:hover,
 	nav a:focus {
-		color: #fff;
-		background: var(--color-link);
-	}
-
-	nav a:last-child {
-		margin-left: auto;
+		color: var(--color-dark-bg);
+		background: var(--color-accent-on-dark);
 	}
 
 	footer {
@@ -93,19 +84,11 @@
 		align-items: center;
 		padding: 1em 0;
 		text-align: center;
-		background-position: top left;
+		background-position: bottom center;
 		background-repeat: no-repeat;
 		background-size: cover;
 		font-size: 0.8em;
 		background-image: url('$lib/images/footer_banner.svg');
-	}
-
-	.dark {
-		color: #ccc;
-	}
-
-	.light {
-		color: #666;
 	}
 
 	@media (max-width: 480px) {
