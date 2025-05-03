@@ -27,19 +27,17 @@ h1 {
 	font-family: var(--font-display);
 	font-optical-sizing: auto;
 	font-style: normal;
-	font-weight: 600;
+	font-weight: 900;
 	font-size: 5rem;
 	margin: 0.25em 0;
 }
 
 h2 {
-	font-weight: 300;
 	font-style: normal;
 	font-size: 2rem;
 }
 
 h3 {
-	font-weight: 300;
 	font-style: normal;
 	font-size: 1.2em;
 }
@@ -125,7 +123,7 @@ button:focus:not(:focus-visible) {
 
 .light a:hover,
 .light a:focus {
-	color: var(--color-accent-on-dark);
+	color: var(--color-light-blue);
 }
 
 /* Helper classes */

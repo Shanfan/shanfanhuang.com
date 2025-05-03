@@ -10,7 +10,7 @@
 	let bgColor = $derived($page.data?.pageBg ?? 'var(--color-light-bg)');
 	let currentRoute = $derived($page.route.id);
 
-	$inspect(bgColor, theme, currentRoute);
+	$inspect(theme);
 </script>
 
 <div class="app {theme}" style="background: {bgColor}">
