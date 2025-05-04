@@ -39,6 +39,8 @@ pre {
     border-radius: 5px;
     margin-bottom: 1em;
     line-height: 1.6;
+    background: var(--color-dark-bg);
+    overflow-x: auto;
 }
 
 code {

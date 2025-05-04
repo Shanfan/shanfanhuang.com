@@ -137,7 +137,7 @@
 <svg width="100%" viewBox="0, 0, {dimensions.width}, {dimensions.height}">
 	<text
 		text-anchor="middle"
-		alignment-baseline="central"
+		alignment-baseline="middle"
 		x={dimensions.width / 2}
 		y={dimensions.height / 2}
 		fill="var(--dark)"

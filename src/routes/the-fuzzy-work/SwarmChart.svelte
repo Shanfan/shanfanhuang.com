@@ -99,10 +99,12 @@
 				stroke="#999"
 				stroke-dasharray="3"
 			/>
-			<text x={dims.marginSide - 5} y={yScale(tick)}>
+			<text x={dims.marginSide - 5} y={yScale(tick)} alignment-baseline="middle">
 				{d3.format(',')(tick)}
 			</text>
-			<text x={dims.width - dims.marginSide + 40} y={yScale(tick)}> jobs </text>
+			<text x={dims.width - dims.marginSide + 40} y={yScale(tick)} alignment-baseline="middle">
+				jobs
+			</text>
 		{/each}
 	</g>
 
@@ -135,7 +137,6 @@
 		fill: #999;
 		font-size: 0.8em;
 		text-anchor: end;
-		alignment-baseline: middle;
 	}
 
 	circle:hover {

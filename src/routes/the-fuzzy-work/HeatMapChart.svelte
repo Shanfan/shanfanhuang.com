@@ -3,7 +3,6 @@
 	import './style.css';
 	import * as d3 from 'd3';
 	import { getContext } from 'svelte';
-	import { scale } from 'svelte/transition';
 
 	let { data } = $props();
 	let measure = $state('bankrupted');
