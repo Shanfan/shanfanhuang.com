@@ -1,6 +1,6 @@
 .grid {
     --padding-inline: 1em;
-    --content-max-width: 680px;
+    --content-max-width: 600px;
     --breakout-max-width: 960px;
 
     --breakout-size: calc((var(--breakout-max-width) - var(--content-max-width)) / 2);
@@ -30,8 +30,7 @@ img.full-width {
 }
 
 pre,
-code,
-figcaption {
+code {
     font-family: var(--font-mono);
 }
 
@@ -44,13 +43,40 @@ pre {
 
 code {
     font-size: 0.95em;
-    color: cornflowerblue;
+    color: var(--color-lighter-blue)
 }
 
 figcaption {
     color: var(--color-lighter-blue);
     text-align: center;
     margin: 0.5em 0;
+    font-style: italic;
+}
+
+blockquote {
+    font-family: var(--font-cursive);
+    font-size: 1.25em;
+    position: relative;
+}
+
+blockquote::before,
+blockquote::after {
+    font-family: var(--font-display);
+    font-size: 5em;
+    color: var(--color-lighter-blue);
+    position: absolute;
+}
+
+blockquote::before {
+    content: '\201C';
+    left: -3rem;
+    top: -2rem;
+}
+
+blockquote::after {
+    content: '\201D';
+    right: -2rem;
+    bottom: -5rem;
 }
 
 header {
@@ -65,6 +91,16 @@ header h1 span {
     font-size: 1.2rem;
     display: block;
     font-family: var(--font-mono);
+}
+
+figure {
+    margin: 2em 0;
+}
+
+figure iframe,
+figure img {
+    background: white;
+    border-radius: 10px;
 }
 
 

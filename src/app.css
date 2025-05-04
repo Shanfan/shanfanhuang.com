@@ -8,6 +8,7 @@
 	--font-mono: 'Fira Mono', monospace;
 	--font-display: "Big Shoulders Inline", 'Segoe UI', Roboto, Oxygen, Ubuntu,
 		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	--font-cursive: "Playwrite AU SA", cursive;
 	--color-accent-on-light: #e6665b;
 	--color-accent-on-dark: #ecd01a;
 	--color-light-bg: #F0EEE3;
@@ -56,17 +57,6 @@ a:hover {
 	text-decoration: underline;
 }
 
-pre {
-	font-size: 16px;
-	font-family: var(--font-mono);
-	background-color: rgba(255, 255, 255, 0.45);
-	border-radius: 3px;
-	box-shadow: 2px 2px 6px rgb(255 255 255 / 25%);
-	padding: 0.5em;
-	overflow-x: auto;
-	color: #ccc;
-}
-
 input,
 button {
 	font-size: inherit;
@@ -103,7 +93,7 @@ button:focus:not(:focus-visible) {
 }
 
 .light {
-	color: var(--color-light-blue);
+	color: var(--color-dark-bg);
 	background-color: var(--color-light-bg);
 }
 
@@ -130,7 +120,7 @@ button:focus:not(:focus-visible) {
 
 
 .cursive {
-	font-family: "Playwrite AU SA", cursive;
+	font-family: var(--font-cursive);
 	line-height: 1.5;
 	font-optical-sizing: auto;
 	font-weight: 200;
