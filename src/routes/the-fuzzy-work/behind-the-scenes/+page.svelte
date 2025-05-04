@@ -1,10 +1,10 @@
 <script>
 	//@ts-nocheck
 	import '$lib/components/blog.css';
-	import process from './components/process.svg';
 	import relationTable from './components/industry_relationships.png';
 	import StageGrouping from './components/StageGrouping.svelte';
 	import CodeBlock from '$lib/components/CodeBlock.svelte';
+	import Process from './components/Process.svelte';
 	let breakoutWidth = $state();
 	let normalWidth = $state();
 
@@ -51,10 +51,7 @@ const layoffByCompany = Array.from(
 		<h1><span>behind_the_scens_of</span> the fuzzy work</h1>
 
 		<div class="hero">
-			<img
-				src={process}
-				alt="Design process diagram showing a variety of activities involved in the making of The Fuzzy Work"
-			/>
+			<Process />
 			<p>
 				The design process of <a href="/the-fuzzy-work">the interactive visual essay</a> that explores
 				public data of tech layoffs between 2020 and 2025.
