@@ -1,7 +1,8 @@
 <script>
 	import '$lib/components/blog.css';
-	import process from './components/ process.svg';
+	import process from './components/process.svg';
 	import relationTable from './components/industry_relationships.png';
+
 	let breakoutWidth = $state();
 	let normalWidth = $state();
 </script>
@@ -45,9 +46,18 @@
 			labels used in the dataset. After initial research and scoping, I decided not to focus on the
 			announcement dates or geographic locations. Instead, I treated the 5-year period as a cohesive
 			whole, aiming to uncover shifts in industries and startups during this unique turning point of
-			history. To do this, I aggregated layoff announcements by company and explored correlations
+			history.
+		</p>
+		<p>
+			To do this, I first aggregated the layoff announcements by company and explored correlations
 			across different sectors.
 		</p>
+		<p>
+			And then I looked into the funding stages. By consolidating the original 15 funding stage
+			labels into six broader categories, I made the dataset more digestible and more relevant for
+			comparative analysis.
+		</p>
+		<!-- <StageGrouping /> -->
 		<p>
 			I use ObservableHQ to prototype the data transformation, and build interative charts for
 			explorative analysis.
@@ -72,7 +82,8 @@
 			instance, I initially suspected that the amount of funds raised by a company might correlate
 			with the scale of layoffs—but this idea didn’t hold up, so I excluded the <code
 				>funds_raised</code
-			> column in the final visualization.
+			> column in the final visualization. Instead, I found that the funding stage of a company offered
+			more meaningful patterns.
 		</p>
 	</section>
 	<figure class="breakout">
@@ -89,11 +100,6 @@
 		</figcaption>
 	</figure>
 	<section>
-		<p>
-			I found that the funding stage of a company offered more meaningful patterns. By consolidating
-			the original 15 funding stage labels into six broader categories, I made the dataset more
-			digestible and more relevant for comparative analysis.
-		</p>
 		<h2>Heuristic Consideration for UX</h2>
 		<p>
 			Out of the dozens of exploratory charts I created during the ideation phase, I selected five
