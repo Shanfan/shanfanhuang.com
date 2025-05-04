@@ -13,3 +13,15 @@
 		{@html Prism.highlight(codeSnippet, Prism.languages[language])}
 	</code>
 </pre>
+
+<style>
+	pre {
+		position: relative;
+		min-height: 30em;
+	}
+	code {
+		position: absolute;
+		top: -2em;
+		left: 1em;
+	}
+</style>
