@@ -4,8 +4,38 @@
 	import process from './components/process.svg';
 	import relationTable from './components/industry_relationships.png';
 	import StageGrouping from './components/StageGrouping.svelte';
+	import CodeBlock from '$lib/components/CodeBlock.svelte';
 	let breakoutWidth = $state();
 	let normalWidth = $state();
+
+	const rollupSnippet = `
+const layoffByCompany = Array.from(
+	rollup(
+		layoffData,
+		(v) => {
+			const totalLayoff = sum(v, d => d.layoff);
+			const maxPercent = max(v, d => parseFloat(d.percentage));
+			const { stage, industry } = v[0];
+			return {
+				layoff: totalLayoff,
+				percentage: maxPercent,
+				stage: simplifyStage(v[0].stage),
+				industry,
+				events: v.map((d) => {
+					return {
+						date: d.date,
+						layoff: d.layoff,
+						percentage: d.percentage,
+						location: d.location,
+						country: d.country
+					}
+				})
+			};
+		},
+		(d) => d.company
+	),
+	([company, values]) => ({ company, ...values })
+);`;
 </script>
 
 <svelte:head>
@@ -50,48 +80,16 @@
 			history.
 		</p>
 		<p>
-			To do this, I first aggregated the layoff announcements by company and explored correlations
-			across different sectors.
-		</p>
-		<pre>
-			<code>
-			{`	
-const layoffByCompany = Array.from(
-	rollup(
-		layoffData,
-		(v) => {
-			const totalLayoff = sum(v, d => d.layoff);
-			const maxPercent = max(v, d => parseFloat(d.percentage));
-			const { stage, industry } = v[0];
-			return {
-				layoff: totalLayoff,
-				percentage: maxPercent,
-				stage: simplifyStage(v[0].stage),
-				industry,
-				events: v.map((d) => {
-					return {
-						date: d.date,
-						layoff: d.layoff,
-						percentage: d.percentage,
-						location: d.location,
-						country: d.country
-					}
-				})
-			};
-		},
-		(d) => d.company
-	),
-	([company, values]) => ({ company, ...values })
-);
-			`}
-		</code>
-		</pre>
-		<p>
-			And then I looked into the funding stages. By consolidating the original 15 funding stage
-			labels into six broader categories, I made the dataset more digestible and more relevant for
-			comparative analysis.
+			To do this, I first looked into the funding stages. By consolidating the original 15 funding
+			stage labels into six broader categories, I made the dataset more digestible and more relevant
+			for comparative analysis.
 		</p>
 		<StageGrouping {normalWidth} />
+		<p>
+			And then I aggregated the layoff announcements by company and explored correlations across
+			different sectors.
+		</p>
+		<CodeBlock codeSnippet={rollupSnippet} language="javascript" />
 		<p>
 			I use ObservableHQ to prototype the data transformation, and build interative charts for
 			explorative analysis.
