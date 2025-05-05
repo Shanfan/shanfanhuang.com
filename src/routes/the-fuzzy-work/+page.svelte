@@ -61,9 +61,9 @@
 	<DraggableWordCloud />
 </div>
 <div class="grid-container dark-bg" style="transform: translate(0, -5em)">
-	<div class="main-content">
+	<div class="main-content header">
 		<h1>The Fuzzy Work</h1>
-		<h2>2020 ~ 2025: the nebulous shift of the tech industry</h2>
+		<h2>2020-2025: the nebulous shift of the tech industry</h2>
 	</div>
 	<div class="main-content">
 		<p>
@@ -97,14 +97,14 @@
 	<ComparisonBarIndustry />
 
 	<div class="main-content">
-		<h2>Startups disappear quietly. Big Tech cuts loudly.</h2>
+		<h2>Startups disappear quietly.<br /> Big Tech cuts loudly.</h2>
 	</div>
 	<div class="main-content">
 		<p>
 			The chart below compares the number of companies and the number of jobs eliminated at
 			different funding stages.
 		</p>
-		<h3>The top 3 made up nearly 10% of the entire job loss</h3>
+		<h3>The top 3 made up nearly 10% of the entire job loss.</h3>
 		<p>
 			Publicly traded companies are often large employers, and they could also eliminate the largest
 			number of jobs in times of uncertainty.
@@ -200,7 +200,7 @@
 			For details on how this project came into being, read <a
 				href="the-fuzzy-work/behind-the-scenes">Behind The Scenes</a
 			>
-			this project.
+			of this project.
 		</p>
 	</div>
 </div>

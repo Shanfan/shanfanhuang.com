@@ -20,6 +20,14 @@
     grid-column: 1 / 1;
 }
 
+.header h1 {
+    font-size: 6rem;
+}
+
+.header h2 {
+    font-size: 3rem;
+}
+
 aside {
     grid-column: 2 / 2;
 }

@@ -1,7 +1,7 @@
 <script>
 	// @ts-nocheck
 	import '../app.css';
-	import logo from '$lib/images/logo.png';
+	import logo from '$lib/images/gem_logo.png';
 	import { page } from '$app/stores';
 
 	let { children } = $props();
@@ -17,16 +17,19 @@
 	<header>
 		<nav>
 			{#if currentRoute != '/about'}
-				<a href="/">
-					<img
-						src={logo}
-						alt="logo"
-						width="64"
-						height="auto"
-						title="Shanfan Huang's Personal Website"
-					/>
-				</a>
-				<a href="/about">About </a>
+				<img
+					src={logo}
+					alt="logo"
+					width="64"
+					height="auto"
+					title="Shanfan Huang's Personal Website"
+				/>
+				{#if currentRoute === '/'}
+					<p>Projects</p>
+				{:else}
+					<a href="/">Projects</a>
+				{/if}
+				<a href="/about">About</a>
 			{/if}
 		</nav>
 	</header>
@@ -65,7 +68,7 @@
 		align-items: center;
 	}
 
-	nav a {
+	nav > * {
 		display: inline-block;
 		text-decoration: none;
 		padding: 0.5em 1em;
