@@ -79,7 +79,7 @@
 	.profile {
 		max-width: 120px;
 		border-radius: 50%;
-		border: 5px solid #ffffff;
+		border: 5px solid var(--color-lightest-blue);
 		box-sizing: border-box;
 		z-index: 100;
 	}
@@ -87,10 +87,10 @@
 		max-width: 650px;
 		padding: 75px 3em 2em 3em;
 		margin-top: -75px;
-		background: rgba(0, 0, 0, 0.5);
+		background: rgba(4, 3, 56, 0.5);
 		backdrop-filter: blur(4px);
 		border-radius: 10px;
-		border: 1px solid #000;
+		border: 1px solid var(--color-lightest-blue);
 	}
 	.card p {
 		font-size: 1.25rem;
