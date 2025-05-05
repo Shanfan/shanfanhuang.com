@@ -48,7 +48,7 @@ const layoffByCompany = Array.from(
 
 <div class="grid">
 	<header class="full-width">
-		<h1><span>behind_the_scens_of</span> the fuzzy work</h1>
+		<h1><span>behind_the_scenes_of</span> the fuzzy work</h1>
 
 		<div class="hero">
 			<Process />
@@ -197,6 +197,11 @@ const layoffByCompany = Array.from(
 			to a simpler, more familiar solution: checkboxes.
 		</p>
 		<p>In the end, the taxonomy graph found its place as the hero image of the article.</p>
+		<p>
+			Check out the article <a href="/the-fuzzy-work/"
+				>The Fuzzy Work - 2020~2025: the nebulous shift of the tech industry</a
+			>.
+		</p>
 
 		<h2>Acknowledgement</h2>
 		<p>
