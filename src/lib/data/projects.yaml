@@ -7,11 +7,11 @@
     what these layoffs reveal about companies
     at various funding stages.
   link: /the-fuzzy-work
-  imageUrl: /snail-cricket.jpg
+  imageUrl: /the-fuzzy-work.png
   year: 2025
   medium: Web
   tools: Svelte, D3.js
-  data-source: 
+  dataSource: <a href="https://layoffs.fyi" target="_blank">layoffs.fyi</a>
   tags:
     - Web
     - Data Visualization
@@ -23,6 +23,9 @@
     this storybook has searchable speechbubbles and responsive comic panels.
   link: https://sara-snail-cat-cricket.vercel.app/
   imageUrl: /snail-cricket.jpg
+  year: 2023
+  medium: Web
+  tools: GSAP.js, React.js, Procreate
   tags:
     - Cartoon
     - Interactive Storytelling
@@ -31,9 +34,12 @@
   description: >-
     Lay your gaze on this meditative geometric animation. Use the controllers
     to switch the color palette, adjust the spin speed and other visual parameters.
-    Built with Paper.js.
-  link: /rotating-lattice
+  link: https://shanfan.github.io/rotating-lattice
   imageUrl: /zen-lattice.jpg
+  vidUrl: /zen-lattice.mp4
+  year: 2016
+  medium: Web
+  tools: paper.js
   tags:
     - Geometry
     - UI Experiment
@@ -42,8 +48,11 @@
 - title: The Story of the Avocado Family
   description: >- 
     What does it take to birth a baby? Comic stripes made interactive.
-  link: projects/avocado-story/
+  link: https://shanfan.github.io/projects/avocado-story/
   imageUrl: /avo-fam.jpg
+  year: 2023
+  medium: Web
+  tools: GSAP.js, Procreate
   tags:
     - Cartoon
     - Interactive Storytelling
@@ -53,55 +62,25 @@
   description: >-
     An interactive visual poem that tells a simple yet universal truth: Every large
     project starts with doing one small thing and doing it well. Built with GSAP.js.
-  link: projects/daisy/
+  link: https://shanfan.github.io/projects/daisy/
   imageUrl: /daisy.jpg
+  year: 2023
+  medium: Web
+  tools: GSAP.js, Procreate
   tags:
-    - Design Philosophy
+    - Poem
     - Interactive Storytelling
 
 - title: She Said
   description: >-
     Playing through memorable quotes from Sex and the City. Carrie Bradshaw might have said
-    a lot of horrendous things, but... she is still an icon of an era, albeit a passed one.
-  link: /shesaid
+    a lot of horrendous things, but... she is still an icon of an era, even if it's a passed one.
+  link: https://shanfan.github.io/shesaid
   imageUrl: /she-said.png
+  year: 2013
+  medium: Web
+  tools: Javascript
   tags:
     - UI Experiment
     - Typography
     - Humor
-
-- title: Jam Session
-  description: >-
-    A companion game to Snail and Cricket. The interaction logic is complete, but the transition could be smoother, and music is needed!
-  link: https://sara-snail-cat-cricket.vercel.app/extras/puzzle
-  imageUrl: /snail-cricket-game.jpg
-  tags:
-    - Game
-    - UI Experiment
-
-- title: The Tale of Two Architects
-  description: >-
-    An investigation into the parallel lives of two iconic architects of the 20th century.
-  link: /a-tale-of-two-architects/
-  imageUrl: /a-tale-of-two-architects.jpg
-  tags:
-    - Design Philosophy
-    - History
-    - Interactive Storytelling
-
-- title: Color Mixer Sheet
-  description: A Cartesian solution for people who are bad at picking colors 😜
-  link: /color-sheet
-  imageUrl: /color-sheet.png
-  tags:
-    - Utility
-    - Humor
-
-- title: Material Icons Cheatsheet
-  description: >- 
-    Before Material Icon provided "vague search", this app could help you find the "magnifier" when you
-    type "search" or "zoom in". <b>No longer maintained</b>
-  link: /material-icons-cheatsheet
-  imageUrl: /icon-cheatsheet.png
-  tags:
-    - Utility
