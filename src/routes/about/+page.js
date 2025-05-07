@@ -10,7 +10,7 @@ export const prerender = true;
 
 export function load() {
     return {
-        pageBg: "transparent",
+        pageBg: "var(--color-dark-bg)",
         theme: "light"
     }
 }

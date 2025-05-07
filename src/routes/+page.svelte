@@ -1,4 +1,8 @@
 <script>
+	//@ts-nocheck
+	let { data } = $props();
+	const projects = data.projectData;
+	console.log(projects);
 </script>
 
 <svelte:head>
@@ -12,6 +16,9 @@
 	<h1>Shanfan's Work</h1>
 	<div class="container">
 		<a href="/the-fuzzy-work">The Fuzzy Work</a>
+		{#each projects as p}
+			{p.title}
+		{/each}
 	</div>
 </section>
 
