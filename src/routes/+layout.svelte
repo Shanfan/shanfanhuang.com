@@ -24,9 +24,7 @@
 					height="auto"
 					title="Shanfan Huang's Personal Website"
 				/>
-				{#if currentRoute === '/'}
-					<p>Projects</p>
-				{:else}
+				{#if currentRoute != '/'}
 					<a href="/">Projects</a>
 				{/if}
 				<a href="/about">About</a>
@@ -87,6 +85,7 @@
 		background-size: cover;
 		font-size: 0.8em;
 		background-image: url('$lib/images/footer_banner.svg');
+		z-index: 1;
 	}
 
 	@media (max-width: 480px) {

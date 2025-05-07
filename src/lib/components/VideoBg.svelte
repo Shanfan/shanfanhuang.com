@@ -18,6 +18,6 @@
 		height: auto;
 		transform: translate(-50%, -50%);
 		object-fit: cover;
-		z-index: -1;
+		z-index: 0;
 	}
 </style>
