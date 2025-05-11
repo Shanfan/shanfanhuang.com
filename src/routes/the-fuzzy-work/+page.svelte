@@ -19,7 +19,8 @@
 	const colorScale = d3
 		.scaleOrdinal()
 		.domain(stages)
-		.range(['#CC5456', '#88CC54', '#e4d787', '#8CD5E1', '#549ECC', '#6E94FC']);
+		.range(['#EA216E', '#3DCC93', '#C9C544', '#6EB5F8', '#2A59E4', '#8841E6']);
+	// .range(['#CC5456', '#88CC54', '#e4d787', '#8CD5E1', '#549ECC', '#6E94FC']);
 
 	function rollupByX(string, data = layoffByCompany) {
 		const counts = d3.rollups(

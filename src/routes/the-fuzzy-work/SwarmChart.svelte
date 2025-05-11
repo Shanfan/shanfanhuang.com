@@ -96,7 +96,7 @@
 				x2={bound.width + 5}
 				y1={yScale(tick)}
 				y2={yScale(tick)}
-				stroke="#999"
+				stroke="#000"
 				stroke-dasharray="3"
 			/>
 			<text x={dims.marginSide - 5} y={yScale(tick)} alignment-baseline="middle">
@@ -115,7 +115,7 @@
 				cy={node.y}
 				r={rScale(rAccessor(node))}
 				fill={colorScale(xAccessor(node))}
-				stroke={node.percentage ? 'none' : '#fff'}
+				stroke={node.percentage ? 'none' : '#000'}
 				opacity={node.percentage ? 1 : 0.75}
 				role="button"
 				aria-label={node.company}
@@ -129,12 +129,12 @@
 
 <style>
 	svg {
-		background-color: #0f0f0f;
+		background-color: white;
 		margin: 0;
 	}
 
 	.axis text {
-		fill: #999;
+		fill: black;
 		font-size: 0.8em;
 		text-anchor: end;
 	}
@@ -143,6 +143,6 @@
 		cursor: pointer;
 		r: 10;
 		stroke-width: 2px;
-		stroke: aliceblue;
+		stroke: black;
 	}
 </style>

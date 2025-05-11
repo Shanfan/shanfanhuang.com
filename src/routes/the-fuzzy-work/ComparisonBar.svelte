@@ -50,8 +50,7 @@
 
 <style>
 	.container {
-		--bankrupted: #b3191b;
-		background: #0f0f0f;
+		background: white;
 		display: grid;
 		grid-template-columns: 1fr 8em 1fr;
 		align-items: center;
@@ -62,26 +61,27 @@
 		text-align: center;
 		text-transform: uppercase;
 		font-size: 0.85em;
-		color: #999;
+		color: var(--color-light-blue);
 	}
 
 	.header {
-		border-bottom: #555 solid 1px;
+		border-bottom: var(--color-light-bg) solid 2px;
 	}
 
 	.footer {
-		border-top: #555 solid 1px;
+		border-top: var(--color-light-bg) solid 2px;
 	}
 
 	.key {
 		background: none;
 		border: none;
 		padding: 0.1em 0;
+		color: var(--color-dark-bg);
 	}
 
 	.key:hover,
 	.key:focus {
-		color: var(--bankrupted);
+		color: var(--color-accent-on-light);
 	}
 
 	.bar-container {
@@ -91,7 +91,7 @@
 		position: absolute;
 		transform: translate(0, -50%);
 		height: 0.65em;
-		background: var(--color-text);
+		background: var(--color-light-blue);
 	}
 
 	.ppl.bar {

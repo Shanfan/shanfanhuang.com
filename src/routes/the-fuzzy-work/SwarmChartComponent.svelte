@@ -10,7 +10,7 @@
 
 	const industries = getContext('industryData');
 	const colorScale = getContext('stageColor');
-	const stages = colorScale.domain();
+	const stages = getContext('stages');
 
 	const allIndustries = Array.from(industries.map((d) => d.key));
 	const top20 = d3.sum(layoffByCompany.slice(0, 379), (d) => d.layoff);
@@ -179,17 +179,8 @@
 </aside>
 
 <div class="main-content">
-	<div
-		class="color-encoding"
-		style="display: flex; width: 100%; justify-content: space-around; background: #0f0f0f"
-	>
-		<p
-			style="
-						text-transform: uppercase;
-						font-size: 0.75em;
-						line-height: 200%;
-						color: #999;"
-		>
+	<div class="color-encoding">
+		<p class="label">
 			Stage <br /> Count
 		</p>
 		{#each stages as stage}
@@ -237,7 +228,7 @@
 		<li>
 			<span
 				style="opacity: 75%; width: {rScale(20) *
-					2}px; border: 1px solid white; background:{colorScale(selectedCompany.stage)}"
+					2}px; border: 1px solid black; background:{colorScale(selectedCompany.stage)}"
 			></span> unknown
 		</li>
 	</ul>
@@ -266,5 +257,18 @@
 		margin-right: 1em;
 		border-radius: 50%;
 		background: #cc5456;
+	}
+	.color-encoding {
+		display: flex;
+		width: 100%;
+		justify-content: space-around;
+		background: white;
+	}
+
+	.color-encoding .label {
+		text-transform: uppercase;
+		font-size: 0.75em;
+		line-height: 200%;
+		color: var(--color-light-blue);
 	}
 </style>

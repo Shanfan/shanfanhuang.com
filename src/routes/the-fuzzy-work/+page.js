@@ -68,7 +68,6 @@ export async function load({ fetch }) {
     return {
         layoffByCompany: layoffByCompany,
         relationships: industryRelationships,
-        pageBg: "#222",
-        theme: "dark"
+        theme: "light"
     }
 }

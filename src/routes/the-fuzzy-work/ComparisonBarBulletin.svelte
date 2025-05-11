@@ -32,15 +32,15 @@
 
 <style>
 	.details {
-		background: #0f0f0f;
+		background: white;
 		padding: 0.75em;
 		border-radius: 5px 5px 2px 2px;
-		border-top: #b3191b 5px solid;
-		border-bottom: #b3191b 2px solid;
+		border-top: var(--color-dark-bg) 5px solid;
+		border-bottom: var(--color-dark-bg) 2px solid;
 	}
 	.details span {
 		text-transform: uppercase;
 		font-size: 0.75em;
-		color: #999;
+		color: var(--color-light-blue);
 	}
 </style>

@@ -14,7 +14,7 @@
 </script>
 
 <div class="app {theme}" style="background: {bgColor}">
-	<header>
+	<header class={theme}>
 		<nav>
 			{#if currentRoute != '/about'}
 				<img

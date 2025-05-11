@@ -53,7 +53,7 @@
 
 <style>
 	.layoff-details {
-		background: #0f0f0f;
+		background: white;
 		padding: 0.75em;
 		border-radius: 5px 5px 2px 2px;
 	}
@@ -65,11 +65,11 @@
 	.layoff-details p span {
 		text-transform: uppercase;
 		font-size: 0.75em;
-		color: #999;
+		color: var(--color-light-blue);
 	}
 
 	table {
-		--border: #555;
+		--border: var(--color-lightest-blue);
 		width: 100%;
 		text-align: left;
 		font-size: 0.85em;

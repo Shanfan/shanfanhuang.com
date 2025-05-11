@@ -72,7 +72,8 @@
 				<p class="vertical-text header" style="color: {colorScale(stage)}">{stage}</p>
 			{/each}
 		</div>
-		<p class="vertical-text header label-text">Total</p>
+		<p class="vertical-text header label-text"></p>
+
 		<!--Body of data -->
 		{#each industries as ind}
 			<p class="right-align">{ind}</p>
@@ -96,7 +97,7 @@
 									fill={colorScale(xAcc)}
 									cx={xScale(xAcc)}
 									cy={yScale(yAcc)}
-									opacity="0.75"
+									opacity="0.85"
 								/>
 							{/if}
 						{/each}
@@ -128,7 +129,7 @@
 	#heatmap-chart {
 		display: grid;
 		grid-template-columns: 8em minmax(0, 1fr) auto;
-		background: #0f0f0f;
+		background: white;
 	}
 	#heatmap-chart p {
 		margin: 0.2em 0.75em;
@@ -153,7 +154,7 @@
 	.vertical-text {
 		writing-mode: vertical-lr;
 		text-orientation: sideways;
-		transform: rotate(-150deg) translate(0.5em, 0.25em);
+		transform: rotate(-140deg) translate(0.5em, 0.25em);
 	}
 	.header,
 	.footer {
@@ -161,11 +162,11 @@
 	}
 
 	svg {
-		border: 1px solid #555;
+		border: 1px solid var(--color-light-blue);
 	}
 
 	.axis {
-		stroke-width: 1px;
-		stroke: #555;
+		stroke-width: 0.5px;
+		stroke: var(--color-light-blue);
 	}
 </style>

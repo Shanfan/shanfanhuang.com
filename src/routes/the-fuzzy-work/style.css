@@ -12,8 +12,7 @@
 }
 
 .dark-bg {
-    --color-text: #ccc;
-    color: var(--color-text);
+    color: var(--color-dark-bg);
 }
 
 .main-content {
@@ -30,23 +29,24 @@
 
 aside {
     grid-column: 2 / 2;
+    font-size: 0.85em;
 }
 
 .dark-bg h1,
 .dark-bg h2,
 .dark-bg h3 {
-    color: white;
+    color: var(--color-dark-bg);
 }
 
 fieldset {
     margin: 0.5em 0;
-    border-color: #666;
+    border: 1px solid var(--color-light-blue);
 }
 
 legend,
 .label-text {
     text-transform: uppercase;
-    color: #999;
+    color: var(--color-light-blue);
     font-weight: 200;
     font-size: 0.85em;
 }
@@ -67,19 +67,10 @@ label {
 }
 
 .insight::before {
-    content: '💡 ';
+    content: '🧐 ';
     font-size: 1.5em;
 }
 
-.insight {
-    opacity: 60%;
-}
-
-.insight:hover,
-.insight:focus {
-    opacity: 100%;
-    cursor: pointer;
-}
 
 @media (max-width: 720px) {
     .grid-container {
