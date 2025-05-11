@@ -118,7 +118,6 @@ button:focus:not(:focus-visible) {
 
 /* Helper classes */
 
-
 .cursive {
 	font-family: var(--font-cursive);
 	line-height: 1.5;

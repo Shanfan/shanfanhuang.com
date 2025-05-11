@@ -217,8 +217,19 @@ const layoffByCompany = Array.from(
 				DVS Mentorshop Program</a
 			>, advised by
 			<a href="https://anastasiastevens.com/" target="_blank"> Anastasia Stevens</a> and
-			<a href="https://www.linkedin.com/in/brian-grucan-rouse/" target="_blank"> Brian Rouse</a>
+			<a href="https://www.linkedin.com/in/brian-grucan-rouse/" target="_blank"> Brian Rouse</a>.
+			Check out the video presentation:
 		</p>
+		<iframe
+			width={normalWidth}
+			height={normalWidth * 0.65}
+			src="https://www.youtube.com/embed/BVtCwp8lty4?si=iJ4Rxe3ZfBXoVfnn"
+			title="YouTube video player"
+			frameborder="0"
+			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+			referrerpolicy="strict-origin-when-cross-origin"
+			allowfullscreen
+		></iframe>
 	</section>
 </div>
 
