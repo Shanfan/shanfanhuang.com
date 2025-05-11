@@ -13,7 +13,6 @@
   tools: Svelte, D3.js
   dataSource: <a href="https://layoffs.fyi" target="_blank">layoffs.fyi</a>
   tags:
-    - Web
     - Data Visualization
     - Interactive Charts
 
@@ -45,7 +44,7 @@
     - UI Experiment
     - Game
 
-- title: The Story of the Avocado Family
+- title: Welcome to the world, baby!
   description: >- 
     What does it take to birth a baby? Comic stripes made interactive.
   link: https://shanfan.github.io/projects/avocado-story/
@@ -58,18 +57,18 @@
     - Interactive Storytelling
     - Humor
 
-- title: Start with a Daisy
-  description: >-
-    An interactive visual poem that tells a simple yet universal truth: Every large
-    project starts with doing one small thing and doing it well. Built with GSAP.js.
-  link: https://shanfan.github.io/projects/daisy/
-  imageUrl: /daisy.jpg
-  year: 2023
-  medium: Web
-  tools: GSAP.js, Procreate
-  tags:
-    - Poem
-    - Interactive Storytelling
+# - title: Start with a Daisy
+#   description: >-
+#     An interactive visual poem that tells a simple yet universal truth: Every large
+#     project starts with doing one small thing and doing it well. Built with GSAP.js.
+#   link: https://shanfan.github.io/projects/daisy/
+#   imageUrl: /daisy.jpg
+#   year: 2023
+#   medium: Web
+#   tools: GSAP.js, Procreate
+#   tags:
+#     - Poem
+#     - Interactive Storytelling
 
 - title: She Said
   description: >-
