@@ -141,8 +141,11 @@
 		x={dimensions.width / 2}
 		y={dimensions.height / 2}
 		fill="var(--dark)"
-		font-size={dimensions.height * 0.85}>TECH</text
+		font-size={dimensions.height * 0.8}
+		font-weight="900"
 	>
+		TECH
+	</text>
 	<g class="links" transform="translate({dimensions.marginLeft}, {dimensions.marginTop})">
 		{#each links as link}
 			{#if link.value > 0}
@@ -182,11 +185,11 @@
 
 <style>
 	svg {
-		--dark: #222;
-		--lightest: var(--color-lightest-blue);
+		--dark: #221d4f;
+		--lightest: var(--color-light-bg);
 		--lighter: var(--color-lighter-blue);
 		--light: var(--color-light-blue);
-		background: linear-gradient(to bottom, #222 0%, var(--color-dark-bg) 35%, #222 100%);
+		background: var(--color-dark-bg);
 	}
 
 	text {
