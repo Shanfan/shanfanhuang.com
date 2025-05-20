@@ -1,0 +1,182 @@
+country,region,income_group,deficit_reserve,population
+French Guiana,South America,UM,84.1,0.3
+Suriname,South America,UM,71.7,0.6
+Guyana,South America,LM,67.2,0.8
+Gabon,Africa,UM,14.9,2.3
+Bolivia,South America,LM,10.5,12
+Uruguay,South America,UM,7.4,3.5
+Canada,North America,HI,6.8,38.4
+Congo,Africa,LM,6.7,5.8
+Paraguay,South America,LM,6.5,7.3
+Finland,EU-27,HI,6.4,5.6
+Mongolia,Asia-Pacific,LM,5.8,3.4
+Brazil,South America,UM,5.6,215.4
+Central African Republic,Africa,LI,5.3,5
+Australia,Asia-Pacific,HI,5.2,26.1
+Namibia,Africa,UM,3.7,2.6
+Sweden,EU-27,HI,3.6,10.2
+New Zealand,Asia-Pacific,HI,3,4.9
+Latvia,EU-27,HI,2.2,1.8
+Argentina,South America,UM,2,46
+Russian Federation,Other Europe,UM,1.9,145.8
+Papua New Guinea,Asia-Pacific,LM,1.7,9.3
+Estonia,EU-27,HI,1.7,1.3
+Solomon Islands,Asia-Pacific,LI,1.7,0.7
+Colombia,South America,UM,1.6,51.5
+Liberia,Africa,LI,1.5,5.3
+Mauritania,Africa,LM,1.4,4.9
+Peru,South America,UM,1.3,33.7
+Norway,Other Europe,HI,1.3,5.5
+"Congo, Democratic Republic of",Africa,LI,1.2,95.2
+Madagascar,Africa,LI,1.2,29.2
+Eritrea,Africa,LI,1.2,3.7
+Ukraine,Other Europe,LM,1.1,43.2
+Guinea-Bissau,Africa,LI,1,2.1
+Timor-Leste,Asia-Pacific,LM,1,1.4
+"Venezuela, Bolivarian Republic of",South America,UM,0.8,29.3
+Nicaragua,Central America/Caribbean,LM,0.8,6.8
+Equatorial Guinea,Africa,HI,0.8,1.5
+Angola,Africa,LM,0.7,35
+Botswana,Africa,UM,0.7,2.4
+Mozambique,Africa,LI,0.6,33.1
+Cameroon,Africa,LM,0.4,27.9
+Mali,Africa,LI,0.4,21.5
+Zambia,Africa,LM,0.4,19.5
+Honduras,Central America/Caribbean,LM,0.3,10.2
+Panama,Central America/Caribbean,UM,0.3,4.4
+Myanmar,Asia-Pacific,LI,0.2,55.2
+Côte d'Ivoire,Africa,LM,0.2,27.7
+Ecuador,South America,UM,0.2,18.1
+Guinea,Africa,LI,0.2,13.9
+Bhutan,Asia-Pacific,LM,0.2,0.8
+Chad,Africa,LI,0.1,17.4
+South Sudan,Africa,LM,0.1,11.6
+Sudan,Africa,LM,0,46
+Vanuatu,Asia-Pacific,LM,0,0.3
+"Tanzania, United Republic of",Africa,LI,-0.1,63.3
+Malawi,Africa,LI,-0.1,20.2
+Sierra Leone,Africa,LI,-0.1,8.3
+Fiji,Asia-Pacific,UM,-0.1,0.9
+Burkina Faso,Africa,LI,-0.2,22.1
+Senegal,Africa,LM,-0.2,17.7
+Somalia,Africa,LI,-0.2,16.8
+Burundi,Africa,LI,-0.2,12.6
+Lao People's Democratic Republic,Asia-Pacific,LM,-0.2,7.5
+Grenada,Central America/Caribbean,UM,-0.2,0.1
+Afghanistan,Middle East/Central Asia,LI,-0.3,40.8
+Yemen,Middle East/Central Asia,LM,-0.3,31.2
+Niger,Africa,LI,-0.3,26.1
+Romania,EU-27,UM,-0.3,19
+Cambodia,Asia-Pacific,LI,-0.3,17.2
+Rwanda,Africa,LI,-0.3,13.6
+Togo,Africa,LI,-0.3,8.7
+Kyrgyzstan,Middle East/Central Asia,LI,-0.3,6.7
+Pakistan,Asia-Pacific,LM,-0.4,229.5
+Nigeria,Africa,LM,-0.4,216.7
+Bangladesh,Asia-Pacific,LI,-0.4,167.9
+Ethiopia,Africa,LI,-0.4,120.8
+Kenya,Africa,LI,-0.4,56.2
+Syrian Arab Republic,Middle East/Central Asia,LM,-0.4,19.4
+Haiti,Central America/Caribbean,LI,-0.4,11.7
+Gambia,Africa,LI,-0.4,2.6
+Lesotho,Africa,LM,-0.4,2.2
+Sao Tome and Principe,Africa,LM,-0.4,0.2
+Indonesia,Asia-Pacific,LM,-0.5,279.1
+Uganda,Africa,LI,-0.5,48.4
+Nepal,Asia-Pacific,LI,-0.5,30.2
+Kazakhstan,Middle East/Central Asia,UM,-0.5,19.2
+Zimbabwe,Africa,LI,-0.5,15.3
+Benin,Africa,LI,-0.5,12.8
+Bulgaria,EU-27,UM,-0.5,6.8
+Republic of Moldova,Other Europe,LM,-0.5,4
+Lithuania,EU-27,UM,-0.5,2.7
+Chile,South America,UM,-0.6,19.3
+Tunisia,Africa,UM,-0.6,12
+Tajikistan,Middle East/Central Asia,LI,-0.6,10
+India,Asia-Pacific,LM,-0.7,"1,406.60"
+"Korea, Democratic People's Republic of",Asia-Pacific,LI,-0.7,26
+Cabo Verde,Africa,LM,-0.7,0.6
+Saint Vincent and Grenadines,Central America/Caribbean,UM,-0.7,0.1
+Philippines,Asia-Pacific,LM,-0.8,112.5
+Ghana,Africa,LM,-0.8,32.4
+Cuba,Central America/Caribbean,UM,-0.8,11.3
+Montenegro,Other Europe,UM,-0.8,0.6
+Samoa,Asia-Pacific,LM,-0.8,0.2
+Guatemala,Central America/Caribbean,LM,-0.9,18.6
+Belarus,Other Europe,UM,-0.9,9.4
+Albania,Other Europe,UM,-0.9,2.9
+Morocco,Africa,LM,-1,37.8
+Costa Rica,Central America/Caribbean,UM,-1,5.2
+Mexico,North America,UM,-1.1,131.6
+Egypt,Africa,LM,-1.1,106.2
+Dominican Republic,Central America/Caribbean,UM,-1.1,11.1
+Jordan,Middle East/Central Asia,UM,-1.1,10.3
+Croatia,Other Europe,HI,-1.1,4.1
+Thailand,Asia-Pacific,UM,-1.2,70.1
+Hungary,EU-27,HI,-1.2,9.6
+Jamaica,Central America/Caribbean,UM,-1.2,3
+El Salvador,Central America/Caribbean,LM,-1.3,6.6
+Georgia,Middle East/Central Asia,LM,-1.3,4
+Republic of North Macedonia,Other Europe,UM,-1.3,2.1
+Saint Lucia,Central America/Caribbean,UM,-1.3,0.2
+Iraq,Middle East/Central Asia,LM,-1.4,42.2
+Uzbekistan,Middle East/Central Asia,LM,-1.4,34.4
+Azerbaijan,Middle East/Central Asia,UM,-1.4,10.3
+Ireland,EU-27,HI,-1.4,5
+Slovakia,EU-27,HI,-1.5,5.5
+Armenia,Middle East/Central Asia,LM,-1.5,3
+Eswatini,Africa,LM,-1.5,1.2
+Viet Nam,Asia-Pacific,LM,-1.6,99
+Algeria,Africa,UM,-1.6,45.4
+Turkmenistan,Middle East/Central Asia,LM,-1.7,6.2
+Comoros,Africa,LI,-1.7,0.9
+Dominica,Central America/Caribbean,UM,-1.7,0.1
+Serbia,Other Europe,UM,-1.8,8.7
+Djibouti,Africa,LM,-1.8,1
+Tonga,Asia-Pacific,LM,-1.8,0.1
+Turkiye,Middle East/Central Asia,UM,-1.9,85.6
+France,EU-27,HI,-1.9,65.6
+South Africa,Africa,UM,-1.9,60.8
+Mauritius,Africa,UM,-1.9,1.3
+Antigua and Barbuda,Central America/Caribbean,HI,-2,0.1
+Bosnia and Herzegovina,Other Europe,UM,-2.1,3.2
+Spain,EU-27,HI,-2.2,46.7
+Malaysia,Asia-Pacific,UM,-2.2,33.2
+Greece,EU-27,HI,-2.2,10.3
+Portugal,EU-27,HI,-2.2,10.1
+Slovenia,EU-27,HI,-2.3,2.1
+"Iran, Islamic Republic of",Middle East/Central Asia,UM,-2.5,86
+United Kingdom,Other Europe,HI,-2.5,68.5
+Poland,EU-27,HI,-2.6,37.7
+Czech Republic,EU-27,HI,-2.6,10.7
+Switzerland,Other Europe,HI,-2.6,8.8
+French Polynesia,Asia-Pacific,HI,-2.6,0.3
+Austria,EU-27,HI,-2.7,9.1
+China,Asia-Pacific,UM,-2.8,"1,480.60"
+Lebanon,Middle East/Central Asia,UM,-2.8,6.7
+Cyprus,EU-27,HI,-2.8,1.2
+Germany,EU-27,HI,-2.9,83.9
+Guadeloupe,Central America/Caribbean,LM,-2.9,0.4
+Italy,EU-27,HI,-3,60.3
+Martinique,Central America/Caribbean,UM,-3,0.4
+Denmark,EU-27,HI,-3.1,5.8
+Barbados,Central America/Caribbean,HI,-3.1,0.3
+Malta,EU-27,HI,-3.3,0.4
+Japan,Asia-Pacific,HI,-3.4,125.6
+Réunion,Africa,LM,-3.4,0.9
+United States of America,North America,HI,-3.7,334.8
+Israel,Middle East/Central Asia,HI,-3.9,8.9
+Trinidad and Tobago,Central America/Caribbean,HI,-4,1.4
+Belize,Central America/Caribbean,UM,-4.2,0.4
+Netherlands,EU-27,HI,-4.9,17.2
+Saudi Arabia,Middle East/Central Asia,HI,-5,35.8
+"Korea, Republic of",Asia-Pacific,HI,-5.2,51.3
+Brunei Darussalam,Asia-Pacific,HI,-5.3,0.4
+Belgium,EU-27,HI,-5.5,11.7
+Oman,Middle East/Central Asia,HI,-5.5,5.3
+Singapore,Asia-Pacific,HI,-5.6,5.9
+Bahrain,Middle East/Central Asia,HI,-7.6,1.8
+Kuwait,Middle East/Central Asia,HI,-7.7,4.4
+United Arab Emirates,Middle East/Central Asia,HI,-8.2,10.1
+Luxembourg,EU-27,HI,-9.7,0.6
+Qatar,Middle East/Central Asia,HI,-12.1,3
