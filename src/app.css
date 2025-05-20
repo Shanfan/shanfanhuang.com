@@ -97,6 +97,10 @@ button:focus:not(:focus-visible) {
 	background-color: var(--color-light-bg);
 }
 
+.light footer {
+	color: var(--color-light-blue);
+}
+
 .dark a {
 	color: var(--color-accent-on-dark);
 }
