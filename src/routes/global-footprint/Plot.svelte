@@ -3,6 +3,13 @@
 	import * as d3 from 'd3';
 	let { data } = $props();
 
+	let tooltip = $state({
+		visibility: false,
+		x: 0,
+		y: 0,
+		content: ''
+	});
+
 	const filteredData = data.filter((d) => d.deficit_reserve < 15);
 	const incomeLevels = ['HI', 'UM', 'LM', 'LI'];
 	const regions = [
@@ -65,6 +72,17 @@
 
 	let nodeState = $derived(nodes);
 
+	function showTooltip(e, node) {
+		tooltip.visibility = true;
+		tooltip.x = e.offsetX;
+		tooltip.y = e.offsetY - 50;
+		tooltip.content = node.country;
+	}
+
+	function hideTooltip() {
+		tooltip.visibility = false;
+	}
+
 	$effect(() => {
 		const simulation = d3
 			.forceSimulation(nodes)
@@ -87,7 +105,7 @@
 	});
 </script>
 
-<div bind:clientWidth={dims.w} class="breakout">
+<div bind:clientWidth={dims.w} class="breakout chart-wrapper">
 	<svg width="100%" height="100%" viewBox="0 0 {dims.w} {dims.w * dims.ratio}">
 		<defs>
 			<linearGradient id="safeZone">
@@ -119,6 +137,10 @@
 						fill={colorScale(node.region)}
 						data-country={node.country}
 						data-population={node.population}
+						onmouseenter={(e) => showTooltip(e, node)}
+						onmouseleave={hideTooltip}
+						role="contentinfo"
+						aria-details={node.country + ' has a population of ' + node.population + ' millions.'}
 					/>
 				{/each}
 			</g>
@@ -143,9 +165,14 @@
 			text-anchor="middle"
 			x={dims.w / 2}
 			y={dims.w * dims.ratio - dims.marginTop}
-			fill="var(--color-dark-bg)">Ecological Footprint Balance</text
+			fill="var(--color-dark-bg)">Ecological Footprint Balance - 2022 Data</text
 		>
 	</svg>
+	{#if tooltip.visibility}
+		<div class="tooltip" style="top: {tooltip.y}px; left: {tooltip.x}px">
+			{@html tooltip.content}
+		</div>
+	{/if}
 </div>
 <div class="legend">
 	<p>Colors:</p>
@@ -222,5 +249,20 @@
 		display: inline-block;
 		border-radius: 50%;
 		margin-right: 0.5em;
+	}
+
+	.chart-wrapper {
+		position: relative;
+	}
+
+	.tooltip {
+		position: absolute;
+		background: var(--color-dark-bg);
+		color: var(--color-light-bg);
+		z-index: 999;
+		padding: 0.5em;
+		box-shadow: 0 2px 5px;
+		border-radius: 4px;
+		transform: translate(-50%, -30%);
 	}
 </style>
