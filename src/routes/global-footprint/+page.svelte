@@ -2,9 +2,14 @@
 	//@ts-nocheck
 	import '$lib/components/blog.css';
 	import Plot from './Plot.svelte';
+	import * as d3 from 'd3';
 	let { data } = $props();
 	const footprintData = data.footprintData;
-	$inspect(footprintData.slice(-5));
+	const hiIncomehiReserve = footprintData
+		.filter((d) => d.income_group === 'HI' && d.deficit_reserve > 0.5)
+		.sort((a, b) => d3.ascending(a.population, b.population));
+
+	$inspect(hiIncomehiReserve);
 </script>
 
 <div class="grid">
@@ -22,6 +27,7 @@
 			the resource demand of individuals, governments, and businesses against Earth's capacity for biological
 			regeneration.
 		</p>
+		<h2>The overview</h2>
 		<p>
 			Aggregated into a single number, represented as the X axis in the chart below, a negative
 			number (deficit) means a country is overconsuming what its environment can afford, and a
@@ -29,4 +35,56 @@
 		</p>
 	</div>
 	<Plot data={footprintData} />
+
+	<div>
+		<h2>The well-to-do</h2>
+		From the chart above, we can quickly see this group of countries that have a high income level as
+		well as high ecological reserve:
+	</div>
+	<div class="breakout">
+		<figure>
+			<img
+				width="100%"
+				height="auto"
+				src="/global-footprint/hiIncome_hireserve.jpg"
+				alt="world map showing the countries that has high income as well as high ecological reserve"
+			/>
+			<figcaption>
+				A map showing where the high-income-high-reserve countries are located at.
+			</figcaption>
+		</figure>
+	</div>
+	<div>
+		<div class="table">
+			<div class="row header">
+				<p>Country</p>
+				<p>Population</p>
+				<p>Reserve</p>
+			</div>
+			{#each hiIncomehiReserve as country}
+				<div class="row">
+					<p>{country.country}</p>
+					<p>{country.population}M</p>
+					<p>{country.deficit_reserve}</p>
+				</div>
+			{/each}
+		</div>
+	</div>
 </div>
+
+<style>
+	.table {
+		margin: 1em;
+	}
+	.table .header {
+		font-weight: 600;
+	}
+	.row {
+		display: grid;
+		grid-template-columns: 8em 1fr 1fr;
+		border-bottom: 1px solid var(--color-dark-bg);
+	}
+	.row p {
+		margin: 0;
+	}
+</style>

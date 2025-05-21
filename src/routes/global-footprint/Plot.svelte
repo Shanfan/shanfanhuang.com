@@ -52,9 +52,9 @@
 	let rScale = $derived(
 		d3
 			.scaleSqrt()
-			.domain([10, 150])
+			.domain([5, 250])
 			.clamp(true)
-			.range([5, bound.w / 40])
+			.range([5, bound.w / 30])
 	);
 
 	const colorScale = d3.scaleOrdinal().domain(regions).range(colors);
