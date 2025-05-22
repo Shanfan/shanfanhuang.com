@@ -14,9 +14,9 @@
 	const incomeLevels = ['HI', 'UM', 'LM', 'LI'];
 	const regions = [
 		'North America',
-		'Central America/Caribbean',
+		'Caribbean',
 		'South America',
-		'Middle East/Central Asia',
+		'Central Asia',
 		'Asia-Pacific',
 		'EU-27',
 		'Other Europe',
@@ -33,13 +33,15 @@
 		'#5D25A6'
 	];
 
+	const rAccessor = (d) => parseFloat(d.density_km);
+
 	let dims = $state({
 		w: null,
-		ratio: 0.7,
+		ratio: 0.65,
 		marginLeft: 40,
 		marginRight: 10,
-		marginBottom: 60,
-		marginTop: 10
+		marginBottom: 30,
+		marginTop: 30
 	});
 
 	let bound = $derived({
@@ -52,9 +54,9 @@
 	let rScale = $derived(
 		d3
 			.scaleSqrt()
-			.domain([5, 250])
+			.domain([5, 660])
 			.clamp(true)
-			.range([5, bound.w / 30])
+			.range([4, bound.w / 45])
 	);
 
 	const colorScale = d3.scaleOrdinal().domain(regions).range(colors);
@@ -76,7 +78,7 @@
 		tooltip.visibility = true;
 		tooltip.x = e.offsetX;
 		tooltip.y = e.offsetY - 50;
-		tooltip.content = node.country;
+		tooltip.content = `${node.country}: ${node.density_km}/km<sup>2</sup>`;
 	}
 
 	function hideTooltip() {
@@ -88,7 +90,7 @@
 			.forceSimulation(nodes)
 			.force(
 				'collide',
-				d3.forceCollide().radius((d) => rScale(d.population) + 1)
+				d3.forceCollide().radius((d) => rScale(rAccessor(d)) + 1)
 			)
 			.force(
 				'x',
@@ -133,7 +135,7 @@
 					<circle
 						cx={node.x}
 						cy={node.y}
-						r={rScale(+node.population)}
+						r={rScale(rAccessor(node))}
 						fill={colorScale(node.region)}
 						data-country={node.country}
 						data-population={node.population}
@@ -161,12 +163,9 @@
 			fill="none"
 			stroke="var(--color-light-blue)"
 		/>
-		<text
-			text-anchor="middle"
-			x={dims.w / 2}
-			y={dims.w * dims.ratio - dims.marginTop}
-			fill="var(--color-dark-bg)">Ecological Footprint Balance - 2022 Data</text
-		>
+		<text text-anchor="middle" x={dims.w / 2} y="1.2em" fill="var(--color-dark-bg)">
+			Ecological Footprint Balance - 2022 Data
+		</text>
 	</svg>
 	{#if tooltip.visibility}
 		<div class="tooltip" style="top: {tooltip.y}px; left: {tooltip.x}px">
@@ -174,31 +173,28 @@
 		</div>
 	{/if}
 </div>
-<div class="legend">
-	<p>Colors:</p>
+<div class="legend breakout">
 	<div class="legend-list">
 		{#each regions as reg}
 			<p><span style="background: {colorScale(reg)}; width: 1em; height: 1em"></span>{reg}</p>
 		{/each}
 	</div>
-	<p>Size:</p>
 	<div class="legend-list">
 		<p>
 			<span
 				style="background: var(--color-dark-bg); width: {rScale.range()[0] *
 					2}px; height: {rScale.range()[0] * 2}px"
 			></span>
-			Population &lt;&equals; 10M
+			Population desity &lt; {rScale.domain()[0]}/km<sup>2</sup>
 		</p>
 		<p>
 			<span
 				style="background: var(--color-dark-bg); width: {rScale.range()[1] *
 					2}px; height: {rScale.range()[1] * 2}px"
 			></span>
-			Population &gt;&equals; 150M
+			Population desity &gt; {rScale.domain()[1]}/km<sup>2</sup>
 		</p>
 	</div>
-	<p>Y axis</p>
 	<div class="legend-list">
 		<p>HI: High income</p>
 		<p>LI: Low income</p>
@@ -210,7 +206,11 @@
 <style>
 	svg {
 		background: white;
-		border-radius: 10px;
+		border-radius: 10px 10px 0 0;
+	}
+	.legend {
+		background: white;
+		border-radius: 0 0 10px 10px;
 	}
 
 	.y-axis {
@@ -227,16 +227,13 @@
 		font-size: 0.8em;
 		font-weight: 400;
 	}
-	.legend {
-		margin: 1em auto;
-	}
+
 	.legend-list {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.5em 1.5em;
-		background: white;
 		padding: 0.5em 0 0.5em 1em;
-		border-radius: 10px;
+		border-top: 3px solid var(--color-light-bg);
 	}
 
 	.legend-list p {

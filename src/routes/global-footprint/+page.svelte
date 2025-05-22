@@ -7,9 +7,9 @@
 	const footprintData = data.footprintData;
 	const hiIncomehiReserve = footprintData
 		.filter((d) => d.income_group === 'HI' && d.deficit_reserve > 0.5)
-		.sort((a, b) => d3.ascending(a.population, b.population));
+		.sort((a, b) => d3.ascending(a.density_km, b.density_km));
 
-	$inspect(hiIncomehiReserve);
+	$inspect(footprintData.slice(-5));
 </script>
 
 <div class="grid">
@@ -32,6 +32,10 @@
 			Aggregated into a single number, represented as the X axis in the chart below, a negative
 			number (deficit) means a country is overconsuming what its environment can afford, and a
 			negative number (reserve) means a country lived below its means.
+		</p>
+		<p>
+			What's immediately apparent is that the high-income countries polarized on the balance
+			measure.
 		</p>
 	</div>
 	<Plot data={footprintData} />
@@ -58,14 +62,16 @@
 		<div class="table">
 			<div class="row header">
 				<p>Country</p>
-				<p>Population</p>
+				<p>Ppl/km<sup>2</sup></p>
 				<p>Reserve</p>
+				<p>HDI</p>
 			</div>
 			{#each hiIncomehiReserve as country}
 				<div class="row">
 					<p>{country.country}</p>
-					<p>{country.population}M</p>
+					<p>{country.density_km}</p>
 					<p>{country.deficit_reserve}</p>
+					<p>{country.HDI}</p>
 				</div>
 			{/each}
 		</div>
@@ -81,7 +87,7 @@
 	}
 	.row {
 		display: grid;
-		grid-template-columns: 8em 1fr 1fr;
+		grid-template-columns: 8em 1fr 1fr 1fr;
 		border-bottom: 1px solid var(--color-dark-bg);
 	}
 	.row p {

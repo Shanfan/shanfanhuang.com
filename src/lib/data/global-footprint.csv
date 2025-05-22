@@ -11,14 +11,14 @@ Finland,EU-27,HI,6.4,5.6,18,0.94
 Germany,EU-27,HI,-2.9,83.9,242,0.94
 Netherlands,EU-27,HI,-4.9,17.2,541,0.94
 New Zealand,Asia-Pacific,HI,3,4.9,20,0.94
-Singapore,Asia-Pacific,HI,-5.6,5.9,"8,120",0.94
+Singapore,Asia-Pacific,HI,-5.6,5.9,8120,0.94
 Japan,Asia-Pacific,HI,-3.4,125.6,340,0.93
 South Korea,Asia-Pacific,HI,-5.2,51.3,530,0.93
 Luxembourg,EU-27,HI,-9.7,0.6,261,0.93
 United Kingdom,Other Europe,HI,-2.5,68.5,286,0.93
 Austria,EU-27,HI,-2.7,9.1,111,0.92
 Israel,Central Asia,HI,-3.9,8.9,434,0.92
-Malta,EU-27,HI,-3.3,0.4,"1,686",0.92
+Malta,EU-27,HI,-3.3,0.4,1686,0.92
 Slovenia,EU-27,HI,-2.3,2.1,105,0.92
 United States,North America,HI,-3.7,334.8,37,0.92
 Spain,EU-27,HI,-2.2,46.7,96,0.91
@@ -29,7 +29,7 @@ Italy,EU-27,HI,-3,60.3,201,0.9
 Czech Republic,EU-27,HI,-2.6,10.7,139,0.89
 Estonia,EU-27,HI,1.7,1.3,32,0.89
 Greece,EU-27,HI,-2.2,10.3,78,0.89
-Bahrain,Central Asia,HI,-7.6,1.8,"2,034",0.88
+Bahrain,Central Asia,HI,-7.6,1.8,2034,0.88
 Lithuania,EU-27,UM,-0.5,2.7,46,0.88
 Poland,EU-27,HI,-2.6,37.7,126,0.88
 Saudi Arabia,Central Asia,HI,-5,35.8,16,0.88
@@ -65,7 +65,7 @@ Thailand,Asia-Pacific,UM,-1.2,70.1,140,0.8
 Antigua and Barbuda,Caribbean,HI,-2,0.1,213,0.79
 Barbados,Caribbean,HI,-3.1,0.3,657,0.79
 Bosnia and Herzegovina,Other Europe,UM,-2.1,3.2,62,0.78
-China,Asia-Pacific,UM,-2.8,"1,480.60",151,0.77
+China,Asia-Pacific,UM,-2.8,1480.60,151,0.77
 Dominican Republic,Caribbean,UM,-1.1,11.1,237,0.77
 Iran,Central Asia,UM,-2.5,86,56,0.77
 Moldova,Other Europe,LM,-0.5,4,92,0.77
@@ -112,11 +112,11 @@ El Salvador,Caribbean,LM,-1.3,6.6,306,0.68
 Morocco,Africa,LM,-1,37.8,53,0.68
 Bhutan,Asia-Pacific,LM,0.2,0.8,21,0.67
 Nicaragua,Caribbean,LM,0.8,6.8,57,0.67
-Bangladesh,Asia-Pacific,LI,-0.4,167.9,"1,333",0.66
+Bangladesh,Asia-Pacific,LI,-0.4,167.9,1333,0.66
 Cape Verde,Africa,LM,-0.7,0.6,130,0.66
 Ghana,Africa,LM,-0.8,32.4,151,0.63
 Guatemala,Caribbean,LM,-0.9,18.6,172,0.63
-India,Asia-Pacific,LM,-0.7,"1,406.60",488,0.63
+India,Asia-Pacific,LM,-0.7,1406.60,488,0.63
 Honduras,Caribbean,LM,0.3,10.2,97,0.62
 Namibia,Africa,UM,3.7,2.6,3.7,0.62
 Sao Tome and Principe,Africa,LM,-0.4,0.2,245,0.62
