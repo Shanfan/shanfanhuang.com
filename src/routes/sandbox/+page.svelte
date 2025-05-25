@@ -33,30 +33,19 @@
 			number (deficit) means a country is overconsuming what its environment can afford, and a
 			negative number (reserve) means a country lived below its means.
 		</p>
+	</div>
+	<Plot data={footprintData} />
+	<div>
 		<p>
 			What's immediately apparent is that the high-income countries polarized on the balance
 			measure.
 		</p>
 	</div>
-	<Plot data={footprintData} />
 
 	<div>
 		<h2>The well-to-do</h2>
 		From the chart above, we can quickly see this group of countries that have a high income level as
 		well as high ecological reserve:
-	</div>
-	<div class="breakout">
-		<figure>
-			<img
-				width="100%"
-				height="auto"
-				src="/global-footprint/hiIncome_hireserve.jpg"
-				alt="world map showing the countries that has high income as well as high ecological reserve"
-			/>
-			<figcaption>
-				A map showing where the high-income-high-reserve countries are located at.
-			</figcaption>
-		</figure>
 	</div>
 	<div>
 		<div class="table">
