@@ -15,19 +15,18 @@
 </svelte:head>
 <section>
 	<h1>Shanfan's Projects</h1>
-	<p>
+	<!-- <p>
 		Good design is invisible. Yes, some designs are loud, head-turning, provocative... and they
 		serve their purposes. but ultimately, I think, good designs, the time-tested ones, are
-		invisible. They make your life so easy that you barely notice its exisitence. You get to focus
-		on your task at hand instead of admiring or complaining about the design.
+		invisible. They make your life so easy that you barely notice its existence. You get to focus on
+		your task at hand instead of admiring or complaining about the design.
 	</p>
 	<p>
 		Then, by this definition, good design is hard. Because it asks the designer to lay low, to avoid
-		drawing attention. Like a backstage staff in a theater in the black suit, they disapear in the
-		backdrop, yet they do everything they can to keep the show going. That's a lot of humility and
-		compassion.
-	</p>
-	<p>-- Shanfan Huang</p>
+		drawing attention. Like a backstage staff in a theater in the black overall, they dissapear in
+		the backdrop, yet they do everything they can to keep the show going. That's a lot of humility
+		and compassion.
+	</p> -->
 	<div class="projects-container">
 		{#each projects as p}
 			<div class="card">
