@@ -10,5 +10,9 @@ export const csr = dev;
 export const prerender = true;
 
 export function load() {
-    return { projectData };
+    return {
+        projects: projectData,
+        pageBg: "var(--color-light-bg)",
+        theme: "dark"
+    };
 }

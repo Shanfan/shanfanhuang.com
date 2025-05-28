@@ -1,4 +1,73 @@
+- title: Lulu’s Cozy Kitchen
+  id: 09
+  colors: "#51806E, #EB998D, #F6B6AC, #FFF"
+  size: L
+  x: 1
+  y: -5
+  description: >-
+    Edited and art directed a full-color cookbook for YouTuber Lulu Yang, 
+    featuring bilingual recipes, personal essays, and original food photography. 
+    Oversaw layout, typography, and visual narrative to bring Lulu’s voice to life in print.
+  link: /
+  imageUrl: /
+  year: 2024
+  medium: Print
+  tools: Affinity Publisher/Designer/Photo
+  dataSource: Multiple
+  tags: 
+
+- title: NYC’s Holiday Tipping Insights
+  id: 08
+  colors: "#51806E, #EB998D, #F6B6AC, #FFF"
+  size: M
+  x: 2
+  y: -3
+  description: >-
+  link: /
+  imageUrl: /
+  year: 2024
+  medium: Print, Web
+  tools: Adobe Illustrator
+  dataSource: Multiple
+  tags: Visual Essay
+
+- title: The XYZ of Stress
+  id: 07
+  colors: "#222, #FFF"
+  size: M
+  x: -3
+  y: -4
+  description: >-
+  link: /
+  imageUrl: /
+  year: 2024
+  medium: Print, Web
+  tools: Adobe Illustrator
+  dataSource: Multiple
+  tags: Visual Essay
+
+- title: Information Is Beautiful Awards
+  id: 06
+  colors: "#E6BAE2, #FFF, #681585"
+  size: S
+  x: 5
+  y: -4
+  description: >-
+  link: /
+  imageUrl: /
+  year: 2025
+  medium: 
+  tools: Affinity Designer
+  dataSource: IIBA Judging Committee
+  tags:
+    - Information Design
+
 - title: The Fuzzy Work
+  id: 05
+  colors: "#7078CE, #F0EEE3, #3340A1, #fff"
+  size: L
+  x: 5
+  y: 5
   description: >-
     Featuring five interactive charts, this essay
     guides readers through global tech layoffs
@@ -17,6 +86,11 @@
     - Interactive Charts
 
 - title: The Snail and the Cricket
+  id: 04
+  colors: "#86A8C3, #C7C69A, #FFF, #B56348"
+  size: L
+  x: -5
+  y: 4
   description: >-
     An interactive children's book, built with React on Next.js. Combining scroll-based animation with cartoons,
     this storybook has searchable speechbubbles and responsive comic panels.
@@ -30,6 +104,11 @@
     - Interactive Storytelling
 
 - title: Zen Lattice
+  id: 03
+  colors: "#505F38, #89A460, #F1B9EC, #FFF"
+  size: L
+  x: -5
+  y: 4
   description: >-
     Lay your gaze on this meditative geometric animation. Use the controllers
     to switch the color palette, adjust the spin speed and other visual parameters.
@@ -45,6 +124,11 @@
     - Game
 
 - title: Welcome to the world, baby!
+  id: 02
+  colors: "#86A8C3, #C7C69A, #FFF, #B56348"
+  size: S
+  x: -4
+  y: 2
   description: >- 
     What does it take to birth a baby? Comic stripes made interactive.
   link: https://shanfan.github.io/projects/avocado-story/
@@ -58,6 +142,7 @@
     - Humor
 
 # - title: Start with a Daisy
+#   id: 01
 #   description: >-
 #     An interactive visual poem that tells a simple yet universal truth: Every large
 #     project starts with doing one small thing and doing it well. Built with GSAP.js.
@@ -71,6 +156,11 @@
 #     - Interactive Storytelling
 
 - title: She Said
+  id: 00
+  colors: "#86A8C3, #C7C69A, #FFF, #B56348"
+  size: S
+  x: 1
+  y: 1
   description: >-
     Playing through memorable quotes from Sex and the City. Carrie Bradshaw might have said
     a lot of horrendous things, but... she is still an icon of an era, even if it's a passed one.

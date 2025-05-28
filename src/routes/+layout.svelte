@@ -3,17 +3,14 @@
 	import '../app.css';
 	import logo from '$lib/images/gem_logo.png';
 	import { page } from '$app/stores';
-
 	let { children } = $props();
 
 	let theme = $derived($page.data?.theme ?? 'light');
 	let bgColor = $derived($page.data?.pageBg ?? 'var(--color-light-bg)');
 	let currentRoute = $derived($page.route.id);
-
-	$inspect(theme);
 </script>
 
-<div class="app {theme}" style="background: {bgColor}">
+<div class="app {theme}">
 	<header class={theme}>
 		<nav>
 			{#if currentRoute != '/about'}
