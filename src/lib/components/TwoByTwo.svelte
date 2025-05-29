@@ -3,11 +3,12 @@
 	import * as d3 from 'd3';
 	let { projects, whichProj } = $props();
 	let plotSize = 680;
-	let margin = 40;
+	let margin = 30;
 	let boundSize = plotSize - margin * 2;
 	let xScale = d3.scaleLinear().domain([-6, 6]).range([0, boundSize]);
 	let yScale = d3.scaleLinear().domain([-6, 6]).range([boundSize, 0]);
 	let sizeScale = d3.scaleOrdinal().domain(['S', 'M', 'L']).range([48, 72, 96]);
+	let blurTimeout;
 
 	let projectData = projects.map((d) => {
 		const colors = d.colors.split(',');
@@ -25,6 +26,18 @@
 			position: `${xScale(d.x)}, ${yScale(d.y)}`
 		};
 	});
+
+	function handleClick(id) {
+		clearTimeout(blurTimeout);
+		whichProj(id);
+	}
+
+	function handleKeydown(e, id) {
+		if (e.key === 'Enter' || e.key === ' ') {
+			e.preventDefault();
+			handleClick(id);
+		}
+	}
 </script>
 
 {#snippet arrowAxis(transX, transY, rotate = '0')}
@@ -44,12 +57,16 @@
 		class="proj"
 		transform="translate({data.position})"
 		data-proj={data.title}
-		onclick={() => {
-			whichProj(data.id);
+		onclick={() => handleClick(data.id)}
+		onkeydown={(e) => handleKeydown(e, data.id)}
+		onblur={() => {
+			blurTimeout = setTimeout(() => {
+				whichProj(null);
+			}, 300);
 		}}
-		onkeydown={() => handleKeydown()}
 		role="button"
-		tabindex={i}
+		aria-label={`Project ${data.title}`}
+		tabindex="0"
 	>
 		{#each data.colors as color, i}
 			{#if i % 2}
@@ -123,6 +140,15 @@
 	.proj:focus .spinning {
 		animation-play-state: paused;
 		cursor: pointer;
+	}
+
+	.proj:focus {
+		outline: none;
+	}
+
+	.proj:focus :first-child {
+		stroke: var(--color-accent-on-light);
+		stroke-width: 3px;
 	}
 
 	@keyframes spin {

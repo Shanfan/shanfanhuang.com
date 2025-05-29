@@ -20,7 +20,7 @@
 		])
 	);
 
-	$inspect(projectMap.get(2));
+	$inspect(projectMap.size);
 </script>
 
 <svelte:head>
@@ -43,11 +43,11 @@
 			<div class="image">
 				{#if projectMap.get(projID).vidUrl}
 					<video autoplay muted loop playsinline>
-						<source src={'/projects/' + projectMap.get(projID).vidUrl} type="video/mp4" />
-						<img src={'/projects/' + projectMap.get(projID).imageUrl} alt="" />
+						<source src={'/projects' + projectMap.get(projID).vidUrl} type="video/mp4" />
+						<img src={'/projects' + projectMap.get(projID).imageUrl} alt="" />
 					</video>
 				{:else}
-					<img src={'/projects/' + projectMap.get(projID).imageUrl} alt="" />
+					<img src={'/projects' + projectMap.get(projID).imageUrl} alt="" />
 				{/if}
 			</div>
 
@@ -64,7 +64,7 @@
 			<p><span class="label">tools</span> {projectMap.get(projID).tools}</p>
 		{:else}
 			<h1 class="cursive">Shanfan's Projects</h1>
-			<p>Lorem ipsum</p>
+			<p>Shanfan</p>
 		{/if}
 	</div>
 </section>
@@ -88,6 +88,10 @@
 		gap: 1em;
 	}
 
+	* {
+		transition: all ease-in-out 0.5s;
+	}
+
 	.graph-paper h1 {
 		font-size: 2em;
 		color: var(--color-light-blue);
@@ -96,6 +100,10 @@
 	.graph-paper h2 {
 		font-size: 2em;
 		margin-top: 0;
+	}
+
+	.graph-paper .image {
+		transform: translate(1em, 0);
 	}
 
 	.graph-paper .image img,
@@ -138,6 +146,11 @@
 			top: -3em;
 			width: 33%;
 		}
+
+		.information .image img,
+		.information .image video {
+			border-width: 8px;
+		}
 	}
 
 	@media (max-width: 640px) {
@@ -146,12 +159,15 @@
 		}
 		.information {
 			padding: 1em 2em;
-			/* border: none; */
 		}
 		.information .image {
 			position: unset;
 			width: 70%;
 			transform: translate(30%, -5%);
+		}
+		.information .image img,
+		.information .image video {
+			border-width: 6px;
 		}
 	}
 </style>

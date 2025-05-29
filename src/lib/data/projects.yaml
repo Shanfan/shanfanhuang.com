@@ -1,20 +1,17 @@
 - title: Lulu’s Cozy Kitchen
   id: 09
-  colors: "#51806E, #EB998D, #F6B6AC, #FFF"
+  colors: "#F27964, #25211E, #AEC37E, #FFF1E4, #F9A579, #FFFFD1"
   size: L
   x: 1
   y: -5
   description: >-
-    Edited and art directed a full-color cookbook for YouTuber Lulu Yang, 
-    featuring bilingual recipes, personal essays, and original food photography. 
-    Oversaw layout, typography, and visual narrative to bring Lulu’s voice to life in print.
+    I edited and art directed this full-color cookbook for YouTuber Lulu Yang, 
+    featuring recipes, personal essays, and original food photography. Overcoming challenges designing a bilingual book, we brought Lulu’s voice to life in print.
   link: /
-  imageUrl: /
+  imageUrl: /lulu-cozy-kitchen.jpg
   year: 2024
   medium: Print
   tools: Affinity Publisher/Designer/Photo
-  dataSource: Multiple
-  tags: 
 
 - title: NYC’s Holiday Tipping Insights
   id: 08
@@ -35,7 +32,7 @@
   id: 07
   colors: "#222, #FFF"
   size: M
-  x: -3
+  x: 0
   y: -4
   description: >-
   link: /
@@ -85,12 +82,30 @@
     - Data Visualization
     - Interactive Charts
 
+- title: Behind the Scene of...
+  id: 05-1
+  colors: "#3340A1, #F0EEE3, #7078CE"
+  size: S
+  x: 4
+  y: 3.5
+  description: >-
+    A look behind the making of The Fuzzy Work, detailing my design process from analyzing the data, prototyping, to visual storytelling.
+  link: /the-fuzzy-work/behind-the-scene
+  imageUrl: /behind-the-scene.png
+  year: 2025
+  medium: Web
+  tools: Observable, D3.js, Svelte
+  dataSource: n/a
+  tags:
+    - Blog
+    - Interactive Charts
+
 - title: The Snail and the Cricket
   id: 04
   colors: "#86A8C3, #C7C69A, #FFF, #B56348"
   size: L
   x: -5
-  y: 4
+  y: 3
   description: >-
     An interactive children's book, built with React on Next.js. Combining scroll-based animation with cartoons,
     this storybook has searchable speechbubbles and responsive comic panels.
@@ -106,9 +121,9 @@
 - title: Zen Lattice
   id: 03
   colors: "#505F38, #89A460, #F1B9EC, #FFF"
-  size: L
-  x: -5
-  y: 4
+  size: M
+  x: -2
+  y: 5
   description: >-
     Lay your gaze on this meditative geometric animation. Use the controllers
     to switch the color palette, adjust the spin speed and other visual parameters.
@@ -125,12 +140,12 @@
 
 - title: Welcome to the world, baby!
   id: 02
-  colors: "#86A8C3, #C7C69A, #FFF, #B56348"
+  colors: "#09153B, #ECDB67, #4B403E, #E0EA8A"
   size: S
   x: -4
   y: 2
   description: >- 
-    What does it take to birth a baby? Comic stripes made interactive.
+    What does it take to birth a baby? Listen to Avocado Mama and Avocado Dada telling their story. Comic stripes made interactive.
   link: https://shanfan.github.io/projects/avocado-story/
   imageUrl: /avo-fam.jpg
   year: 2023
@@ -157,7 +172,7 @@
 
 - title: She Said
   id: 100
-  colors: "#86A8C3, #C7C69A, #FFF, #B56348"
+  colors: "#D3776E, #E9E6E0, #111111"
   size: S
   x: 1
   y: 1
