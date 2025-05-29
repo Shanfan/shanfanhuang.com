@@ -18,7 +18,7 @@
 
 - title: NYC’s Holiday Tipping Insights
   id: 08
-  colors: "#51806E, #EB998D, #F6B6AC, #FFF"
+  colors: "#51806E, #EB998D, #FFF, #F6B6AC"
   size: M
   x: 2
   y: -3
@@ -48,7 +48,7 @@
 
 - title: Information Is Beautiful Awards
   id: 06
-  colors: "#E6BAE2, #FFF, #681585"
+  colors: "#681585, #FFF, #E6BAE2"
   size: S
   x: 5
   y: -4
@@ -156,7 +156,7 @@
 #     - Interactive Storytelling
 
 - title: She Said
-  id: 00
+  id: 100
   colors: "#86A8C3, #C7C69A, #FFF, #B56348"
   size: S
   x: 1

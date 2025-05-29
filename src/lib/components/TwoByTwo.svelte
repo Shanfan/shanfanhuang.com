@@ -1,9 +1,9 @@
 <script>
 	//@ts-nocheck
 	import * as d3 from 'd3';
-	let { projects } = $props();
-	let plotSize = 900;
-	let margin = 20;
+	let { projects, whichProj } = $props();
+	let plotSize = 680;
+	let margin = 40;
 	let boundSize = plotSize - margin * 2;
 	let xScale = d3.scaleLinear().domain([-6, 6]).range([0, boundSize]);
 	let yScale = d3.scaleLinear().domain([-6, 6]).range([boundSize, 0]);
@@ -18,14 +18,13 @@
 		});
 
 		return {
+			id: d.id,
 			title: d.title,
 			colors: colors,
 			sizes: sizes,
 			position: `${xScale(d.x)}, ${yScale(d.y)}`
 		};
 	});
-
-	$inspect(projectData);
 </script>
 
 {#snippet arrowAxis(transX, transY, rotate = '0')}
@@ -40,12 +39,22 @@
 	</g>
 {/snippet}
 
-{#snippet proj(data)}
-	<g transform="translate({data.position})" data-proj={data.title}>
+{#snippet proj(data, i)}
+	<g
+		class="proj"
+		transform="translate({data.position})"
+		data-proj={data.title}
+		onclick={() => {
+			whichProj(data.id);
+		}}
+		onkeydown={() => handleKeydown()}
+		role="button"
+		tabindex={i}
+	>
 		{#each data.colors as color, i}
 			{#if i % 2}
 				<rect
-					class="rotating"
+					class="spinning"
 					x={-data.sizes[i] / 2}
 					y={-data.sizes[i] / 2}
 					width={data.sizes[i]}
@@ -68,7 +77,7 @@
 {/snippet}
 
 <div class="wrapper">
-	<svg width="100%" height="auto" viewBox="0, 0, {plotSize}, {plotSize}">
+	<svg width="100%" viewBox="0, 0, {plotSize}, {plotSize}">
 		<g>
 			{@render arrowAxis(margin, plotSize / 2)}
 			{@render arrowAxis(plotSize / 2, margin, 90)}
@@ -79,9 +88,9 @@
 				<text text-anchor="start" x="0" y={plotSize / 2 + 26}>Expressive</text>
 			</g>
 		</g>
-		<g class="proj">
-			{#each projectData as p}
-				{@render proj(p)}
+		<g transform="translate({margin}, {margin})">
+			{#each projectData as p, i}
+				{@render proj(p, i)}
 			{/each}
 		</g>
 	</svg>
@@ -106,11 +115,12 @@
 		font-size: 1em;
 	}
 
-	.rotating {
+	.spinning {
 		animation: spin linear infinite 5s;
 	}
 
-	.rotating:hover {
+	.proj:hover .spinning,
+	.proj:focus .spinning {
 		animation-play-state: paused;
 		cursor: pointer;
 	}

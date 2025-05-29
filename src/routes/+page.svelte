@@ -3,8 +3,24 @@
 	import TwoByTwo from '$lib/components/TwoByTwo.svelte';
 
 	let { data } = $props();
+	let projID = $state();
+
 	const projects = data.projects;
-	const dir = '/projects';
+	const projectMap = new Map(
+		projects.map((proj) => [
+			proj.id,
+			{
+				title: proj.title,
+				description: proj.description,
+				link: proj.link,
+				imageUrl: proj.imageUrl,
+				vidUrl: proj.vidUrl,
+				tools: proj.tools
+			}
+		])
+	);
+
+	$inspect(projectMap.get(2));
 </script>
 
 <svelte:head>
@@ -15,10 +31,32 @@
 	/>
 </svelte:head>
 
-<section class="graph-paper">
-	<TwoByTwo {projects} />
+<section class="graph-paper light">
+	<TwoByTwo
+		{projects}
+		whichProj={(id) => {
+			projID = id;
+		}}
+	/>
 	<div class="information">
-		<h1 class="cursive">Shanfan's Projects</h1>
+		{#if projID}
+			<div class="image">
+				{#if projectMap.get(projID).vidUrl}
+					<video autoplay muted loop playsinline>
+						<source src={'/projects/' + projectMap.get(projID).vidUrl} type="video/mp4" />
+						<img src={'/projects/' + projectMap.get(projID).imageUrl} alt="" />
+					</video>
+				{:else}
+					<img src={'/projects/' + projectMap.get(projID).imageUrl} alt="" />
+				{/if}
+			</div>
+			<a href={projectMap.get(projID).link}><h2>{projectMap.get(projID).title}</h2></a>
+			<p class="description">{projectMap.get(projID).description}</p>
+			<p><span class="label">tools</span> {projectMap.get(projID).tools}</p>
+		{:else}
+			<h1 class="cursive">Shanfan's Projects</h1>
+			<p>Lorem ipsum</p>
+		{/if}
 	</div>
 </section>
 
@@ -35,7 +73,7 @@
 		background-position: -30% -30%;
 		border-radius: 10px;
 		padding: 1.5em;
-		color: var(--color-light-blue);
+		color: var(--color-dark-bg);
 		display: grid;
 		grid-template-columns: 2fr 1fr;
 		gap: 1em;
@@ -43,47 +81,40 @@
 
 	.graph-paper h1 {
 		font-size: 2em;
+		color: var(--color-light-blue);
 	}
 
 	.graph-paper h2 {
-		text-transform: lowercase;
 		font-size: 2em;
 		margin-top: 0;
 	}
 
 	.graph-paper .image img,
 	.graph-paper .image video {
-		width: 100%;
-		border-radius: 0.5em;
+		width: 95%;
+		border: 0.5em solid #fff;
+		transform: rotate(5deg);
+		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
 	}
 
-	.description,
-	.sources {
+	.description {
 		margin-bottom: 1em;
 	}
 
 	.label {
 		font-size: smaller;
 		text-transform: uppercase;
-		color: var(--color-lighter-blue);
+		color: var(--color-light-blue);
 		margin: 0;
 	}
 
-	.meta p {
-		margin-top: 0;
-	}
-
-	.tags {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 1em;
-	}
-
-	@media (max-width: 720px) {
+	@media (max-width: 960px) {
 		.graph-paper {
-			padding: 2em;
+			padding: 1em;
+			background-size: 16px;
 		}
-		.graph-paper h1 {
+		.graph-paper h1,
+		.graph-paper h2 {
 			font-size: 1.5em;
 		}
 	}
