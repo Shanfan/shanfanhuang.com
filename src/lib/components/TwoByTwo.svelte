@@ -34,7 +34,7 @@
                 rotate({rotate})"
 	>
 		<path d="M5 0 L0 5 L5 10" />
-		<path transform="translate({boundSize - 2}, 0)" d="M0 0 L5 5 L0 10" />
+		<path transform="translate({boundSize - 3}, 0)" d="M0 0 L5 5 L0 10" />
 		<line x1="0" y1="5" x2={boundSize} y2="5" />
 	</g>
 {/snippet}
