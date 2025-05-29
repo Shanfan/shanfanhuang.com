@@ -47,7 +47,10 @@
 						<img src={'/projects' + projectMap.get(projID).imageUrl} alt="" />
 					</video>
 				{:else}
-					<img src={'/projects' + projectMap.get(projID).imageUrl} alt="" />
+					<img
+						src={'/projects' + projectMap.get(projID).imageUrl}
+						alt={`Image of ${projectMap.get(projID)}`}
+					/>
 				{/if}
 			</div>
 
@@ -60,11 +63,29 @@
 					<h2>{projectMap.get(projID).title}</h2>
 				</a>
 			{/if}
-			<p class="description">{projectMap.get(projID).description}</p>
+			<p class="description">
+				{@html projectMap.get(projID).description}
+			</p>
 			<p><span class="label">tools</span> {projectMap.get(projID).tools}</p>
 		{:else}
 			<h1 class="cursive">Shanfan's Projects</h1>
-			<p>Shanfan</p>
+			<div class="image">
+				<img
+					src="https://sara-snail-cat-cricket.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fch5_sn3_pn1.6b9d516c.jpg&w=1920&q=75"
+					alt="A child peaking through a hole and discovering small creatures"
+				/>
+			</div>
+			<p>
+				My work invites people to see the familiar in unfamiliar ways. Some of my projects are
+				expressive and playful—like comics or children's books. Others are analytical—like data
+				essays and infographics. Some are hand-crafted, others built in code.
+			</p>
+			<p>
+				Regardless of form, I believe the best design doesn’t demand attention — it earns trust.
+				Like a backstage crew dressed in black, it stays out of the spotlight while holding the show
+				together.
+			</p>
+			<p>Good design helps people orient, reflect, and reimagine.</p>
 		{/if}
 	</div>
 </section>
@@ -84,7 +105,7 @@
 		border-radius: 10px;
 		color: var(--color-dark-bg);
 		display: grid;
-		grid-template-columns: 2fr 1fr;
+		grid-template-columns: 1.5fr 1fr;
 		gap: 1em;
 	}
 
@@ -109,7 +130,7 @@
 	.graph-paper .image img,
 	.graph-paper .image video {
 		width: 95%;
-		border: 0.75em solid #fff;
+		border: 0.5em solid #fff;
 		transform: rotate(5deg);
 		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
 	}
@@ -135,8 +156,9 @@
 		}
 
 		.information {
+			--img-size: 45%;
 			position: relative;
-			padding: 1em 35% 1em 2em;
+			padding: 1em var(--img-size) 1em 2em;
 			border: 3px solid var(--color-light-blue);
 		}
 
@@ -144,7 +166,7 @@
 			position: absolute;
 			right: -2em;
 			top: -3em;
-			width: 33%;
+			width: var(--img-size);
 		}
 
 		.information .image img,

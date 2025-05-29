@@ -26,14 +26,20 @@
 			<h2 class="cursive" style="text-align: center">Come in!</h2>
 		</a>
 		<p>
-			With a background in product UX design and agile software development, Shanfan has consulted
-			enterprise IT teams on user-centric design process and evidence-based product strategy.
+			Shanfan Huang is a designer who bridges data and story, logic and intuition. With a background
+			in product UX design and agile software consulting, she has coached enterprise IT teams on
+			user-centric design methodology, user research, and evidence-based product strategy.
 		</p>
 		<p>
-			Currently focusing on <span class="cursive">information design</span>
-			and <span class="cursive">visual storytelling</span>, working across print and web,
-			illustration and code — Shanfan’s work always has the same goal: making ideas easier to see,
-			and helping people orient, reflect, and reimagine.
+			Now working in data visualization, she applies the same rigorous thinking — hypothesis →
+			evidence → insights → takeaways — while considering usability and user experience.
+		</p>
+
+		<p>
+			Working across print and web, illustration and code, Shanfan’s work always has the same goal:
+			<span class="cursive">
+				making ideas easier to see, and helping people orient, reflect, and reimagine.
+			</span>
 		</p>
 
 		<div class="link-container">
@@ -94,6 +100,7 @@
 	}
 	.card p {
 		font-size: 1.25rem;
+		font-weight: 100;
 	}
 	.link-container {
 		display: flex;

@@ -20,8 +20,8 @@
   x: 2
   y: -3
   description: >-
-  link: /
-  imageUrl: /
+  link: https://nightingaledvs.com/insights-from-nycs-holiday-tipping-tradition/
+  imageUrl: /holiday-tipping.jpg
   year: 2024
   medium: Print, Web
   tools: Adobe Illustrator
@@ -35,7 +35,7 @@
   x: 0
   y: -4
   description: >-
-  link: /
+  link: https://nightingaledvs.com/xyz-of-stress/
   imageUrl: /
   year: 2024
   medium: Print, Web
@@ -50,6 +50,7 @@
   x: 5
   y: -4
   description: >-
+    I designed and managed the scoring system to support 112 judges across 15 categories in reviewing 987 submissions. <br/> During the judging period I facilitated multiple rounds of evaluation, moderated deliberation sessions, and ensured consistency and fairness throughout the judging process.
   link: /
   imageUrl: /
   year: 2025
@@ -89,7 +90,7 @@
   x: 4
   y: 3.5
   description: >-
-    A look behind the making of The Fuzzy Work, detailing my design process from analyzing the data, prototyping, to visual storytelling.
+    A look into the making of The Fuzzy Work, detailing my design process from analyzing the data, prototyping, to visual storytelling.
   link: /the-fuzzy-work/behind-the-scene
   imageUrl: /behind-the-scene.png
   year: 2025
