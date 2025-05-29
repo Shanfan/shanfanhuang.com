@@ -31,9 +31,9 @@
 		</p>
 		<p>
 			Currently focusing on <span class="cursive">information design</span>
-			and <span class="cursive">visual storytelling</span>, Shanfan’s work combines graphics,
-			illustrations, user experience, and interaction design to make complex information accessible
-			and engaging.
+			and <span class="cursive">visual storytelling</span>, working across print and web,
+			illustration and code — Shanfan’s work always has the same goal: making ideas easier to see,
+			and helping people orient, reflect, and reimagine.
 		</p>
 
 		<div class="link-container">
