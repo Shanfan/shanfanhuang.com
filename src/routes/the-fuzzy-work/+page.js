@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import { fetchDataset } from "$lib/dataLoader";
+import { fetchDataset } from "$lib/utilities/dataLoader";
 import { ascending, rollup, sum, max, descending } from 'd3';
 
 export const prerender = true;
