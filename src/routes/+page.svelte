@@ -19,8 +19,6 @@
 			}
 		])
 	);
-
-	$inspect(projectMap.size);
 </script>
 
 <svelte:head>
@@ -82,10 +80,10 @@
 			</p>
 			<p>
 				Regardless of form, I believe the best design doesn’t demand attention — it earns trust.
-				Like a backstage crew dressed in black, it stays out of the spotlight while holding the show
-				together.
+				Like a backstage crew dressed in black, <i>Good Design</i> stays out of the spotlight while holding
+				the show together. It helps people orient, reflect, and reimagine.
 			</p>
-			<p>Good design helps people orient, reflect, and reimagine.</p>
+			<p>Click the markers in the quadrant chart to explore.</p>
 		{/if}
 	</div>
 </section>
@@ -109,10 +107,6 @@
 		gap: 1em;
 	}
 
-	* {
-		transition: all ease-in-out 0.5s;
-	}
-
 	.graph-paper h1 {
 		font-size: 2em;
 		color: var(--color-light-blue);
@@ -129,7 +123,7 @@
 
 	.graph-paper .image img,
 	.graph-paper .image video {
-		width: 95%;
+		width: 100%;
 		border: 0.5em solid #fff;
 		transform: rotate(5deg);
 		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);

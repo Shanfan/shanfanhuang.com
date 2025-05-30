@@ -1,13 +1,13 @@
 - title: Lulu’s Cozy Kitchen
   id: 09
-  colors: "#F27964, #25211E, #AEC37E, #FFF1E4, #F9A579, #FFFFD1"
+  colors: "#F27964, #eee, #AEC37E, #FFF1E4, #F9A579, #FFFFDD"
   size: L
   x: 1
   y: -5
   description: >-
     I edited and art directed this full-color cookbook for YouTuber Lulu Yang, 
     featuring recipes, personal essays, and original food photography. Overcoming challenges designing a bilingual book, we brought Lulu’s voice to life in print.
-  link: /
+  link: https://www.behance.net/gallery/217323765/Homemade-Happiness-Book-Design-Editing
   imageUrl: /lulu-cozy-kitchen.jpg
   year: 2024
   medium: Print
@@ -20,26 +20,35 @@
   x: 2
   y: -3
   description: >-
+    This visual essay explores New York City’s holiday tipping tradition through data and sentiment. Blending quantitative analysis with cultural observation, it unpacks how gratitude, guilt, class, and social pressure shape year-end tipping behavior—and what this peculiar ritual reveals about money, meaning, and modern etiquette in urban life.
   link: https://nightingaledvs.com/insights-from-nycs-holiday-tipping-tradition/
   imageUrl: /holiday-tipping.jpg
   year: 2024
   medium: Print, Web
-  tools: Adobe Illustrator
+  tools: Affinity Designer, RAWGraphs
   dataSource: Multiple
   tags: Visual Essay
 
 - title: The XYZ of Stress
   id: 07
-  colors: "#222, #FFF"
+  colors: "#3B0E38, #AB60A6, #EF5C8C, #75C6B3, #F4BB46, #586C11, #FFF"
   size: M
   x: 0
   y: -4
   description: >-
+    According to Gallup’s report, people’s
+    mental well-being has steadily declined
+    over the past decade. Inspired by these
+    findings, I conducted additional research
+    and created this infographic story to explore
+    how work-related stress manifests
+    diHerently across generations and age
+    groups.
   link: https://nightingaledvs.com/xyz-of-stress/
-  imageUrl: /
+  imageUrl: /xyz-stress.jpg
   year: 2024
   medium: Print, Web
-  tools: Adobe Illustrator
+  tools: RAWGraphs, Adobe Illustrator, Google Sheet
   dataSource: Multiple
   tags: Visual Essay
 
@@ -50,12 +59,12 @@
   x: 5
   y: -4
   description: >-
-    I designed and managed the scoring system to support 112 judges across 15 categories in reviewing 987 submissions. <br/> During the judging period I facilitated multiple rounds of evaluation, moderated deliberation sessions, and ensured consistency and fairness throughout the judging process.
-  link: /
-  imageUrl: /
+    I designed and managed the scoring system to support 112 judges across 15 categories in reviewing 987 submissions. During the judging period I facilitated multiple rounds of evaluation, moderated deliberation sessions, and ensured consistency and fairness throughout the judging process.
+  link: https://www.informationisbeautifulawards.com/
+  imageUrl: /iiba.png
   year: 2025
   medium: 
-  tools: Affinity Designer
+  tools: Affinity Designer, Google Sheet
   dataSource: IIBA Judging Committee
   tags:
     - Information Design
@@ -91,11 +100,11 @@
   y: 3.5
   description: >-
     A look into the making of The Fuzzy Work, detailing my design process from analyzing the data, prototyping, to visual storytelling.
-  link: /the-fuzzy-work/behind-the-scene
-  imageUrl: /behind-the-scene.png
+  link: /the-fuzzy-work/behind-the-scenes
+  imageUrl: /behind-the-scenes.png
   year: 2025
   medium: Web
-  tools: Observable, D3.js, Svelte
+  tools: Observable, D3.js, Svelte, CapCut
   dataSource: n/a
   tags:
     - Blog
@@ -171,21 +180,21 @@
 #     - Poem
 #     - Interactive Storytelling
 
-- title: She Said
-  id: 100
-  colors: "#D3776E, #E9E6E0, #111111"
-  size: S
-  x: 1
-  y: 1
-  description: >-
-    Playing through memorable quotes from Sex and the City. Carrie Bradshaw might have said
-    a lot of horrendous things, but... she is still an icon of an era, even if it's a passed one.
-  link: https://shanfan.github.io/shesaid
-  imageUrl: /she-said.png
-  year: 2013
-  medium: Web
-  tools: Javascript
-  tags:
-    - UI Experiment
-    - Typography
-    - Humor
+# - title: She Said
+#   id: 100
+#   colors: "#D3776E, #E9E6E0, #111111"
+#   size: S
+#   x: 1
+#   y: 1
+#   description: >-
+#     Playing through memorable quotes from Sex and the City, hand coded with metadata of episodes and . Carrie Bradshaw might have said
+#     a lot of horrendous things, but... she is still an icon of an era, even if it's a passed one.
+#   link: https://shanfan.github.io/shesaid
+#   imageUrl: /she-said.png
+#   year: 2013
+#   medium: Web
+#   tools: Javascript
+#   tags:
+#     - UI Experiment
+#     - Typography
+#     - Humor

@@ -139,10 +139,13 @@
 		animation: spin linear infinite 5s;
 	}
 
+	.proj:hover {
+		cursor: pointer;
+	}
+
 	.proj:hover .spinning,
 	.proj:focus .spinning {
 		animation-play-state: paused;
-		cursor: pointer;
 	}
 
 	.proj:focus {
