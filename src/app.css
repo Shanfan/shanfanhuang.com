@@ -19,10 +19,6 @@
 	font-family: var(--font-body);
 }
 
-* {
-	transition: all ease-in-out 0.2s;
-}
-
 body {
 	min-height: 100vh;
 	margin: 0;

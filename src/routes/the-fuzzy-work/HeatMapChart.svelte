@@ -169,4 +169,8 @@
 		stroke-width: 0.5px;
 		stroke: var(--color-light-blue);
 	}
+
+	circle {
+		transition: all 0.2s ease-in-out;
+	}
 </style>
