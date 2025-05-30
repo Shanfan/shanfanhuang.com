@@ -67,11 +67,13 @@
 			<p><span class="label">tools</span> {projectMap.get(projID).tools}</p>
 		{:else}
 			<h1 class="cursive">Shanfan's Projects</h1>
+			<p>Click the markers in the quadrant chart to explore.</p>
 			<div class="image">
-				<img
+				<!-- <img
 					src="https://sara-snail-cat-cricket.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fch5_sn3_pn1.6b9d516c.jpg&w=1920&q=75"
 					alt="A child peaking through a hole and discovering small creatures"
-				/>
+				/> -->
+				<img src="/projects/square-jump.gif" alt="hand drawn animation" />
 			</div>
 			<p>
 				My work invites people to see the familiar in unfamiliar ways. Some of my projects are
@@ -79,11 +81,10 @@
 				essays and infographics. Some are hand-crafted, others built in code.
 			</p>
 			<p>
-				Regardless of form, I believe the best design doesn’t demand attention — it earns trust.
-				Like a backstage crew dressed in black, <i>Good Design</i> stays out of the spotlight while holding
-				the show together. It helps people orient, reflect, and reimagine.
+				Regardless of form, I believe good design earns trust with subtlety, instead of demanding
+				attention. Like a backstage crew dressed in black, <i>Good Design</i> stays out of the spotlight
+				while holding the show together. It helps people orient, reflect, and reimagine.
 			</p>
-			<p>Click the markers in the quadrant chart to explore.</p>
 		{/if}
 	</div>
 </section>
