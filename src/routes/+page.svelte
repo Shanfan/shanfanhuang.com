@@ -104,8 +104,8 @@
 		border-radius: 10px;
 		color: var(--color-dark-bg);
 		display: grid;
-		grid-template-columns: 1.5fr 1fr;
-		gap: 1em;
+		grid-template-columns: 1fr 1fr;
+		gap: 3em;
 	}
 
 	.graph-paper h1 {
@@ -119,12 +119,12 @@
 	}
 
 	.graph-paper .image {
-		transform: translate(1em, 0);
+		transform: translate(25%, 0);
 	}
 
 	.graph-paper .image img,
 	.graph-paper .image video {
-		width: 100%;
+		width: 50%;
 		border: 0.5em solid #fff;
 		transform: rotate(5deg);
 		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
