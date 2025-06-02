@@ -191,20 +191,18 @@
 		{/each}
 	</div>
 
-	{#each slicedData as slice}
-		{#key slice}
-			<SwarmChart
-				{stages}
-				{colorScale}
-				{rScale}
-				data={slice}
-				height={chartHeight / slicedData.length}
-				width={chartWidth}
-				whichCompany={(node) => {
-					selectedCompany = node;
-				}}
-			/>
-		{/key}
+	{#each slicedData as slice, i (slice)}
+		<SwarmChart
+			{stages}
+			{colorScale}
+			{rScale}
+			data={slice}
+			height={chartHeight / slicedData.length}
+			width={chartWidth}
+			whichCompany={(node) => {
+				selectedCompany = node;
+			}}
+		/>
 	{/each}
 </div>
 <aside>
