@@ -1,6 +1,8 @@
 <script>
 	//@ts-nocheck
 	import TwoByTwo from '$lib/components/TwoByTwo.svelte';
+	import { quintInOut, quintOut } from 'svelte/easing';
+	import { crossfade, fade, slide, fly } from 'svelte/transition';
 
 	let { data } = $props();
 	let projID = $state();
@@ -19,10 +21,24 @@
 			}
 		])
 	);
+
+	const [send, receive] = crossfade({
+		duration: 600,
+		easing: quintInOut,
+		fallback(node, params) {
+			return {
+				duration: 600,
+				easing: quintOut,
+				css: (t) => `opacity: ${t};
+					transform: scale(${0.95 + 0.05 * t});
+					filter: blur(${(1 - t) * 4}px);`
+			};
+		}
+	});
 </script>
 
 <svelte:head>
-	<title>Projects</title>
+	<title>Shanfan's Projects</title>
 	<meta
 		name="description"
 		content="Shanfan Huang's projects: Visual Storytelling, Information Design, UI/UX, Data Visualization, Front-end Development"
@@ -49,19 +65,22 @@
 	</div>
 	<div class="information">
 		{#if projID}
-			<div class="image">
-				{#if projectMap.get(projID).vidUrl}
-					<video autoplay muted loop playsinline>
-						<source src={'/projects' + projectMap.get(projID).vidUrl} type="video/mp4" />
-						<img src={'/projects' + projectMap.get(projID).imageUrl} alt="" />
-					</video>
-				{:else}
-					<img
-						src={'/projects' + projectMap.get(projID).imageUrl}
-						alt={`Image of ${projectMap.get(projID)}`}
-					/>
-				{/if}
-			</div>
+			{#key projID}
+				<div in:receive={{ key: projID }} out:send={{ key: projID }} class="image">
+					{#if projectMap.get(projID).vidUrl}
+						<video autoplay muted loop playsinline>
+							<source src={'/projects' + projectMap.get(projID).vidUrl} type="video/mp4" />
+							<img src={'/projects' + projectMap.get(projID).imageUrl} alt="" />
+						</video>
+					{:else}
+						<img
+							src={'/projects' + projectMap.get(projID).imageUrl}
+							alt={`Image of ${projectMap.get(projID)}`}
+						/>
+					{/if}
+				</div>
+			{/key}
+
 			<div class="description">
 				{#if projectMap.get(projID).link.startsWith('http')}
 					<a href={projectMap.get(projID).link} target="_blank">
@@ -82,23 +101,20 @@
 			</div>
 		{:else}
 			<div class="image">
-				<!-- <img
-					src="https://sara-snail-cat-cricket.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fch5_sn3_pn1.6b9d516c.jpg&w=1920&q=75"
-					alt="A child peaking through a hole and discovering small creatures"
-				/> -->
 				<img src="/projects/square-jump.gif" alt="hand drawn animation" />
-				<!-- <enhanced:img src="/static/projects/the-fuzzy-work.png" /> -->
 			</div>
-			<p>
-				My work invites people to see the familiar in unfamiliar ways. Some of my projects are
-				expressive and playful—like comics or children's books. Others are analytical—like data
-				essays and infographics. Some are hand-crafted, others built in code.
-			</p>
-			<p>
-				Regardless of form, I believe good design earns trust with subtlety, instead of demanding
-				attention. Like a backstage crew dressed in black, <i>Good Design</i> stays out of the spotlight
-				while holding the show together. It helps people orient, reflect, and reimagine.
-			</p>
+			<div class="description">
+				<p>
+					My work invites people to see the familiar in unfamiliar ways. Some of my projects are
+					expressive and playful—like comics or children's books. Others are analytical—like data
+					essays and infographics. Some are hand-crafted, others built in code.
+				</p>
+				<p>
+					Regardless of form, I believe good design earns trust with subtlety, instead of demanding
+					attention. Like a backstage crew dressed in black, <i>Good Design</i> stays out of the spotlight
+					while holding the show together. It helps people orient, reflect, and reimagine.
+				</p>
+			</div>
 		{/if}
 	</div>
 </section>
@@ -113,7 +129,7 @@
 		background-color: var(--color-light-bg);
 		background-image: url('/grid.png');
 		background-repeat: repeat;
-		background-size: 16px;
+		background-size: 12px;
 		background-position: -30% -30%;
 		border-radius: 10px;
 		color: var(--color-dark-bg);
@@ -130,8 +146,17 @@
 		font-size: 2em;
 	}
 
+	.graph-paper .image {
+		position: relative;
+		width: 100%;
+		height: auto;
+	}
+
 	.graph-paper .image img,
 	.graph-paper .image video {
+		position: absolute;
+		left: 15%;
+		top: -10em;
 		width: 75%;
 		height: auto;
 		border: 0.5em solid #fff;
@@ -140,7 +165,7 @@
 	}
 
 	.description {
-		margin-bottom: 1em;
+		margin-top: 50%;
 	}
 
 	.label {
@@ -168,21 +193,24 @@
 		}
 
 		.information {
-			--img-size: 48%;
 			position: relative;
-			padding: 1em var(--img-size) 1em 2em;
+			padding: 1em 40% 1em 2em;
 		}
 
 		.information .image {
 			position: absolute;
-			right: -2em;
-			top: -3em;
-			width: var(--img-size);
+			width: 50%;
+			left: 60%;
 		}
 
 		.information .image img,
 		.information .image video {
-			border-width: 8px;
+			border-width: 5px;
+			top: 0;
+			left: 0;
+		}
+		.description {
+			margin-top: 0;
 		}
 	}
 
@@ -190,17 +218,10 @@
 		.graph-paper {
 			margin: 0 1em;
 		}
-		.information {
-			padding: 1em 2em;
-		}
-		.information .image {
-			position: unset;
-			width: 80%;
-			transform: translate(30%, 0%);
-		}
 		.information .image img,
 		.information .image video {
-			border-width: 6px;
+			border-width: 3px;
+			right: 0;
 		}
 	}
 </style>

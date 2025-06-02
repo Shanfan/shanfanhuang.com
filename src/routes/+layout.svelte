@@ -23,7 +23,9 @@
 				/>
 				{#if currentRoute != '/'}
 					<a href="/">Projects</a>
+					<a href="/about">About</a>
 				{/if}
+				<p>Projects</p>
 				<a href="/about">About</a>
 			{/if}
 		</nav>
