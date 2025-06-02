@@ -93,34 +93,29 @@
 	</g>
 {/snippet}
 
-<div class="wrapper">
-	<svg width="100%" viewBox="0, 0, {plotSize}, {plotSize}">
-		<g>
-			{@render arrowAxis(margin, plotSize / 2)}
-			{@render arrowAxis(plotSize / 2, margin, 90)}
-			<g class="axis-label">
-				<text text-anchor="middle" x={plotSize / 2} y="1em">Dynamic</text>
-				<text text-anchor="middle" x={plotSize / 2} y={plotSize}>Static</text>
-				<text text-anchor="end" x={plotSize} y={plotSize / 2 - 5}>Analytical</text>
-				<text text-anchor="start" x="0" y={plotSize / 2 + 26}>Expressive</text>
-			</g>
+<svg viewBox="0, 0, {plotSize}, {plotSize}">
+	<g>
+		{@render arrowAxis(margin, plotSize / 2)}
+		{@render arrowAxis(plotSize / 2, margin, 90)}
+		<g class="axis-label">
+			<text text-anchor="middle" x={plotSize / 2} y="1em">Dynamic</text>
+			<text text-anchor="middle" x={plotSize / 2} y={plotSize}>Static</text>
+			<text text-anchor="end" x={plotSize} y={plotSize / 2 - 5}>Analytical</text>
+			<text text-anchor="start" x="0" y={plotSize / 2 + 26}>Expressive</text>
 		</g>
-		<g transform="translate({margin}, {margin})">
-			{#each projectData as p, i}
-				{@render proj(p, i)}
-			{/each}
-		</g>
-	</svg>
-</div>
+	</g>
+	<g transform="translate({margin}, {margin})">
+		{#each projectData as p, i}
+			{@render proj(p, i)}
+		{/each}
+	</g>
+</svg>
 
 <style>
-	.wrapper {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
+	svg {
+		border: 3px solid var(--color-light-blue);
+		padding: 1em;
 	}
-
 	.axis {
 		stroke: var(--color-light-blue);
 		stroke-width: 2px;
