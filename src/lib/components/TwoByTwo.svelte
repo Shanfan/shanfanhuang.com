@@ -115,7 +115,6 @@
 	svg {
 		border: 3px solid var(--color-light-blue);
 		padding: 1em;
-		max-height: 65vh;
 	}
 	.axis {
 		stroke: var(--color-light-blue);

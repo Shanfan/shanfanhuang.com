@@ -90,9 +90,10 @@
 		z-index: 100;
 	}
 	.card {
-		max-width: 650px;
+		max-width: 40em;
 		padding: 75px 3em 2em 3em;
 		margin-top: -75px;
+		margin-bottom: 5em;
 		background: rgba(4, 3, 56, 0.5);
 		backdrop-filter: blur(4px);
 		border-radius: 10px;

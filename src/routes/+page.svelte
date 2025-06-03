@@ -23,14 +23,13 @@
 	);
 
 	const [send, receive] = crossfade({
-		duration: 600,
+		duration: 300,
 		easing: quintInOut,
 		fallback(node, params) {
 			return {
-				duration: 600,
+				duration: 300,
 				easing: quintOut,
 				css: (t) => `opacity: ${t};
-					transform: scale(${0.95 + 0.05 * t});
 					filter: blur(${(1 - t) * 4}px);`
 			};
 		}
@@ -50,12 +49,19 @@
 </svelte:head>
 
 <section class="graph-paper light">
-	<div class="full-width">
-		<h1 class="cursive">Shanfan's Projects</h1>
-		<p>Click the markers in the quadrant chart to explore.</p>
+	<h1 style="text-align: center">Shanfan's Projects</h1>
+	<h2 style="text-align: center; font-weight: 200">
+		My work invites people to see the familiar in unfamiliar ways.
+	</h2>
+	<div class="description">
+		<p>
+			Some of my projects are expressive and playful, like comics or children's books. Others are
+			analytical, like data essays and infographics. Some are hand-crafted, others built in code. If
+			we plot all my projects in a 2x2 chart, they will look like this: ⬇︎
+		</p>
 	</div>
 
-	<div class="wrapper">
+	<div>
 		<TwoByTwo
 			{projects}
 			whichProj={(id) => {
@@ -63,6 +69,7 @@
 			}}
 		/>
 	</div>
+
 	<div class="information">
 		{#if projID}
 			{#key projID}
@@ -84,14 +91,14 @@
 			<div class="description">
 				{#if projectMap.get(projID).link.startsWith('http')}
 					<a href={projectMap.get(projID).link} target="_blank">
-						<h1 class="cursive">
+						<h2 class="cursive">
 							{projectMap.get(projID).title}
 							<span class="material-symbols-outlined">open_in_new</span>
-						</h1>
+						</h2>
 					</a>
 				{:else}
 					<a href={projectMap.get(projID).link}>
-						<h1 class="cursive">{projectMap.get(projID).title}</h1>
+						<h2 class="cursive">{projectMap.get(projID).title}</h2>
 					</a>
 				{/if}
 				<p>
@@ -100,20 +107,18 @@
 				<p><span class="label">tools</span> {projectMap.get(projID).tools}</p>
 			</div>
 		{:else}
-			<div class="image">
-				<img src="/projects/square-jump.gif" alt="hand drawn animation" />
-			</div>
-			<div class="description">
+			<div>
 				<p>
-					My work invites people to see the familiar in unfamiliar ways. Some of my projects are
-					expressive and playful—like comics or children's books. Others are analytical—like data
-					essays and infographics. Some are hand-crafted, others built in code.
+					Each square motif represents a project: its colors are drawn from the project’s visual
+					content, and its size reflects the effort involved. ⬆︎Click the motifs to explore.
 				</p>
 				<p>
-					Regardless of form, I believe good design earns trust with subtlety, instead of demanding
-					attention. Like a backstage crew dressed in black, <i>Good Design</i> stays out of the spotlight
-					while holding the show together. It helps people orient, reflect, and reimagine.
+					Regardless of form or medium, I believe good design earns trust with subtlety, and rarely
+					demands attention. Like a backstage crew dressed in black, <i>good design</i><sup>TM</sup>
+					stays out of the spotlight while holding the show together. It helps people orient, reflect,
+					and reimagine.
 				</p>
+				<p><a href="/about">More about me...</a></p>
 			</div>
 		{/if}
 	</div>
@@ -123,49 +128,38 @@
 	.graph-paper {
 		flex-grow: 1;
 		align-self: center;
-		max-width: 84em;
+		max-width: 40em;
 		margin: 0 4em;
-		padding: 1.5em;
+		padding: 2em 3em;
 		background-color: var(--color-light-bg);
 		background-image: url('/grid.png');
 		background-repeat: repeat;
 		background-size: 12px;
-		background-position: -30% -30%;
 		border-radius: 10px;
 		color: var(--color-dark-bg);
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 1em 4em;
-	}
-
-	.full-width {
-		grid-column: 1 / 3;
-	}
-
-	.graph-paper h1 {
-		font-size: 2em;
 	}
 
 	.graph-paper .image {
 		position: relative;
-		width: 100%;
+		width: 50%;
 		height: auto;
 	}
 
 	.graph-paper .image img,
 	.graph-paper .image video {
+		/* need absolute position to cross fade */
 		position: absolute;
-		left: 15%;
-		top: -10em;
-		width: 75%;
+		left: 0;
+		top: 0;
+		width: 100%;
 		height: auto;
-		border: 0.5em solid #fff;
+		border: 8px solid #fff;
 		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
-		transform: translate(15%, -15%) rotate(7deg);
+		transform: translate(-15%, -10%) rotate(-7deg);
 	}
 
-	.description {
-		margin-top: 50%;
+	.information .description {
+		margin-left: 50%;
 	}
 
 	.label {
@@ -184,20 +178,12 @@
 	}
 
 	@media (max-width: 1024px) {
-		.graph-paper {
-			grid-template-columns: 1fr;
-		}
-
-		.full-width {
-			grid-column: 1;
-		}
-
 		.information {
-			position: relative;
-			padding: 1em 40% 1em 2em;
+			/* position: relative; */
+			/* padding: 1em 40% 1em 2em; */
 		}
 
-		.information .image {
+		/* .information .image {
 			position: absolute;
 			width: 50%;
 			left: 60%;
@@ -211,17 +197,17 @@
 		}
 		.description {
 			margin-top: 0;
-		}
+		} */
 	}
 
 	@media (max-width: 640px) {
-		.graph-paper {
+		/* .graph-paper {
 			margin: 0 1em;
 		}
 		.information .image img,
 		.information .image video {
 			border-width: 3px;
 			right: 0;
-		}
+		} */
 	}
 </style>

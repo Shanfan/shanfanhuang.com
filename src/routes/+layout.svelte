@@ -13,7 +13,7 @@
 <div class="app {theme}">
 	<header class={theme}>
 		<nav>
-			{#if currentRoute != '/about'}
+			{#if currentRoute === '/'}
 				<img
 					src={logo}
 					alt="logo"
@@ -21,11 +21,27 @@
 					height="auto"
 					title="Shanfan Huang's Personal Website"
 				/>
-				{#if currentRoute != '/'}
-					<a href="/">Projects</a>
-					<a href="/about">About</a>
-				{/if}
 				<p>Projects</p>
+				<a href="/about">About</a>
+			{:else if currentRoute === '/about'}
+				<img
+					src={logo}
+					alt="logo"
+					width="64"
+					height="auto"
+					title="Shanfan Huang's Personal Website"
+				/>
+				<a href="/">Projects</a>
+				<p>About</p>
+			{:else}
+				<img
+					src={logo}
+					alt="logo"
+					width="64"
+					height="auto"
+					title="Shanfan Huang's Personal Website"
+				/>
+				<a href="/">Projects</a>
 				<a href="/about">About</a>
 			{/if}
 		</nav>
